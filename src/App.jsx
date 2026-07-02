@@ -1,32 +1,43 @@
 import React, { useState } from "react";
 
-const readerModes = {
-  recruiter: {
-    label: "Recruiter",
-    prompt: "Fast scan",
-    headline: "PM-pivoting AI builder with measurable safety/eval output.",
-    focus: "Role fit, signal, proof points, and what to read first.",
-  },
-  hiring: {
-    label: "Hiring Manager",
-    prompt: "Case depth",
-    headline: "Turns ambiguous AI risk into shipped systems, evals, and product decisions.",
-    focus: "Problem framing, constraints, tradeoffs, and impact.",
-  },
-  technical: {
-    label: "Technical",
-    prompt: "Deep dive",
-    headline: "Hands-on with RAG, LLM guardrails, multimodal pipelines, ML eval, and interactive analysis.",
-    focus: "Methods, architecture, metrics, failure modes, and extension plans.",
-  },
+const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
+const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
+
+const heroCopy = {
+  headline: "Safety systems, evals, and product judgment you can actually explore.",
+  focus:
+    "A living portfolio of hands-on projects: moderation systems, GenAI and agent evals, reviewer workflows, RAG systems, multimodal pipelines, and interactive case studies.",
 };
+
+const artifactLedger = [
+  {
+    title: "Policy boundary",
+    text:
+      "Crypto-fraud enforcement is separated from warnings, satire, market news, debugging, and help-seeking.",
+  },
+  {
+    title: "Evaluation program",
+    text:
+      "Scenario, adversarial, production-hardening, evidence-faithfulness, calibration, and launch-gate checks are executable artifacts.",
+  },
+  {
+    title: "Reviewer workflow",
+    text:
+      "The lab includes queue states, evidence views, threshold tuning, appeals, transparency, and reviewer decision history.",
+  },
+  {
+    title: "Operational loop",
+    text:
+      "SQL-readable analytics track backlog, review coverage, action mix, false-positive candidates, entity leads, and incident readiness.",
+  },
+];
 
 const proofStats = [
   { value: "13", label: "House IQ PRs merged", detail: "Across 5 production services" },
   { value: "70%", label: "Merged code was tests", detail: "5,270 of 7,497 added lines" },
   { value: "5,350", label: "Eval/config lines", detail: "Red-team scenarios, baselines, stress data" },
   { value: "10+", label: "Client demos led", detail: "Myridius AI/RAG workflows" },
-  { value: "7", label: "Cornell project labs", detail: "ML, fairness, RL, data science, startup studio" },
+  { value: "8", label: "Cornell project labs", detail: "T&S, ML, fairness, RL, data science, startup studio" },
 ];
 
 const caseFiles = [
@@ -35,7 +46,6 @@ const caseFiles = [
     org: "House IQ",
     date: "Dec 2025 - Mar 2026",
     status: "Shipped",
-    audience: ["PM", "AI Safety", "Engineering"],
     tags: ["LLM eval", "CI baselines", "structured output", "agent safety"],
     impact: "Replaced manual chat spot-checking with CI-gated safety/topicality evals and reusable evaluator primitives.",
     problem:
@@ -52,7 +62,6 @@ const caseFiles = [
     org: "House IQ",
     date: "Mar - Apr 2026",
     status: "Shipped",
-    audience: ["PM", "Engineering"],
     tags: ["multimodal AI", "PDF/DOCX", "HEIC", "scope control"],
     impact: "Expanded a document vision pipeline from clean PDFs to scanned PDFs, Word documents, and iPhone photo formats.",
     problem:
@@ -69,7 +78,6 @@ const caseFiles = [
     org: "House IQ",
     date: "2026",
     status: "Shipped",
-    audience: ["PM", "AI Safety"],
     tags: ["guardrails", "trust and safety", "cached content", "multi-vendor"],
     impact: "Closed a safety gap where one inference path could bypass checks already present in another path.",
     problem:
@@ -86,7 +94,6 @@ const caseFiles = [
     org: "House IQ",
     date: "Apr - May 2026",
     status: "Paused after design",
-    audience: ["PM", "AI Safety", "Analyst"],
     tags: ["threat modeling", "red team", "OWASP", "agentic RAG"],
     impact: "Mapped external-content attack surfaces and built reusable test infrastructure before pausing for launch-blocking work.",
     problem:
@@ -103,7 +110,6 @@ const caseFiles = [
     org: "Myridius / RCG",
     date: "Oct 2024 - Jun 2025",
     status: "Built and demoed",
-    audience: ["Engineering", "Analyst"],
     tags: ["Databricks", "RAG", "SQL", "Streamlit", "client demos"],
     impact: "Built and demonstrated a Databricks-backed assistant that answered from documents and structured tables for enterprise use cases.",
     problem:
@@ -118,6 +124,30 @@ const caseFiles = [
 ];
 
 const courseProjects = [
+  {
+    id: "crypto-scam-lab",
+    course: "CS 5342 Trust & Safety",
+    title: "Crypto Scam Moderation Lab",
+    theme: "Platform policy",
+    metric: "Op F1 0.94",
+    caption: "Bluesky-compatible safety console that turns an investment-scam policy into evals, reviewer decisions, incident response, appeals, and campaign intelligence.",
+    bullets: [
+      "Defined the investment-scam boundary across ABC and AIM: wallet drainers, fake recovery, airdrops, and impersonation are in scope; warnings, news, satire, debugging, and help-seeking are protected.",
+      "Audited the original hybrid classifier, then built a reproducible v2 baseline with TF-IDF, policy features, calibrated thresholds, explicit review tiers, and contextual evidence guardrails.",
+      "Built scenario, adversarial, hardening, evidence-faithfulness, and calibration evals that separate public-label safety from review-or-label recall.",
+      "Expanded the classifier into an interactive console with a review queue, custom tester, campaign graph, 12-case calibration simulator, incident replay, and bounded GenAI abuse lab.",
+      "Added notices, appeal reversals, transparency metrics, SQLite-backed operations analytics, and public-safe campaign examples so detection connects to user impact and operational follow-through.",
+    ],
+    expansion: [
+      "Blind external evaluation over a privacy-safe, time-separated sample of public scam patterns.",
+      "Small reviewer study measuring agreement, time-to-decision, and evidence usefulness.",
+      "Broader local AT Protocol ingestion with privacy-safe retention, reviewer decision state, and ops analytics.",
+      "Hosted LLM evidence adapter gated by schema, faithfulness, and over-enforcement evals.",
+      "Actor/network enrichment for URL redirects, account histories, and coordinated campaigns.",
+      "Active-learning queue for uncertain labels, appeals, multilingual review, and warning-design experiments.",
+    ],
+    viz: "trust-safety",
+  },
   {
     id: "watermarking",
     course: "CS 5788 Generative Models",
@@ -256,62 +286,123 @@ const courseProjects = [
 const sideProjects = [
   {
     title: "PromptPlay",
-    status: "First side-project slot",
+    status: "Reserved slot",
     description:
       "A planned interactive playground for prompt experiments, evaluation traces, and before/after behavior changes.",
-    action: "Link pending",
+    action: "Reserved",
   },
   {
     title: "Portfolio Engine",
     status: "This site",
     description:
       "A living case-study system where coursework becomes interactive demos instead of static PDFs.",
-    action: "In progress",
+    action: "Active",
   },
 ];
 
-const readingPaths = [
+const projectPaths = [
   {
     time: "5 min",
-    title: "Recruiter scan",
-    steps: ["Hero", "Proof stats", "House IQ impact card", "Cornell lab thumbnails", "Contact"],
+    title: "Quick tour",
+    steps: ["Proof stats", "Featured work", "Crypto scam case study", "Contact"],
   },
   {
     time: "20 min",
-    title: "Hiring manager review",
-    steps: ["Stress-test eval case", "Image pipeline case", "Myridius RAG case", "Watermarking lab", "CaseKick product demo"],
+    title: "Project trail",
+    steps: ["Trust & Safety lab", "Eval philosophy", "Image pipeline", "RAG assistant", "Watermarking"],
   },
   {
     time: "60 min",
-    title: "Technical deep dive",
-    steps: ["All case files", "Watermark threshold explorer", "RL policy simulator", "VLM drift monitor", "Course expansion roadmaps"],
+    title: "Build details",
+    steps: ["Architecture", "Evals", "Failure modes", "Governance", "Expansion roadmaps"],
   },
 ];
 
+const cryptoCaseMetrics = [
+  { value: "0.938", label: "Operational public-label F1", detail: "0 FN / 8 FP on assignment test set" },
+  { value: "40", label: "Scenario eval cases", detail: "Fraud, legitimate, ambiguous, and adversarial buckets" },
+  { value: "56", label: "Red-team variants", detail: "Obfuscation, OCR placeholders, brand shifts, laundering" },
+  { value: "100%", label: "Evidence faithfulness", detail: "All extracted spans map back to source text" },
+  { value: "12", label: "Hardening evals", detail: "Canonicalization, URL evidence, OCR, Spanish, protected contexts" },
+  { value: "12", label: "Calibration cases", detail: "Reviewer QA across label, review, and no-label outcomes" },
+];
+
+const cryptoArchitecture = [
+  {
+    title: "Policy foundation",
+    items: ["Investment-scam definition", "ABC and AIM response", "Protected-context boundaries"],
+  },
+  {
+    title: "Model and evals",
+    items: ["TF-IDF + policy features", "Tiered thresholds", "Scenario, adversarial, hardening evals"],
+  },
+  {
+    title: "Review and quality",
+    items: ["SQLite review store", "Calibration simulator", "Ops analytics and launch gates"],
+  },
+  {
+    title: "Intelligence and response",
+    items: ["Entity and campaign graph", "Incident replay", "GenAI abuse testing"],
+  },
+  {
+    title: "Reviewer assistance",
+    items: ["Structured evidence schema", "Span faithfulness", "LLM agency boundary"],
+  },
+  {
+    title: "Governance",
+    items: ["Notice copy", "Appeals and reversals", "Incident runbooks"],
+  },
+];
+
+const courseworkChanges = [
+  {
+    before: "Coursework labeler optimized for a final report.",
+    after: "The expanded system audits the old model, documents leakage risk, and ships a reproducible v2 baseline.",
+  },
+  {
+    before: "One classifier output.",
+    after: "Separate review, public-label, and high-confidence escalation tiers with policy evidence guardrails.",
+  },
+  {
+    before: "Static written results.",
+    after: "Interactive reviewer workbench with threshold tuning, eval cards, red-team mutations, graph evidence, and governance flow.",
+  },
+  {
+    before: "Metrics centered on model performance.",
+    after: "Metrics cover false positives, protected contexts, span faithfulness, adversarial downgrades, appeals, transparency, QA calibration, and ops health.",
+  },
+];
+
+const evalPrinciples = [
+  "Aggregate F1 is never enough; public labels and review routing need separate metrics.",
+  "The eval suite must include examples the model should not act on: warnings, satire, research, debugging, and help-seeking.",
+  "Hardening evals should turn suspected production gaps into executable cases before changing policy, model, prompt, or thresholds.",
+  "A downgrade from public label to human review can be a good product result when source context is missing.",
+];
+
+const productDecisions = [
+  "Use restrained operator UI instead of a marketing dashboard: queue, evidence, thresholds, graph, governance.",
+  "Make uncertainty visible and route it to review instead of pretending the model knows intent.",
+  "Keep live Bluesky ingestion read-only and local; public artifacts use sanitized demo data.",
+  "Show calibration, incidents, notices, and reversals because user impact and repeatable process matter as much as detection performance.",
+];
+
 function App() {
-  const [mode, setMode] = useState("recruiter");
-  const [activeAudience, setActiveAudience] = useState("All");
   const [activeCase, setActiveCase] = useState(caseFiles[0]);
   const [activeProject, setActiveProject] = useState(courseProjects[0]);
   const [threshold, setThreshold] = useState(1.77);
+  const [fraudThreshold, setFraudThreshold] = useState(0.48);
   const [budget, setBudget] = useState(3);
   const [risk, setRisk] = useState(2);
 
-  const filteredCases =
-    activeAudience === "All"
-      ? caseFiles
-      : caseFiles.filter((item) => item.audience.includes(activeAudience));
-
   return (
     <main>
-      <Nav mode={mode} setMode={setMode} />
-      <Hero mode={mode} />
+      <Nav />
+      <Hero />
       <ProofStrip />
-      <ReaderPaths />
+      <ArtifactLedger />
+      <ProjectPaths />
       <ExperienceAtlas
-        activeAudience={activeAudience}
-        setActiveAudience={setActiveAudience}
-        filteredCases={filteredCases}
         activeCase={activeCase}
         setActiveCase={setActiveCase}
       />
@@ -320,18 +411,44 @@ function App() {
         setActiveProject={setActiveProject}
         threshold={threshold}
         setThreshold={setThreshold}
+        fraudThreshold={fraudThreshold}
+        setFraudThreshold={setFraudThreshold}
         budget={budget}
         setBudget={setBudget}
         risk={risk}
         setRisk={setRisk}
       />
+      <CryptoCaseStudy />
       <SideProjects />
-      <ContactPanel mode={mode} />
+      <ContactPanel />
     </main>
   );
 }
 
-function Nav({ mode, setMode }) {
+function ArtifactLedger() {
+  return (
+    <section className="artifact-ledger" aria-label="Project artifact ledger">
+      <div className="ledger-copy">
+        <p className="eyebrow">System evidence</p>
+        <h2>The work is organized as artifacts, not claims.</h2>
+        <p>
+          Each project is written around what exists: the problem, the shipped or working
+          artifact, the test strategy, the tradeoff, and the limit of what can be shared publicly.
+        </p>
+      </div>
+      <div className="ledger-grid">
+        {artifactLedger.map((item) => (
+          <article key={item.title}>
+            <span>{item.title}</span>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Nav() {
   return (
     <header className="nav-shell">
       <a href="#top" className="brand" aria-label="Ali Hasan home">
@@ -340,32 +457,123 @@ function Nav({ mode, setMode }) {
       <nav>
         <a href="#experience">Experience</a>
         <a href="#lab">Cornell Lab</a>
+        <a href="#crypto-case-study">Case Study</a>
         <a href="#side">Side Projects</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div className="mode-switcher" aria-label="Reader mode">
-        {Object.entries(readerModes).map(([key, value]) => (
-          <button
-            key={key}
-            className={mode === key ? "active" : ""}
-            onClick={() => setMode(key)}
-            type="button"
-          >
-            {value.label}
-          </button>
-        ))}
-      </div>
+      <a className="nav-cta" href={trustSafetyLabUrl} target="_blank" rel="noreferrer">
+        Open live lab
+      </a>
     </header>
   );
 }
 
-function Hero({ mode }) {
-  const current = readerModes[mode];
+function CryptoCaseStudy() {
+  return (
+    <section className="section-shell crypto-case-study" id="crypto-case-study">
+      <div className="section-heading">
+        <p className="eyebrow">Featured case study</p>
+        <h2>From policy proposal to safety console.</h2>
+        <p>
+          The project begins with a narrow policy question: how should Bluesky reduce
+          investment scams without suppressing legitimate financial speech? That boundary
+          becomes a classifier, an evaluation program, and an inspectable operations console
+          for review, campaigns, incidents, appeals, and transparency.
+        </p>
+        <div className="case-study-actions">
+          <a className="primary-link" href={trustSafetyLabUrl} target="_blank" rel="noreferrer">
+            Open live lab
+          </a>
+          <a className="secondary-link" href={trustSafetyRepoUrl} target="_blank" rel="noreferrer">
+            View source and evals
+          </a>
+        </div>
+      </div>
+
+      <div className="case-study-metrics">
+        {cryptoCaseMetrics.map((metric) => (
+          <article key={metric.label}>
+            <strong>{metric.value}</strong>
+            <span>{metric.label}</span>
+            <p>{metric.detail}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="case-study-layout">
+        <article className="architecture-panel">
+          <div className="case-study-block-head">
+            <span>Architecture</span>
+            <strong>Policy to evals to operations</strong>
+          </div>
+          <div className="architecture-grid">
+            {cryptoArchitecture.map((layer, index) => (
+              <div className="architecture-node" key={layer.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{layer.title}</strong>
+                <ul>
+                  {layer.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="case-study-panel">
+          <div className="case-study-block-head">
+            <span>What changed</span>
+            <strong>Coursework became a product system</strong>
+          </div>
+          <div className="change-list">
+            {courseworkChanges.map((change) => (
+              <div key={change.before}>
+                <span>Before</span>
+                <p>{change.before}</p>
+                <span>After</span>
+                <p>{change.after}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+      </div>
+
+      <div className="case-study-layout compact">
+        <article className="case-study-panel">
+          <div className="case-study-block-head">
+            <span>Eval philosophy</span>
+            <strong>Evidence standards for safety decisions</strong>
+          </div>
+          <ul className="case-study-list">
+            {evalPrinciples.map((principle) => (
+              <li key={principle}>{principle}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article className="case-study-panel">
+          <div className="case-study-block-head">
+            <span>Product decisions</span>
+            <strong>How the system stays useful without overreaching</strong>
+          </div>
+          <ul className="case-study-list">
+            {productDecisions.map((decision) => (
+              <li key={decision}>{decision}</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </section>
+  );
+}
+
+function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-copy">
         <p className="eyebrow">Ali Hasan / Cornell Tech / AI Safety + Product</p>
-        <h1>{current.headline}</h1>
+        <h1>{heroCopy.headline}</h1>
         <p className="hero-subtitle">
           I build AI systems where the hard part is not just model output, but trust:
           guardrails, evals, data workflows, product tradeoffs, and clear explanations for
@@ -380,21 +588,30 @@ function Hero({ mode }) {
           </a>
         </div>
       </div>
-      <aside className="signal-console" aria-label="Reader mode summary">
+      <aside className="signal-console" aria-label="Project evidence summary">
         <div className="console-topline">
-          <span>{current.prompt}</span>
-          <span>Live lens</span>
+          <span>Live workbench</span>
+          <span>Artifact trace</span>
         </div>
-        <div className="orbital-map">
-          <span className="orbit orbit-one" />
-          <span className="orbit orbit-two" />
-          <span className="orbit orbit-three" />
-          <span className="node node-a">PM</span>
-          <span className="node node-b">Eval</span>
-          <span className="node node-c">RAG</span>
-          <span className="node node-d">ML</span>
+        <div className="artifact-trace">
+          <div>
+            <span>01</span>
+            <strong>Define the policy boundary</strong>
+          </div>
+          <div>
+            <span>02</span>
+            <strong>Route uncertainty to review</strong>
+          </div>
+          <div>
+            <span>03</span>
+            <strong>Stress-test with evals</strong>
+          </div>
+          <div>
+            <span>04</span>
+            <strong>Close the loop with ops data</strong>
+          </div>
         </div>
-        <p>{current.focus}</p>
+        <p>{heroCopy.focus}</p>
       </aside>
     </section>
   );
@@ -414,15 +631,15 @@ function ProofStrip() {
   );
 }
 
-function ReaderPaths() {
+function ProjectPaths() {
   return (
     <section className="reader-paths">
       <div>
-        <p className="eyebrow">How to read this</p>
-        <h2>Built for different attention spans.</h2>
+        <p className="eyebrow">Project map</p>
+        <h2>Choose a path through the work.</h2>
       </div>
       <div className="path-grid">
-        {readingPaths.map((path) => (
+        {projectPaths.map((path) => (
           <article key={path.time}>
             <span>{path.time}</span>
             <h3>{path.title}</h3>
@@ -434,14 +651,7 @@ function ReaderPaths() {
   );
 }
 
-function ExperienceAtlas({
-  activeAudience,
-  setActiveAudience,
-  filteredCases,
-  activeCase,
-  setActiveCase,
-}) {
-  const audiences = ["All", "PM", "AI Safety", "Engineering", "Analyst"];
+function ExperienceAtlas({ activeCase, setActiveCase }) {
   return (
     <section className="section-shell" id="experience">
       <div className="section-heading">
@@ -453,29 +663,9 @@ function ExperienceAtlas({
         </p>
       </div>
 
-      <div className="filter-row" aria-label="Case file filters">
-        {audiences.map((audience) => (
-          <button
-            type="button"
-            key={audience}
-            className={activeAudience === audience ? "active" : ""}
-            onClick={() => {
-              setActiveAudience(audience);
-              const next =
-                audience === "All"
-                  ? caseFiles[0]
-                  : caseFiles.find((item) => item.audience.includes(audience));
-              if (next) setActiveCase(next);
-            }}
-          >
-            {audience}
-          </button>
-        ))}
-      </div>
-
       <div className="case-layout">
         <div className="case-list">
-          {filteredCases.map((item) => (
+          {caseFiles.map((item) => (
             <button
               type="button"
               key={item.title}
@@ -533,6 +723,8 @@ function CourseLab({
   setActiveProject,
   threshold,
   setThreshold,
+  fraudThreshold,
+  setFraudThreshold,
   budget,
   setBudget,
   risk,
@@ -576,9 +768,19 @@ function CourseLab({
             <strong>{activeProject.metric}</strong>
           </div>
           <p>{activeProject.caption}</p>
+          {activeProject.id === "crypto-scam-lab" && (
+            <div className="project-links">
+              <a href={trustSafetyLabUrl} target="_blank" rel="noreferrer">
+                Open live lab
+              </a>
+              <a href={trustSafetyRepoUrl} target="_blank" rel="noreferrer">
+                Inspect source and reports
+              </a>
+            </div>
+          )}
           <div className="project-body">
             <div>
-              <h4>What it proves</h4>
+              <h4>What exists</h4>
               <ul>
                 {activeProject.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
@@ -595,6 +797,8 @@ function CourseLab({
               project={activeProject}
               threshold={threshold}
               setThreshold={setThreshold}
+              fraudThreshold={fraudThreshold}
+              setFraudThreshold={setFraudThreshold}
               budget={budget}
               setBudget={setBudget}
               risk={risk}
@@ -607,7 +811,68 @@ function CourseLab({
   );
 }
 
-function InteractiveViz({ project, threshold, setThreshold, budget, setBudget, risk, setRisk }) {
+function InteractiveViz({
+  project,
+  threshold,
+  setThreshold,
+  fraudThreshold,
+  setFraudThreshold,
+  budget,
+  setBudget,
+  risk,
+  setRisk,
+}) {
+  if (project.viz === "trust-safety") {
+    const precision = Math.min(96, Math.round(54 + fraudThreshold * 72));
+    const recall = Math.max(48, Math.round(118 - fraudThreshold * 70));
+    const reviewLoad = Math.max(12, Math.round(118 - fraudThreshold * 130));
+    return (
+      <div className="viz-card trust-viz">
+        <div className="viz-header">
+          <span>Reviewer threshold</span>
+          <strong>{recall}% recall</strong>
+        </div>
+        <div className="trust-mini-grid">
+          <div>
+            <strong>{precision}%</strong>
+            <span>sim precision</span>
+          </div>
+          <div>
+            <strong>{reviewLoad}</strong>
+            <span>review cases</span>
+          </div>
+          <div>
+            <strong>0.94</strong>
+            <span>reported F1</span>
+          </div>
+        </div>
+        <label>
+          Risk threshold: {Math.round(fraudThreshold * 100)}%
+          <input
+            type="range"
+            min="0.3"
+            max="0.8"
+            step="0.01"
+            value={fraudThreshold}
+            onChange={(event) => setFraudThreshold(Number(event.target.value))}
+          />
+        </label>
+        <div className="flow-step">
+          <span>C</span>
+          <strong>Potential Crypto Fraud label</strong>
+        </div>
+        <div className="flow-step">
+          <span>B</span>
+          <strong>DM throttles and warning friction</strong>
+        </div>
+        <div className="flow-step">
+          <span>A</span>
+          <strong>Repeated-domain and wallet escalation</strong>
+        </div>
+      </div>
+    );
+  }
+
   if (project.viz === "watermark") {
     const tpr = Math.max(27, Math.min(99, Math.round(112 - threshold * 12)));
     const fpr = Math.max(0.2, Math.min(8, Number((threshold / 2.3).toFixed(1))));
@@ -690,7 +955,7 @@ function InteractiveViz({ project, threshold, setThreshold, budget, setBudget, r
           ]}
         />
         <p className="viz-note">
-          The portfolio version should let viewers scrub checkpoints and watch the embedding
+          The portfolio version can let viewers scrub checkpoints and watch the embedding
           space warp as fine-tuning improves the target task.
         </p>
       </div>
@@ -744,7 +1009,7 @@ function InteractiveViz({ project, threshold, setThreshold, budget, setBudget, r
         </div>
         <ScatterPlot />
         <p className="viz-note">
-          Next version should load cleaned ZIP-year aggregates and let viewers filter by review
+          A next version can load cleaned ZIP-year aggregates and let viewers filter by review
           coverage and metro/year controls.
         </p>
       </div>
@@ -890,7 +1155,7 @@ function SideProjects() {
         <h2>Side projects get their own shelf.</h2>
         <p>
           PromptPlay is reserved as the first personal-project link. Once the repo or demo
-          exists, this card should point there and show a live interaction.
+          exists, this card can point there and show a live interaction.
         </p>
       </div>
       <div className="side-grid">
@@ -907,15 +1172,15 @@ function SideProjects() {
   );
 }
 
-function ContactPanel({ mode }) {
+function ContactPanel() {
   return (
     <section className="contact-panel" id="contact">
       <div>
         <p className="eyebrow">Next step</p>
-        <h2>Want the short version or the deep dive?</h2>
+        <h2>Want to talk through the work?</h2>
         <p>
-          Current reader mode: <strong>{readerModes[mode].label}</strong>. The final site
-          should route this to a tailored PDF, resume, or project walkthrough.
+          The case studies above are designed to be inspected, challenged, and extended.
+          Use the links below for direct contact or to keep exploring the code.
         </p>
       </div>
       <div className="contact-links">
