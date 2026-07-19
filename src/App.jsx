@@ -882,6 +882,7 @@ function InteractiveViz({
           <span>Reviewer threshold</span>
           <strong>{recall}% recall</strong>
         </div>
+        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
         <div className="trust-mini-grid">
           <div>
             <strong>{precision}%</strong>
@@ -932,6 +933,7 @@ function InteractiveViz({
           <span>Threshold explorer</span>
           <strong>{tpr}% TPR</strong>
         </div>
+        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
         <WatermarkChart threshold={threshold} />
         <label>
           Detection threshold z = {threshold.toFixed(2)}
@@ -963,6 +965,7 @@ function InteractiveViz({
           <span>Dispatch simulator</span>
           <strong>{best === aggressive ? "Aggressive" : best === standard ? "Inspect" : "Dismiss"}</strong>
         </div>
+        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
         <PolicyBars values={[dismiss, standard, aggressive]} />
         <label>
           Inspector budget: {budget}

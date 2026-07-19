@@ -1423,3 +1423,10 @@ h3 {
     display: none;
   }
 }
+
+.viz-note {
+  font-size: 0.72rem;
+  color: var(--muted, #667085);
+  margin: 4px 0 10px;
+  font-style: italic;
+}

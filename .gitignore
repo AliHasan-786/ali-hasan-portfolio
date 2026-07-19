@@ -4,3 +4,5 @@ dist/
 *.local
 .vercel
 .playwright-cli/
+PORTFOLIO_STRATEGY.md
+CORNELL_PROJECT_COMPATIBILITY.md
