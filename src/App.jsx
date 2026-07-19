@@ -4,9 +4,9 @@ const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
 
 const heroCopy = {
-  headline: "Safety systems, evals, and product judgment you can actually explore.",
+  headline: "I build trust systems that show their work.",
   focus:
-    "A living portfolio of hands-on projects: moderation systems, GenAI and agent evals, reviewer workflows, RAG systems, multimodal pipelines, and interactive case studies.",
+    "Moderation consoles, model-behavior laboratories, and civic decision tools — shipped as interactive products, priced at production scale, and audited in public.",
 };
 
 const artifactLedger = [
@@ -33,11 +33,31 @@ const artifactLedger = [
 ];
 
 const proofStats = [
-  { value: "13", label: "House IQ PRs merged", detail: "Across 5 production services" },
-  { value: "70%", label: "Merged code was tests", detail: "5,270 of 7,497 added lines" },
-  { value: "5,350", label: "Eval/config lines", detail: "Red-team scenarios, baselines, stress data" },
-  { value: "10+", label: "Client demos led", detail: "Myridius AI/RAG workflows" },
-  { value: "8", label: "Cornell project labs", detail: "T&S, ML, fairness, RL, data science, startup studio" },
+  {
+    value: "$5.8B",
+    label: "Problem on the table",
+    detail: "US crypto-fraud losses (FBI IC3) my moderation lab is built against",
+  },
+  {
+    value: "50k/day",
+    label: "Scale economics modeled",
+    detail: "Every review threshold priced in queue load, reviewers, and payroll",
+  },
+  {
+    value: "15-step",
+    label: "CI release gate",
+    detail: "Every metric regenerated and re-verified on every commit",
+  },
+  {
+    value: "13",
+    label: "Production PRs merged",
+    detail: "House IQ — 70% of merged lines were tests and evals",
+  },
+  {
+    value: "arXiv",
+    label: "Published research",
+    detail: "Co-author, Scaling the Queue — RL for NYC municipal complaint triage",
+  },
 ];
 
 const caseFiles = [
@@ -191,7 +211,7 @@ const courseProjects = [
     course: "ORIE 5570 Reinforcement Learning",
     title: "NYC Housing Inspection Dispatch",
     theme: "Public-sector RL",
-    metric: "16/16 violations",
+    metric: "Real 311 pipeline",
     caption: "Modeled 311 after-hours construction complaints as a dispatch policy problem with resource and fairness tradeoffs.",
     bullets: [
       "Built an MDP with complaint category, borough, inspector budget, prior count, and time bin.",
@@ -421,7 +441,38 @@ function App() {
       <CryptoCaseStudy />
       <SideProjects />
       <ContactPanel />
+      <LabsFooter />
     </main>
+  );
+}
+
+function LabsFooter() {
+  return (
+    <footer className="labs-footer">
+      <p>ALI HASAN · EVIDENCE LABS — AI systems held to evidence standards</p>
+      <div className="labs-footer-row">
+        <a href="#top" aria-current="page">
+          Portfolio
+        </a>
+        <a href="https://crypto-scam-lab.vercel.app" target="_blank" rel="noreferrer">
+          Crypto Scam Moderation Lab
+        </a>
+        <a
+          href="https://github.com/AliHasan-786/representation-drift-lab"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Representation Drift Lab
+        </a>
+        <a
+          href="https://github.com/AliHasan-786/nyc-housing-inspection-rl"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Civic Inspection Lab
+        </a>
+      </div>
+    </footer>
   );
 }
 
@@ -451,8 +502,11 @@ function ArtifactLedger() {
 function Nav() {
   return (
     <header className="nav-shell">
-      <a href="#top" className="brand" aria-label="Ali Hasan home">
-        AH
+      <a href="#top" className="brand-group" aria-label="Ali Hasan home">
+        <span className="brand">AH</span>
+        <span className="brand-word">
+          Ali Hasan <em>Evidence Labs</em>
+        </span>
       </a>
       <nav>
         <a href="#experience">Experience</a>
@@ -574,11 +628,7 @@ function Hero() {
       <div className="hero-copy">
         <p className="eyebrow">Ali Hasan / Cornell Tech / AI Safety + Product</p>
         <h1>{heroCopy.headline}</h1>
-        <p className="hero-subtitle">
-          I build AI systems where the hard part is not just model output, but trust:
-          guardrails, evals, data workflows, product tradeoffs, and clear explanations for
-          people who have to make decisions.
-        </p>
+        <p className="hero-subtitle">{heroCopy.focus}</p>
         <div className="hero-actions">
           <a href="#experience" className="primary-link">
             Open case files
@@ -832,6 +882,7 @@ function InteractiveViz({
           <span>Reviewer threshold</span>
           <strong>{recall}% recall</strong>
         </div>
+        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
         <div className="trust-mini-grid">
           <div>
             <strong>{precision}%</strong>
@@ -882,6 +933,7 @@ function InteractiveViz({
           <span>Threshold explorer</span>
           <strong>{tpr}% TPR</strong>
         </div>
+        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
         <WatermarkChart threshold={threshold} />
         <label>
           Detection threshold z = {threshold.toFixed(2)}
@@ -913,6 +965,7 @@ function InteractiveViz({
           <span>Dispatch simulator</span>
           <strong>{best === aggressive ? "Aggressive" : best === standard ? "Inspect" : "Dismiss"}</strong>
         </div>
+        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
         <PolicyBars values={[dismiss, standard, aggressive]} />
         <label>
           Inspector budget: {budget}
