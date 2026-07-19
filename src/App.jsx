@@ -54,6 +54,11 @@ const proofStats = [
     detail: "House IQ — 70% of merged lines were tests and evals",
   },
   {
+    value: "94-slide",
+    label: "Security review, presented",
+    detail: "Team-wide session on the visualization red-team and guardrail work",
+  },
+  {
     value: "arXiv",
     label: "Published research",
     detail: "Co-author, Scaling the Queue — RL for NYC municipal complaint triage",
@@ -76,6 +81,44 @@ const caseFiles = [
       "Established 0.95 safety and 0.80 topicality baselines, removed fail-open judge defaults, and authored evaluators later promoted into a shared library.",
     constraints:
       "Public description is sanitized: no internal repo names, screenshots, code, prompts, vendor-sensitive details, or user data.",
+  },
+  {
+    title: "Red-Teaming NYC Health Department AI Tools",
+    org: "Cornell Tech SETS AI Red Team Clinic",
+    date: "Oct - Nov 2025",
+    status: "Inaugural cohort",
+    tags: ["red team", "public-sector AI", "multi-turn testing", "judging policy"],
+    impact:
+      "Stress-tested two public-health GenAI tools operated by NYC DOHMH, as one of five students in the clinic's first cohort.",
+    problem:
+      "Public-sector AI serving vulnerable users (New Yorkers managing diabetes) can give unsafe guidance, fabricate sources, or behave inconsistently, and the operating agency needed adversarial coverage it could not staff internally.",
+    approach:
+      "Designed adversarial personas and multi-turn attack prompts, triaged outputs into a 653-output judging-policy dataset, and contributed to the automated pipeline that pre-screened 1,607 text and multimodal pairs for human review.",
+    outcome:
+      "Findings on unsafe guidance and fabricated citations shaped the clinic's judging criteria and its report to the agency; the clinic's work was covered by Cornell (links below).",
+    constraints:
+      "Specific vulnerabilities and agency-internal findings remain confidential; the coverage links are the public record.",
+    links: [
+      { label: "Cornell Tech: Red Team Clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
+      { label: "Cornell Chronicle coverage", href: "https://news.cornell.edu/stories/2025/12/red-team-students-stress-test-nyc-health-departments-ai" },
+    ],
+  },
+  {
+    title: "Competitive Agent Benchmark and Scenario-Scaling Framework",
+    org: "House IQ",
+    date: "2026",
+    status: "In progress",
+    tags: ["agent evaluation", "benchmark design", "product strategy"],
+    impact:
+      "Authored one of the largest scenario sets in the company's agent benchmark and designed the framework to scale authoring toward a several-hundred-scenario target.",
+    problem:
+      "Measuring an agent against incumbent products requires realistic scenarios at a scale manual authoring cannot reach, and idealized prompts miss how real users actually type.",
+    approach:
+      "Introduced demographic-realistic prompting (scenarios written the way real users type, including older users' longer, more formal phrasing), reviewed each scenario line-by-line with the product lead, and designed a generate, LLM-judge validate, embedding-dedupe, human-review pipeline to scale authoring.",
+    outcome:
+      "Scenario set adopted into the benchmark database; two codebase-grounded competitor matrices with tiered fact-checks retained by the product team as living strategy documents.",
+    constraints:
+      "Competitor names, scores, and internal benchmark contents are not public.",
   },
   {
     title: "Image Pipeline Expansion for Real-World Uploads",
@@ -217,6 +260,11 @@ const courseProjects = [
       "Built an MDP with complaint category, borough, inspector budget, prior count, and time bin.",
       "Compared Monte Carlo, tabular Q-learning, DQN, REINFORCE, and baselines.",
       "Framed reward design around missed violations, wasted inspections, and displacement risk.",
+      "Co-author on the cohort's arXiv preprint; my hands-on agents: tabular TD and REINFORCE over 755 real-data-calibrated complaints, with reward-component and policy-heatmap analysis.",
+    ],
+    links: [
+      { label: "Paper: arXiv:2605.06482", href: "https://arxiv.org/abs/2605.06482" },
+      { label: "Ongoing lab repo", href: "https://github.com/AliHasan-786/nyc-housing-inspection-rl" },
     ],
     expansion: [
       "Policy simulator for inspect/dismiss/aggressive enforcement.",
@@ -762,6 +810,15 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
               <dd>{activeCase.constraints}</dd>
             </div>
           </dl>
+          {activeCase.links && (
+            <div className="link-row">
+              {activeCase.links.map((link) => (
+                <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
         </article>
       </div>
     </section>
@@ -818,6 +875,15 @@ function CourseLab({
             <strong>{activeProject.metric}</strong>
           </div>
           <p>{activeProject.caption}</p>
+          {activeProject.links && (
+            <div className="link-row">
+              {activeProject.links.map((link) => (
+                <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
           {activeProject.id === "crypto-scam-lab" && (
             <div className="project-links">
               <a href={trustSafetyLabUrl} target="_blank" rel="noreferrer">
