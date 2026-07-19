@@ -6,7 +6,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build trust systems that show their work.",
   focus:
-    "Moderation consoles, model-behavior laboratories, and civic decision tools — shipped as interactive products, priced at production scale, and audited in public.",
+    "I'm a Cornell Tech M.Eng. working on AI safety and evaluation. Recent work: a live content-moderation system, an LLM watermark study, and the safety layer for a customer-facing AI product at House IQ. Most things below are interactive and all of them link to real code.",
 };
 
 const artifactLedger = [
@@ -528,11 +528,12 @@ function ArtifactLedger() {
   return (
     <section className="artifact-ledger" aria-label="Project artifact ledger">
       <div className="ledger-copy">
-        <p className="eyebrow">System evidence</p>
-        <h2>The work is organized as artifacts, not claims.</h2>
+        <p className="eyebrow">Featured project</p>
+        <h2>Inside the crypto-scam moderation lab.</h2>
         <p>
-          Each project is written around what exists: the problem, the shipped or working
-          artifact, the test strategy, the tradeoff, and the limit of what can be shared publicly.
+          A content-moderation system for crypto investment scams, built end to end:
+          written policy, tiered enforcement with human review, an evaluation suite with a
+          CI release gate, and live-traffic calibration. Deployed and open source.
         </p>
       </div>
       <div className="ledger-grid">
@@ -575,7 +576,7 @@ function CryptoCaseStudy() {
     <section className="section-shell crypto-case-study" id="crypto-case-study">
       <div className="section-heading">
         <p className="eyebrow">Featured case study</p>
-        <h2>From policy proposal to safety console.</h2>
+        <h2>From a class policy proposal to a working moderation system.</h2>
         <p>
           The project begins with a narrow policy question: how should Bluesky reduce
           investment scams without suppressing legitimate financial speech? That boundary
@@ -674,7 +675,7 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-copy">
-        <p className="eyebrow">Ali Hasan / Cornell Tech / AI Safety + Product</p>
+        <p className="eyebrow">Ali Hasan · New York</p>
         <h1>{heroCopy.headline}</h1>
         <p className="hero-subtitle">{heroCopy.focus}</p>
         <div className="hero-actions">
@@ -688,8 +689,7 @@ function Hero() {
       </div>
       <aside className="signal-console" aria-label="Project evidence summary">
         <div className="console-topline">
-          <span>Live workbench</span>
-          <span>Artifact trace</span>
+          <span>How the moderation lab decides</span>
         </div>
         <div className="artifact-trace">
           <div>
@@ -733,8 +733,8 @@ function ProjectPaths() {
   return (
     <section className="reader-paths">
       <div>
-        <p className="eyebrow">Project map</p>
-        <h2>Choose a path through the work.</h2>
+        <p className="eyebrow">Overview</p>
+        <h2>What's here.</h2>
       </div>
       <div className="path-grid">
         {projectPaths.map((path) => (
@@ -753,11 +753,12 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
   return (
     <section className="section-shell" id="experience">
       <div className="section-heading">
-        <p className="eyebrow">Constrained professional work</p>
-        <h2>Case files that show judgment without leaking IP.</h2>
+        <p className="eyebrow">Experience</p>
+        <h2>Where I've worked.</h2>
         <p>
-          Work experience is written as sanitized evidence: what problem existed, what I
-          changed, what shipped, and what tradeoff mattered.
+          House IQ, Cornell Tech's SETS AI Red Team Clinic, and Myridius. Each entry
+          covers the problem, what I built, and what shipped; some client and product
+          details are generalized.
         </p>
       </div>
 
@@ -806,7 +807,7 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
               <dd>{activeCase.outcome}</dd>
             </div>
             <div>
-              <dt>Public-share boundary</dt>
+              <dt>Not shown publicly</dt>
               <dd>{activeCase.constraints}</dd>
             </div>
           </dl>
@@ -840,11 +841,11 @@ function CourseLab({
   return (
     <section className="section-shell lab-section" id="lab">
       <div className="section-heading">
-        <p className="eyebrow">Cornell Tech project lab</p>
-        <h2>Coursework becomes interactive evidence.</h2>
+        <p className="eyebrow">Projects</p>
+        <h2>Selected projects.</h2>
         <p>
-          Each class final should eventually become a small product: explorable data,
-          methods, failures, extension plan, and a demo that makes the work visual.
+          Graduate coursework rebuilt as working demos. Charts marked as sketches are
+          illustrative; the measured numbers live in each project's repo.
         </p>
       </div>
 
@@ -1270,8 +1271,8 @@ function SideProjects() {
   return (
     <section className="section-shell side-section" id="side">
       <div className="section-heading">
-        <p className="eyebrow">Personal builds</p>
-        <h2>Side projects get their own shelf.</h2>
+        <p className="eyebrow">More</p>
+        <h2>Side projects.</h2>
         <p>
           PromptPlay is reserved as the first personal-project link. Once the repo or demo
           exists, this card can point there and show a live interaction.
@@ -1295,8 +1296,8 @@ function ContactPanel() {
   return (
     <section className="contact-panel" id="contact">
       <div>
-        <p className="eyebrow">Next step</p>
-        <h2>Want to talk through the work?</h2>
+        <p className="eyebrow">Contact</p>
+        <h2>Get in touch.</h2>
         <p>
           The case studies above are designed to be inspected, challenged, and extended.
           Use the links below for direct contact or to keep exploring the code.
