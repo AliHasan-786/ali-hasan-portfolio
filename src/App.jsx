@@ -193,7 +193,7 @@ const courseProjects = [
     title: "Crypto Scam Moderation Lab",
     theme: "Platform policy",
     metric: "Op F1 0.94",
-    caption: "Bluesky-compatible safety console that turns an investment-scam policy into evals, reviewer decisions, incident response, appeals, and campaign intelligence.",
+    caption: "Bluesky-compatible moderation system that turns an investment-scam policy into evals, reviewer decisions, incident response, appeals, and campaign intelligence.",
     bullets: [
       "Defined the investment-scam boundary across ABC and AIM: wallet drainers, fake recovery, airdrops, and impersonation are in scope; warnings, news, satire, debugging, and help-seeking are protected.",
       "Audited the original hybrid classifier, then built a reproducible v2 baseline with TF-IDF, policy features, calibrated thresholds, explicit review tiers, and contextual evidence guardrails.",
@@ -1256,8 +1256,7 @@ function SideProjects() {
         <p className="eyebrow">More</p>
         <h2>Side projects.</h2>
         <p>
-          PromptPlay is reserved as the first personal-project link. Once the repo or demo
-          exists, this card can point there and show a live interaction.
+          Built outside coursework and work, on my own time.
         </p>
       </div>
       <div className="side-grid">
