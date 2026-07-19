@@ -228,6 +228,10 @@ const courseProjects = [
       "Prompt playground showing quality vs detectability as delta changes.",
       "Attack lab comparing mild edits vs full paraphrase failure.",
     ],
+    links: [
+      { label: "Repo", href: "https://github.com/AliHasan-786/llm-invisible-watermarking" },
+      { label: "SynthID-Text comparison (in progress, preregistered)", href: "https://github.com/AliHasan-786/llm-invisible-watermarking/pull/3" },
+    ],
     viz: "watermark",
   },
   {
@@ -247,6 +251,7 @@ const courseProjects = [
       "Early-warning monitor that predicts final drift from intermediate metrics.",
       "Side-by-side Food101 gains and CIFAR-10 degradation.",
     ],
+    links: [{ label: "Repo", href: "https://github.com/AliHasan-786/representation-drift-lab" }],
     viz: "drift",
   },
   {
@@ -309,6 +314,7 @@ const courseProjects = [
       "Keyword validation panel with examples and uncertainty flags.",
       "Time-series extension for metro-adjusted rent growth.",
     ],
+    links: [{ label: "Repo + data", href: "https://github.com/AliHasan-786/yelp-gentrification-rent" }],
     viz: "yelp",
   },
   {
@@ -353,18 +359,19 @@ const courseProjects = [
 
 const sideProjects = [
   {
-    title: "PromptPlay",
-    status: "Reserved slot",
+    title: "DeepShield",
+    status: "Startup Studio",
     description:
-      "A planned interactive playground for prompt experiments, evaluation traces, and before/after behavior changes.",
-    action: "Reserved",
+      "Adversarial protection against AI image manipulation: an EOT-PGD engine with multi-VAE ensemble gradients across SD and Flux latent spaces, JPEG-robust augmentations, and a FastAPI service. Grounded in 20 customer interviews.",
+    action: "github.com/AliHasan-786/DeepShield",
+    href: "https://github.com/AliHasan-786/DeepShield",
   },
   {
-    title: "Portfolio Engine",
-    status: "This site",
+    title: "Guard-model research program",
+    status: "In progress",
     description:
-      "A living case-study system where coursework becomes interactive demos instead of static PDFs.",
-    action: "Active",
+      "Two preregistered studies of open moderation models: whether they punish counter-speech (people warning about scams score like scammers), and whether false-positive rates differ across dialect and identity mentions. Frozen datasets, pinned models, results published either way.",
+    action: "Opening with first results",
   },
 ];
 
@@ -469,7 +476,6 @@ function App() {
       <Hero />
       <ProofStrip />
       <ArtifactLedger />
-      <ProjectPaths />
       <ExperienceAtlas
         activeCase={activeCase}
         setActiveCase={setActiveCase}
@@ -680,37 +686,13 @@ function Hero() {
         <p className="hero-subtitle">{heroCopy.focus}</p>
         <div className="hero-actions">
           <a href="#experience" className="primary-link">
-            Open case files
+            See my work
           </a>
           <a href="#lab" className="secondary-link">
-            Explore Cornell lab
+            Projects
           </a>
         </div>
       </div>
-      <aside className="signal-console" aria-label="Project evidence summary">
-        <div className="console-topline">
-          <span>How the moderation lab decides</span>
-        </div>
-        <div className="artifact-trace">
-          <div>
-            <span>01</span>
-            <strong>Define the policy boundary</strong>
-          </div>
-          <div>
-            <span>02</span>
-            <strong>Route uncertainty to review</strong>
-          </div>
-          <div>
-            <span>03</span>
-            <strong>Stress-test with evals</strong>
-          </div>
-          <div>
-            <span>04</span>
-            <strong>Close the loop with ops data</strong>
-          </div>
-        </div>
-        <p>{heroCopy.focus}</p>
-      </aside>
     </section>
   );
 }
@@ -1284,7 +1266,13 @@ function SideProjects() {
             <span>{project.status}</span>
             <h3>{project.title}</h3>
             <p>{project.description}</p>
-            <button type="button">{project.action}</button>
+            {project.href ? (
+              <a className="side-action" href={project.href} target="_blank" rel="noreferrer">
+                {project.action}
+              </a>
+            ) : (
+              <span className="side-action">{project.action}</span>
+            )}
           </article>
         ))}
       </div>

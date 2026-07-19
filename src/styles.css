@@ -1447,3 +1447,34 @@ h3 {
 .link-row a:hover {
   border-color: currentColor;
 }
+
+/* Plain revamp: flatten remaining dashboard chrome */
+.hero {
+  grid-template-columns: 1fr;
+  max-width: 900px;
+}
+.proof-strip article {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  border-left: 1px solid rgba(120, 120, 110, 0.25);
+  padding-left: 18px;
+}
+.proof-strip article:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.ledger-grid article {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid rgba(120, 120, 110, 0.25);
+}
+.side-action {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.75;
+}
