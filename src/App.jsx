@@ -6,7 +6,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build trust systems that show their work.",
   focus:
-    "I'm a Cornell Tech M.Eng. working on AI safety and evaluation. Recent work: a live content-moderation system, an LLM watermark study, and the safety layer for a customer-facing AI product at House IQ. Most things below are interactive and all of them link to real code.",
+    "I'm a Cornell Tech M.Eng. working across AI safety, evaluation, and product. Recent work: a live content-moderation system, an LLM watermark study, and the safety layer for a customer-facing AI product at House IQ. Most things below are interactive and all of them link to real code.",
 };
 
 const artifactLedger = [
@@ -110,7 +110,7 @@ const caseFiles = [
     status: "In progress",
     tags: ["agent evaluation", "benchmark design", "product strategy"],
     impact:
-      "Authored one of the largest scenario sets in the company's agent benchmark and designed the framework to scale authoring toward a several-hundred-scenario target.",
+      "Product-quality definition work: the team's benchmark for what a good agent answer looks like now runs substantially through scenarios I authored, reviewed line-by-line with the product lead.",
     problem:
       "Measuring an agent against incumbent products requires realistic scenarios at a scale manual authoring cannot reach, and idealized prompts miss how real users actually type.",
     approach:
@@ -119,6 +119,23 @@ const caseFiles = [
       "Scenario set adopted into the benchmark database; two codebase-grounded competitor matrices with tiered fact-checks retained by the product team as living strategy documents.",
     constraints:
       "Competitor names, scores, and internal benchmark contents are not public.",
+  },
+  {
+    title: "Cost-Data Foundation for Renovation Recommendations",
+    org: "House IQ",
+    date: "2025 - 2026",
+    status: "Shipped",
+    tags: ["product data", "schema design", "semantic search", "shipped to production"],
+    impact:
+      "Designed the cost schema behind the product's renovation recommendations and built the pipeline that populates it.",
+    problem:
+      "Recommendations need a categorized construction-cost catalog, but the raw source data was ~1,200 uncategorized construction jobs with no shared taxonomy.",
+    approach:
+      "Read the MasterFormat construction standard and designed a product-specific cost schema from it, then built a mapping pipeline using semantic search with LLM validation to place each raw job into the schema.",
+    outcome:
+      "Shipped to production as the categorized catalog powering the renovation recommendation system; the schema became the shared vocabulary between the data source and the product.",
+    constraints:
+      "Data-provider identity and internal schema contents are not public.",
   },
   {
     title: "Image Pipeline Expansion for Real-World Uploads",
@@ -738,9 +755,9 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
         <p className="eyebrow">Experience</p>
         <h2>Where I've worked.</h2>
         <p>
-          House IQ, Cornell Tech's SETS AI Red Team Clinic, and Myridius. Each entry
-          covers the problem, what I built, and what shipped; some client and product
-          details are generalized.
+          House IQ, Cornell Tech's SETS AI Red Team Clinic, and Myridius — spanning
+          engineering, product, and Trust & Safety. Each entry covers the problem, what
+          I built, and what shipped; some client and product details are generalized.
         </p>
       </div>
 
