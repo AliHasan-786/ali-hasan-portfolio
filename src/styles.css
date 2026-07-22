@@ -1478,3 +1478,46 @@ h3 {
   color: inherit;
   opacity: 0.75;
 }
+
+/* Experience: prose renderer (replaces STAR definition list) */
+.case-lead {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 6px 0 12px;
+}
+.case-body {
+  line-height: 1.6;
+  margin: 0 0 14px;
+  opacity: 0.9;
+}
+.case-did {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.case-did li {
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+  font-size: 0.94rem;
+  opacity: 0.9;
+}
+.case-did li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  background: var(--accent, #c2410c);
+}
+.case-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  opacity: 0.6;
+  margin: 0;
+}

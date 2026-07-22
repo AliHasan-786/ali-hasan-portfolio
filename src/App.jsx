@@ -49,14 +49,14 @@ const proofStats = [
     detail: "Every metric regenerated and re-verified on every commit",
   },
   {
-    value: "13",
-    label: "Production PRs merged",
-    detail: "House IQ — 70% of merged lines were tests and evals",
+    value: "200K",
+    label: "AI quality scores I audited",
+    detail: "House IQ — validated against 9 human labels in 30 days, 3 disagreeing",
   },
   {
-    value: "94-slide",
-    label: "Security review, presented",
-    detail: "Team-wide session on the visualization red-team and guardrail work",
+    value: "org-wide",
+    label: "Evaluation code adopted",
+    detail: "My safety and on-topic evaluators run on every production deploy",
   },
   {
     value: "arXiv",
@@ -67,139 +67,106 @@ const proofStats = [
 
 const caseFiles = [
   {
-    title: "Automated Agent Stress-Test and Evaluation Pipeline",
     org: "House IQ",
-    date: "Dec 2025 - Mar 2026",
+    title: "Output-safety stack for a customer-facing image feature",
+    date: "Dec 2025 - present",
     status: "Shipped",
-    tags: ["LLM eval", "CI baselines", "structured output", "agent safety"],
-    impact: "Replaced manual chat spot-checking with CI-gated safety/topicality evals and reusable evaluator primitives.",
-    problem:
-      "Prompt and agent changes could silently regress unsafe renovation guidance, discriminatory steering, or privacy leakage. Manual testing was too sparse to catch behavioral drift.",
-    approach:
-      "Built a two-phase pipeline: cheap local-model generation for adversarial prompts, production-path execution, and expensive cloud-model judging with schema-validated outputs. Later consolidated duplicated runner/auth/judge code onto shared infra.",
-    outcome:
-      "Established 0.95 safety and 0.80 topicality baselines, removed fail-open judge defaults, and authored evaluators later promoted into a shared library.",
-    constraints:
-      "Public description is sanitized: no internal repo names, screenshots, code, prompts, vendor-sensitive details, or user data.",
+    tags: ["LLM-as-judge", "red teaming", "guardrails", "defense-in-depth"],
+    summary: "Traced a customer-facing feature and found its generated images were never being content-checked, then shipped the layered defense that closed it.",
+    lead:
+      "I traced the image-generation path of a live customer feature and found the content evaluation was never actually invoked \u2014 generated images reached users unchecked. I owned the fix end to end.",
+    body:
+      "I argued for defense-in-depth over a single checkpoint, then built it: a deterministic moderation cascade that fails closed (never serve an un-vetted image) with a semantic judge behind it that fails open, so a judge outage can't take down all rendering. When a code reviewer found my own guardrail could be skipped on a cache hit, I re-vetted every cached generation through the full cascade and shipped the fix the same day.",
+    did: [
+      "Authored a 12-rule multimodal LLM judge from scratch across 9 harm categories; ~21 red-team rounds (114 adversarial prompts, 132 renders triaged) made me add 2 policy rules for gaps I found and re-test to confirmed blocking.",
+      "Wired an input + output guardrail cascade covered by 31 tests, with per-stage block attribution and a fail-open alarm counter added so a silent judge failure is visible.",
+      "Designed and registered a prompt-injection threat model (10 scenarios, 4 evaluators) for the agent's web-retrieval path \u2014 built and ready, not yet run.",
+    ],
+    note: "Some feature names, prompts, and vendor details are generalized under NDA.",
   },
   {
-    title: "Red-Teaming NYC Health Department AI Tools",
+    org: "House IQ",
+    title: "Auditing 200K monthly AI quality scores against reality",
+    date: "2026",
+    status: "Shipped analysis, owns follow-on",
+    tags: ["product analytics", "evaluation", "ground truth", "judgment"],
+    summary: "Found that ~200,000 automated quality scores a month were validated by 9 human labels \u2014 three of which disagreed \u2014 and started the program to fix it.",
+    lead:
+      "The team's release decisions leaned on roughly 200,000 automated LLM-judge quality scores a month. I found, from live production data, that they rested on 9 human accuracy labels in 30 days \u2014 and 3 of those 9 disagreed with the judge.",
+    body:
+      "I paired that with the code: release gates hardcoded permissive, no evaluations running in CI, no agreement statistics anywhere. The anchor was a real release-blocking bug \u2014 the assistant recommended options outside a budget the user had stated one message earlier \u2014 that the live judges scored a perfect 5.00/5. Anyone watching judge scores as a quality signal would never have seen it. That analysis created a workstream nobody owned, and I took it.",
+    did: [
+      "Verified the figures against live observability dashboards over a five-day window before proposing anything.",
+      "Designed the calibration program: stratified sampling, blind labeling, agreement statistics with bootstrap intervals, and failure-recall.",
+      "Built the supporting stats toolkit; the lane went from no code, no ticket, no owner to owned.",
+    ],
+    note: "Program is proposed and instrumented; full adoption was in progress. Internal dashboards are not public.",
+  },
+  {
+    org: "House IQ",
+    title: "Defining what a good agent answer looks like",
+    date: "2026",
+    status: "In progress",
+    tags: ["product", "benchmark design", "evaluation", "what-good-looks-like"],
+    summary: "Designed the scenario system the team uses to judge agent quality, and A/B-tested my own approach until the leaner one won.",
+    lead:
+      "The team needed a benchmark to measure its agent against incumbents, which is really a product question: what does a good answer look like, for which user? I designed the system that answers it.",
+    body:
+      "My insight was demographic-realistic prompting \u2014 writing scenarios the way real users actually type, including older homeowners who write long and formally, which the existing curt, LLM-fluent prompts never tested. I grounded the personas in customer interviews and published research rather than my own intuition, and when I A/B-tested a rich generation prompt against a lean one, the lean one won on persona texture, so I shipped it and scheduled my own richer version for deletion.",
+    did: [
+      "Authored 7 of the first 11 scenarios in the benchmark database and reviewed each line-by-line with the product lead.",
+      "Built the generation framework with an independent six-dimension validator that grades in a fresh session so it has no drafting context \u2014 an eval-integrity call I made deliberately; packaged both halves as installable skills the team uses.",
+    ],
+    note: "Framework is delivered and execution is ramping toward the team's several-hundred-scenario target; benchmark contents are not public.",
+  },
+  {
+    org: "House IQ",
+    title: "A document-understanding pipeline, prototype to production",
+    date: "2026",
+    status: "Shipped",
+    tags: ["multimodal", "vision pipeline", "latency", "engineering"],
+    summary: "Rebuilt an extraction prototype on the service's real patterns after a hard review, then cut its latency 10x on real documents.",
+    lead:
+      "My working extraction prototype got a changes-requested review for following none of the service's production patterns. Rather than defend it, I rewrote it as an integrated endpoint \u2014 and it became the foundation of a five-PR arc over 24 days.",
+    body:
+      "The capability pulls appliance and fixture images out of inspection documents and returns structured brand, model, and condition. On a real 31-page report it extracted 60 images correctly; I took a full-report pass from about five minutes sequential to roughly 30 seconds with bounded ten-way concurrency, and added a progressive quality ladder so an oversized phone photo degrades gracefully instead of being dropped.",
+    did: [
+      "Extended the pipeline to the formats users actually have: scanned PDFs, embedded-office-format images, and iPhone photos.",
+      "The product lead later named embedded-image extraction a key competitive differentiator for that surface.",
+    ],
+    note: "Throughput and per-document economics are internal; figures above are from my own test records.",
+  },
+  {
     org: "Cornell Tech SETS AI Red Team Clinic",
+    title: "Red-teaming NYC health department AI tools",
     date: "Oct - Nov 2025",
     status: "Inaugural cohort",
-    tags: ["red team", "public-sector AI", "multi-turn testing", "judging policy"],
-    impact:
-      "Stress-tested two public-health GenAI tools operated by NYC DOHMH, as one of five students in the clinic's first cohort.",
-    problem:
-      "Public-sector AI serving vulnerable users (New Yorkers managing diabetes) can give unsafe guidance, fabricate sources, or behave inconsistently, and the operating agency needed adversarial coverage it could not staff internally.",
-    approach:
-      "Designed adversarial personas and multi-turn attack prompts, triaged outputs into a 653-output judging-policy dataset, and contributed to the automated pipeline that pre-screened 1,607 text and multimodal pairs for human review.",
-    outcome:
-      "Findings on unsafe guidance and fabricated citations shaped the clinic's judging criteria and its report to the agency; the clinic's work was covered by Cornell (links below).",
-    constraints:
-      "Specific vulnerabilities and agency-internal findings remain confidential; the coverage links are the public record.",
+    tags: ["red team", "public-sector AI", "multi-turn testing"],
+    summary: "One of five students in the clinic's first cohort, stress-testing two public-health AI tools operated by NYC DOHMH.",
+    lead:
+      "Public-sector AI serving people managing diabetes can give unsafe guidance, fabricate sources, or behave inconsistently \u2014 and the operating agency couldn't staff adversarial coverage itself. I was one of five students in the clinic's first cohort.",
+    body:
+      "I designed adversarial personas and multi-turn attack prompts, triaged outputs into a 653-item judging-policy dataset, and contributed to the automated pipeline that pre-screened 1,607 text and multimodal pairs for human review. Our findings on unsafe guidance and fabricated citations shaped the clinic's report to the agency.",
+    did: [],
+    note: "Specific vulnerabilities and agency-internal findings stay confidential; the coverage below is the public record.",
     links: [
-      { label: "Cornell Tech: Red Team Clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
-      { label: "Cornell Chronicle coverage", href: "https://news.cornell.edu/stories/2025/12/red-team-students-stress-test-nyc-health-departments-ai" },
+      { label: "Cornell Tech: the clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
+      { label: "Cornell Chronicle", href: "https://news.cornell.edu/stories/2025/12/red-team-students-stress-test-nyc-health-departments-ai" },
     ],
   },
   {
-    title: "Competitive Agent Benchmark and Scenario-Scaling Framework",
-    org: "House IQ",
-    date: "2026",
-    status: "In progress",
-    tags: ["agent evaluation", "benchmark design", "product strategy"],
-    impact:
-      "Product-quality definition work: the team's benchmark for what a good agent answer looks like now runs substantially through scenarios I authored, reviewed line-by-line with the product lead.",
-    problem:
-      "Measuring an agent against incumbent products requires realistic scenarios at a scale manual authoring cannot reach, and idealized prompts miss how real users actually type.",
-    approach:
-      "Introduced demographic-realistic prompting (scenarios written the way real users type, including older users' longer, more formal phrasing), reviewed each scenario line-by-line with the product lead, and designed a generate, LLM-judge validate, embedding-dedupe, human-review pipeline to scale authoring.",
-    outcome:
-      "Scenario set adopted into the benchmark database; two codebase-grounded competitor matrices with tiered fact-checks retained by the product team as living strategy documents.",
-    constraints:
-      "Competitor names, scores, and internal benchmark contents are not public.",
-  },
-  {
-    title: "Cost-Data Foundation for Renovation Recommendations",
-    org: "House IQ",
-    date: "2025 - 2026",
-    status: "Shipped",
-    tags: ["product data", "schema design", "semantic search", "shipped to production"],
-    impact:
-      "Designed the cost schema behind the product's renovation recommendations and built the pipeline that populates it.",
-    problem:
-      "Recommendations need a categorized construction-cost catalog, but the raw source data was ~1,200 uncategorized construction jobs with no shared taxonomy.",
-    approach:
-      "Read the MasterFormat construction standard and designed a product-specific cost schema from it, then built a mapping pipeline using semantic search with LLM validation to place each raw job into the schema.",
-    outcome:
-      "Shipped to production as the categorized catalog powering the renovation recommendation system; the schema became the shared vocabulary between the data source and the product.",
-    constraints:
-      "Data-provider identity and internal schema contents are not public.",
-  },
-  {
-    title: "Image Pipeline Expansion for Real-World Uploads",
-    org: "House IQ",
-    date: "Mar - Apr 2026",
-    status: "Shipped",
-    tags: ["multimodal AI", "PDF/DOCX", "HEIC", "scope control"],
-    impact: "Expanded a document vision pipeline from clean PDFs to scanned PDFs, Word documents, and iPhone photo formats.",
-    problem:
-      "The foundation worked on software-generated PDFs but failed on real customer document formats, blocking a downstream property-cataloging feature.",
-    approach:
-      "Split the epic into smaller tickets, added format-specific extraction paths inside a shared loop, and tracked an unrelated size-limit bug as its own focused fix.",
-    outcome:
-      "All three format-support tickets shipped, plus a graceful recompression fallback for oversized images that would otherwise be silently dropped.",
-    constraints:
-      "Case study focuses on architecture and product tradeoffs, not implementation details or internal file paths.",
-  },
-  {
-    title: "Visualization Guardrails for Multi-Vendor LLM Paths",
-    org: "House IQ",
-    date: "2026",
-    status: "Shipped",
-    tags: ["guardrails", "trust and safety", "cached content", "multi-vendor"],
-    impact: "Closed a safety gap where one inference path could bypass checks already present in another path.",
-    problem:
-      "Visualization generation had two AI routes, but the safety primitive and model lived with different vendors. Cached or deduped content could create a bypass.",
-    approach:
-      "Measured baseline bypasses before implementation, designed input/output guardrail semantics, then added unit, wiring, and router tests across layers.",
-    outcome:
-      "Added coverage across 31 automated tests and documented why blocked responses should avoid echoing unsafe content back to the user.",
-    constraints:
-      "The public version omits vendor-specific APIs and exact adversarial prompts.",
-  },
-  {
-    title: "Indirect Prompt Injection Threat Model",
-    org: "House IQ",
-    date: "Apr - May 2026",
-    status: "Paused after design",
-    tags: ["threat modeling", "red team", "OWASP", "agentic RAG"],
-    impact: "Mapped external-content attack surfaces and built reusable test infrastructure before pausing for launch-blocking work.",
-    problem:
-      "Agents retrieved web results, listing text, and memory summaries into the LLM context with no dedicated indirect-injection coverage.",
-    approach:
-      "Traced the full data path, audited filtering assumptions, rewrote unrealistic CSS-hidden attacks into prose-embedded attacks, and documented stakeholder explainers.",
-    outcome:
-      "Delivered attack-surface map, evaluator plan, controlled-attack-site concept, and a decision log so the work can resume without re-deriving the reasoning.",
-    constraints:
-      "Status is intentionally honest: the infrastructure was designed and audited, but execution was deferred.",
-  },
-  {
-    title: "Hybrid RAG + SQL Knowledge Assistant",
-    org: "Myridius / RCG",
-    date: "Oct 2024 - Jun 2025",
+    org: "Myridius",
+    title: "Enterprise AI assistants for 10+ businesses",
+    date: "Oct 2024 - Jul 2025",
     status: "Built and demoed",
-    tags: ["Databricks", "RAG", "SQL", "Streamlit", "client demos"],
-    impact: "Built and demonstrated a Databricks-backed assistant that answered from documents and structured tables for enterprise use cases.",
-    problem:
-      "Static FAQ-style bots were brittle for enterprise knowledge workflows that needed grounded document retrieval and structured-data lookup.",
-    approach:
-      "Assembled a Databricks serving endpoint, Streamlit chat UI, PDF preparation, retrieval chain, and evaluation scripts; paired technical demos with setup/training docs.",
-    outcome:
-      "Led 10+ demos, authored internal enablement material, and proposed a pivot from static FAQ to discovery-to-purchase workflows after identifying failure modes.",
-    constraints:
-      "Client/project details are intentionally abstracted because the underlying materials include proprietary and internship documents.",
+    tags: ["RAG", "Databricks", "enterprise", "client-facing"],
+    summary: "Built and presented retrieval assistants that answered from documents and structured tables, and delivered the analysis behind them.",
+    lead:
+      "I built and demoed Amazon Q Business knowledge assistants for more than ten businesses, defining allowed sources, refusal behavior, confidence thresholds, and human handoffs for the answers the model shouldn't give on its own.",
+    body:
+      "I structured product and travel data in Databricks behind a retrieval assistant, presented working future-state demos to executives and clients, and delivered market-analysis dashboards that turned customer evidence into decisions for senior leadership.",
+    did: [],
+    note: "Client identities and engagement specifics are confidential.",
   },
 ];
 
@@ -755,9 +722,9 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
         <p className="eyebrow">Experience</p>
         <h2>Where I've worked.</h2>
         <p>
-          House IQ, Cornell Tech's SETS AI Red Team Clinic, and Myridius — spanning
-          engineering, product, and Trust & Safety. Each entry covers the problem, what
-          I built, and what shipped; some client and product details are generalized.
+          House IQ, the SETS AI Red Team Clinic at Cornell Tech, and Myridius \u2014
+          across safety, product, and engineering. Some client and feature specifics are
+          generalized under NDA.
         </p>
       </div>
 
@@ -774,7 +741,7 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
             >
               <span>{item.org}</span>
               <h3>{item.title}</h3>
-              <p>{item.impact}</p>
+              <p>{item.summary}</p>
             </button>
           ))}
         </div>
@@ -792,24 +759,16 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
               <span key={tag}>{tag}</span>
             ))}
           </div>
-          <dl className="case-points">
-            <div>
-              <dt>Problem</dt>
-              <dd>{activeCase.problem}</dd>
-            </div>
-            <div>
-              <dt>Approach</dt>
-              <dd>{activeCase.approach}</dd>
-            </div>
-            <div>
-              <dt>Outcome</dt>
-              <dd>{activeCase.outcome}</dd>
-            </div>
-            <div>
-              <dt>Not shown publicly</dt>
-              <dd>{activeCase.constraints}</dd>
-            </div>
-          </dl>
+          <p className="case-lead">{activeCase.lead}</p>
+          <p className="case-body">{activeCase.body}</p>
+          {activeCase.did && activeCase.did.length > 0 && (
+            <ul className="case-did">
+              {activeCase.did.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
+          {activeCase.note && <p className="case-note">{activeCase.note}</p>}
           {activeCase.links && (
             <div className="link-row">
               {activeCase.links.map((link) => (
