@@ -736,7 +736,7 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
         <p className="eyebrow">Experience</p>
         <h2>Where I've worked.</h2>
         <p>
-          House IQ, the SETS AI Red Team Clinic at Cornell Tech, and Myridius \u2014
+          House IQ, the SETS AI Red Team Clinic at Cornell Tech, and Myridius —
           across safety, product, and engineering. Some client and feature specifics are
           generalized under NDA.
         </p>
