@@ -6,7 +6,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build trust systems that show their work.",
   focus:
-    "I'm a Cornell Tech M.Eng. working across AI safety, evaluation, and product. Recent work: a live content-moderation system, an LLM watermark study, and the safety layer for a customer-facing AI product at House IQ. Most things below are interactive and all of them link to real code.",
+    "Cornell Tech M.Eng. working in AI evaluation and safety \u2014 I build and stress-test the systems that decide whether an AI product is good enough to ship. Recent work: found a live product's AI quality scores couldn't be trusted and rebuilt how they're measured, shipped the safety layer for a customer-facing generative-AI feature, and built a content-moderation system end to end. Everything below is interactive and links to real code.",
 };
 
 const artifactLedger = [
@@ -68,10 +68,28 @@ const proofStats = [
 const caseFiles = [
   {
     org: "House IQ",
+    title: "Checking whether the metrics we trusted were true",
+    date: "2026",
+    status: "Shipped analysis, owns follow-on",
+    tags: ["LLM-as-judge", "evals", "measurement integrity", "AI quality"],
+    summary: "Teams ship AI on automated quality scores. I asked whether ours could be trusted, found they couldn't, and started the fix.",
+    lead:
+      "AI products increasingly ship on the strength of an LLM-as-judge grading their own output \u2014 and the hard question is whether that judge can be trusted. I audited ours: roughly 200,000 automated quality scores a month, resting on 9 human labels in 30 days, three of which disagreed with the model.",
+    body:
+      "I made it concrete with a single receipt: a release-blocking bug from a real user \u2014 the assistant recommended options outside a budget they'd stated one message earlier \u2014 that the live judges scored a perfect 5.00 out of 5. Anyone trusting the score would never have caught it. That finding opened a problem nobody owned: validating the scores against human ground truth. I designed the program to do it and took the work.",
+    did: [
+      "Verified every figure against live production dashboards before proposing anything.",
+      "Designed the calibration program end to end: stratified sampling, blind labeling, agreement statistics with confidence intervals, and failure-recall.",
+      "Built the supporting statistics toolkit; the lane went from no owner to mine.",
+    ],
+    note: "Program is proposed and instrumented; internal dashboards are not public.",
+  },
+  {
+    org: "House IQ",
     title: "Owning safety for a customer-facing generative AI feature",
     date: "Dec 2025 - present",
     status: "Shipped",
-    tags: ["AI safety", "LLM-as-judge", "red teaming", "architecture"],
+    tags: ["AI safety", "red teaming", "guardrails", "LLM-as-judge"],
     summary: "I own the safety layer for a live AI image product end to end \u2014 the policy, the model that enforces it, and the red-teaming that hardens it.",
     lead:
       "I own safety for a customer-facing AI image-generation feature: I wrote the harm policy, built the multimodal judge that enforces it on every render, and red-team it myself. This became my lane after I traced the feature and found its generated images were reaching users with the content checks never actually running.",
@@ -83,24 +101,6 @@ const caseFiles = [
       "Designed and registered a prompt-injection threat model for the agent's web-retrieval path \u2014 built and ready, not yet run.",
     ],
     note: "Feature names, prompts, and vendor details are generalized under NDA.",
-  },
-  {
-    org: "House IQ",
-    title: "Checking whether the metrics we trusted were true",
-    date: "2026",
-    status: "Shipped analysis, owns follow-on",
-    tags: ["measurement integrity", "product analytics", "evaluation", "judgment"],
-    summary: "Teams ship AI on automated quality scores. I asked whether ours could be trusted, found they couldn't, and started the fix.",
-    lead:
-      "Release decisions leaned on automated AI quality scores \u2014 roughly 200,000 a month. The question no one was asking was whether those scores were right. I audited them and found they rested on 9 human labels in 30 days, three of which disagreed with the model.",
-    body:
-      "I made it concrete with a single receipt: a release-blocking bug from a real user \u2014 the assistant recommended options outside a budget they'd stated one message earlier \u2014 that the live judges scored a perfect 5.00 out of 5. Anyone trusting the score would never have caught it. That finding opened a problem nobody owned: validating the scores against human ground truth. I designed the program to do it and took the work.",
-    did: [
-      "Verified every figure against live production dashboards before proposing anything.",
-      "Designed the calibration program end to end: stratified sampling, blind labeling, agreement statistics with confidence intervals, and failure-recall.",
-      "Built the supporting statistics toolkit; the lane went from no owner to mine.",
-    ],
-    note: "Program is proposed and instrumented; internal dashboards are not public.",
   },
   {
     org: "House IQ",
