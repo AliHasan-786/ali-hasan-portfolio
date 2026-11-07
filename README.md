@@ -35,7 +35,7 @@ src/styles.css    Visual system, responsive layout, and chart styling
 src/main.jsx      React entrypoint
 ```
 
-Future coursework demos follow the lightweight metadata and asset contract in [CORNELL_PROJECT_COMPATIBILITY.md](./CORNELL_PROJECT_COMPATIBILITY.md), allowing each project to retain its own interaction and presentation model.
+Future coursework demos follow the lightweight [project integration guide](./docs/PROJECT_INTEGRATION.md). Each project keeps its own design, stack, views, and interactions; independent demo links are the default integration. The portfolio chat owns the hub, and project chats supply reviewed metadata and evidence handoffs.
 
 ## Deployment
 
