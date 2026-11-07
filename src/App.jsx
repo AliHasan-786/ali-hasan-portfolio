@@ -8,7 +8,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build trust systems that show their work.",
   focus:
-    "Cornell Tech M.Eng. working in AI evaluation and safety. I build and stress-test AI systems, from policy-grounded safeguards to reliable evaluation and multimodal workflows. My work spans House IQ, Cornell Tech's SETS AI Red Team Clinic, and enterprise AI delivery. Work case studies stay high-level; independent labs expose methods, evidence, and limits.",
+    "Cornell Tech M.Eng. working in AI evaluation and safety. I build and stress-test AI systems, from policy-grounded safeguards to reliable evaluation and multimodal workflows. My work spans House IQ, Cornell Tech's SETS AI Red Team Clinic, and enterprise AI delivery. Explore practical decisions from my work and inspect the methods, evidence, and limits behind my independent labs.",
 };
 
 const artifactLedger = [
@@ -84,7 +84,6 @@ const caseFiles = [
       "Designed the calibration program end to end: stratified sampling, blind labeling, agreement statistics with confidence intervals, and failure-recall.",
       "Built supporting statistical tooling while keeping proposed evaluation work separate from measured outcomes.",
     ],
-    note: "High-level account only. Internal metrics, examples, dashboards, and findings are not disclosed.",
   },
   {
     org: "House IQ",
@@ -102,7 +101,6 @@ const caseFiles = [
       "Developed adversarial tests and regression coverage around intended product behavior.",
       "Worked on threat modeling and clear boundaries between tested behavior and planned evaluation.",
     ],
-    note: "Internal architecture, vulnerabilities, prompts, policies, vendor details, and performance are not disclosed.",
   },
   {
     org: "House IQ",
@@ -119,7 +117,6 @@ const caseFiles = [
       "Authored and reviewed product-grounded evaluation scenarios.",
       "Packaged scenario-generation and independent-validation workflows into reusable tooling.",
     ],
-    note: "Benchmark contents and internal targets are not public.",
   },
   {
     org: "House IQ",
@@ -136,7 +133,6 @@ const caseFiles = [
       "Extended the pipeline to the formats real users bring: scanned PDFs, embedded-office images, and iPhone photos.",
       "Adapted the implementation to production service patterns through engineering review.",
     ],
-    note: "No customer documents, internal throughput figures, costs, or implementation details are shown.",
   },
   {
     org: "House IQ",
@@ -150,7 +146,6 @@ const caseFiles = [
     body:
       "That work connects taxonomy design, retrieval, validation, and human review. The public lesson is that reliable AI behavior often depends on careful data modeling and uncertainty handling, not just model selection.",
     did: [],
-    note: "The data provider and internal schema are confidential.",
   },
   {
     org: "Cornell Tech SETS AI Red Team Clinic",
@@ -162,9 +157,8 @@ const caseFiles = [
     lead:
       "The clinic brought students and public-sector practitioners together to examine the behavior and limits of AI tools. Cornell's public account names the inaugural cohort and describes the engagement with New York City's health department.",
     body:
-      "My contribution included adversarial test design and review-oriented evaluation work with the team. The portfolio explains the general workflow: define intended use, test behavior across contexts, organize evidence for human review, and communicate limitations. It does not disclose client findings or reproduce attack transcripts.",
+      "My contribution included adversarial test design and review-oriented evaluation work with the team: define intended use, test behavior across contexts, organize evidence for human review, and communicate the limits of an observation.",
     did: [],
-    note: "Program context is supported by the public coverage below. Client artifacts, findings, transcripts, datasets, and remediation details remain private.",
     links: [
       { label: "Cornell Tech: the clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
       { label: "Cornell Chronicle", href: "https://news.cornell.edu/stories/2025/12/red-team-students-stress-test-nyc-health-departments-ai" },
@@ -182,7 +176,6 @@ const caseFiles = [
     body:
       "I structured product and travel data behind a retrieval assistant in Databricks, presented working future-state demos to executives and clients, and delivered the market-analysis dashboards that turned customer evidence into decisions for leadership.",
     did: [],
-    note: "Client identities and engagement specifics are confidential.",
   },
 ];
 
@@ -719,8 +712,7 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
         <h2>Where I've worked.</h2>
         <p>
           House IQ, the SETS AI Red Team Clinic at Cornell Tech, and Myridius —
-          across safety, product, and engineering. Some client and feature specifics are
-          generalized under NDA.
+          across safety, product, and engineering.
         </p>
         <div className="link-row">
           <a href="#house-iq">House IQ: evaluation decisions</a>
@@ -799,8 +791,6 @@ function WorkPractice({ story }) {
           <p className="practice-label">{story.label}</p>
           <h3>My contribution</h3>
           <p>{story.role}</p>
-          <h3>The public boundary</h3>
-          <p>{story.boundary}</p>
           <div className="link-row">
             {story.sources.map((source) => (
               <a key={source.href} href={source.href} target="_blank" rel="noreferrer">{source.label}</a>

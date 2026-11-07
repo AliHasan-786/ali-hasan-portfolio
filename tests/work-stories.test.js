@@ -3,16 +3,17 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { workStories } from "../src/workStories.js";
 
-test("professional stories have separate anchors and explicit disclosure boundaries", () => {
+test("professional stories have separate anchors and clearly labeled illustrations", () => {
   const ids = Object.values(workStories).map((story) => story.id);
   assert.equal(new Set(ids).size, ids.length);
   for (const story of Object.values(workStories)) {
-    assert.ok(story.role && story.boundary);
-    assert.match(story.exampleLabel, /Independent illustration/);
+    assert.ok(story.role);
+    assert.equal(story.exampleLabel, "Illustrative scenario");
+    assert.ok(!Object.hasOwn(story, "boundary"));
     assert.ok(story.scenarios.length >= 3);
     assert.equal(new Set(story.scenarios.map((scenario) => scenario.id)).size, story.scenarios.length);
     for (const scenario of story.scenarios) {
-      assert.match(scenario.situation, /fictional/);
+      assert.ok(scenario.situation);
       assert.ok(scenario.evidence && scenario.decision && scenario.tradeoff);
     }
   }

@@ -40,11 +40,10 @@ Share a selected project using `?project=yelp-rent#lab` or `?project=drift#lab`.
 
 ## Work Case Studies
 
-House IQ (`#house-iq`) and Cornell Tech SETS (`#sets`) have separate high-level
-case-study sections. Their interactive examples are newly authored fiction,
-not employer/client data, internal implementation, findings, or measured results.
-SETS program context links to Cornell's public coverage. PromptPlay is parked
-and is not part of the active showcase.
+House IQ (`#house-iq`) and Cornell Tech SETS (`#sets`) have separate case-study
+sections. Newly authored illustrative scenarios explore evaluation decisions
+and tradeoffs. SETS program context links to Cornell's coverage. PromptPlay is
+parked and is not part of the active showcase.
 
 ## Project Structure
 
