@@ -27,6 +27,18 @@ Build check:
 npm run build
 ```
 
+Run the reviewed project-snapshot checks with `npm test`.
+
+## Standalone Labs
+
+- [The Brunch Index](https://the-brunch-index.vercel.app): an observational data essay across five metros, with a corrected 1,105-ZIP-year panel and explicit non-causal limits.
+- [Representation Drift Lab](https://representation-drift-lab.vercel.app): a checkpoint explorer, class microscope, and adaptation comparisons with preliminary local three-seed evidence.
+- [PromptPlay](https://promptplay-ai.vercel.app): YouTube learning paths; sign-in is required to build a path.
+
+Reviewed snapshots and packaged thumbnails live in `src/projectReleases.js` and
+`public/projects/`. These are not fetched from project repositories at runtime.
+Share a selected project using `?project=yelp-rent#lab` or `?project=drift#lab`.
+
 ## Project Structure
 
 ```text

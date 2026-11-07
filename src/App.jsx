@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { projectReleases } from "./projectReleases";
 
 const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
@@ -6,7 +7,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build trust systems that show their work.",
   focus:
-    "Cornell Tech M.Eng. working in AI evaluation and safety \u2014 I build and stress-test the systems that decide whether an AI product is good enough to ship. Recent work: found a live product's AI quality scores couldn't be trusted and rebuilt how they're measured, shipped the safety layer for a customer-facing generative-AI feature, and built a content-moderation system end to end. Everything below is interactive and links to real code.",
+    "Cornell Tech M.Eng. working in AI evaluation and safety \u2014 I build and stress-test the systems that decide whether an AI product is good enough to ship. Recent work: found a live product's AI quality scores couldn't be trusted and rebuilt how they're measured, shipped the safety layer for a customer-facing generative-AI feature, and built a content-moderation system end to end. Explore the demos, evidence, and code below.",
 };
 
 const artifactLedger = [
@@ -234,23 +235,7 @@ const courseProjects = [
   },
   {
     id: "drift",
-    course: "CS 5787 Deep Learning",
-    title: "Representation Drift in Vision-Language Models",
-    theme: "Model monitoring",
-    metric: "Drift curves",
-    caption: "Tracked CLIP embedding geometry during LoRA fine-tuning on Food101 with CIFAR-10 as held-out general knowledge.",
-    bullets: [
-      "Fine-tuned CLIP ViT-B/32 using LoRA on the vision tower.",
-      "Measured centroid displacement and Frechet distance across checkpoints.",
-      "Connected geometric drift to stability-plasticity tradeoffs and performance loss.",
-    ],
-    expansion: [
-      "Embedding-map scrubber across checkpoints.",
-      "Early-warning monitor that predicts final drift from intermediate metrics.",
-      "Side-by-side Food101 gains and CIFAR-10 degradation.",
-    ],
-    links: [{ label: "Repo", href: "https://github.com/AliHasan-786/representation-drift-lab" }],
-    viz: "drift",
+    ...projectReleases.drift,
   },
   {
     id: "rl-housing",
@@ -297,23 +282,7 @@ const courseProjects = [
   },
   {
     id: "yelp-rent",
-    course: "CS 5304 Data Science in the Wild",
-    title: "Yelp Signals and Future Rent Growth",
-    theme: "Urban data science",
-    metric: "ZIP-year model",
-    caption: "Explored whether Yelp business/review signals correlate with future rent growth and gentrification-coded language.",
-    bullets: [
-      "Combined Yelp Open Dataset signals with ZIP-year rental dynamics.",
-      "Validated a gentrification keyword list and business-composition measures.",
-      "Used focused EDA and regression with metro/year controls.",
-    ],
-    expansion: [
-      "Interactive ZIP-year scatterplot with filters for review coverage.",
-      "Keyword validation panel with examples and uncertainty flags.",
-      "Time-series extension for metro-adjusted rent growth.",
-    ],
-    links: [{ label: "Repo + data", href: "https://github.com/AliHasan-786/yelp-gentrification-rent" }],
-    viz: "yelp",
+    ...projectReleases["yelp-rent"],
   },
   {
     id: "casekick",
@@ -356,6 +325,14 @@ const courseProjects = [
 ];
 
 const sideProjects = [
+  {
+    title: "PromptPlay",
+    status: "Live app",
+    description:
+      "Turn YouTube into a learning path. Import a playlist or describe a goal, audit gaps and quality, then structure and repair the path. Sign-in is required to build your own.",
+    action: "Open PromptPlay",
+    href: "https://promptplay-ai.vercel.app",
+  },
   {
     title: "DeepShield",
     status: "Startup Studio",
@@ -462,11 +439,21 @@ const productDecisions = [
 
 function App() {
   const [activeCase, setActiveCase] = useState(caseFiles[0]);
-  const [activeProject, setActiveProject] = useState(courseProjects[0]);
+  const [activeProject, setActiveProject] = useState(() => {
+    const id = new URLSearchParams(window.location.search).get("project");
+    return courseProjects.find((project) => project.id === id) || courseProjects[0];
+  });
   const [threshold, setThreshold] = useState(1.77);
   const [fraudThreshold, setFraudThreshold] = useState(0.48);
   const [budget, setBudget] = useState(3);
   const [risk, setRisk] = useState(2);
+
+  function selectProject(project) {
+    setActiveProject(project);
+    const url = new URL(window.location.href);
+    url.searchParams.set("project", project.id);
+    window.history.replaceState(null, "", url);
+  }
 
   return (
     <main>
@@ -480,7 +467,7 @@ function App() {
       />
       <CourseLab
         activeProject={activeProject}
-        setActiveProject={setActiveProject}
+        setActiveProject={selectProject}
         threshold={threshold}
         setThreshold={setThreshold}
         fraudThreshold={fraudThreshold}
@@ -510,7 +497,7 @@ function LabsFooter() {
           Crypto Scam Moderation Lab
         </a>
         <a
-          href="https://github.com/AliHasan-786/representation-drift-lab"
+          href={projectReleases.drift.release.demoUrl}
           target="_blank"
           rel="noreferrer"
         >
@@ -816,8 +803,9 @@ function CourseLab({
         <p className="eyebrow">Projects</p>
         <h2>Selected projects.</h2>
         <p>
-          Graduate coursework rebuilt as working demos. Charts marked as sketches are
-          illustrative; the measured numbers live in each project's repo.
+          Open a full project, inspect its evidence, or explore a sketch here.
+          Sketches are illustrative; each lab distinguishes what was measured
+          from what is still being built.
         </p>
       </div>
 
@@ -829,6 +817,8 @@ function CourseLab({
               type="button"
               aria-label={`Open project lab: ${project.title}`}
               data-project-id={project.id}
+              aria-pressed={activeProject.id === project.id}
+              aria-controls="project-panel"
               className={activeProject.id === project.id ? "project-tab active" : "project-tab"}
               onClick={() => setActiveProject(project)}
             >
@@ -839,7 +829,7 @@ function CourseLab({
           ))}
         </div>
 
-        <article className="project-stage">
+        <article className="project-stage" id="project-panel">
           <div className="project-stage-head">
             <div>
               <span className="pill">{activeProject.course}</span>
@@ -848,6 +838,19 @@ function CourseLab({
             <strong>{activeProject.metric}</strong>
           </div>
           <p>{activeProject.caption}</p>
+          <a className="project-permalink" href={`?project=${activeProject.id}#lab`}>
+            Link to this project
+          </a>
+          {activeProject.release && (
+            <p className="project-evidence-label">{activeProject.release.evidenceStage}</p>
+          )}
+          {activeProject.release?.demoUrl && (
+            <div className="project-links">
+              <a href={activeProject.release.demoUrl} target="_blank" rel="noreferrer">
+                Open interactive project
+              </a>
+            </div>
+          )}
           {activeProject.links && (
             <div className="link-row">
               {activeProject.links.map((link) => (
@@ -875,28 +878,54 @@ function CourseLab({
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
-              <h4>Expansion roadmap</h4>
+              <h4>{activeProject.nextHeading || "Expansion roadmap"}</h4>
               <ul>
                 {activeProject.expansion.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
-            <InteractiveViz
-              project={activeProject}
-              threshold={threshold}
-              setThreshold={setThreshold}
-              fraudThreshold={fraudThreshold}
-              setFraudThreshold={setFraudThreshold}
-              budget={budget}
-              setBudget={setBudget}
-              risk={risk}
-              setRisk={setRisk}
-            />
+            {activeProject.release ? (
+              <ProjectReleasePreview project={activeProject} />
+            ) : (
+              <InteractiveViz
+                project={activeProject}
+                threshold={threshold}
+                setThreshold={setThreshold}
+                fraudThreshold={fraudThreshold}
+                setFraudThreshold={setFraudThreshold}
+                budget={budget}
+                setBudget={setBudget}
+                risk={risk}
+                setRisk={setRisk}
+              />
+            )}
           </div>
         </article>
       </div>
     </section>
+  );
+}
+
+function ProjectReleasePreview({ project }) {
+  const release = project.release;
+  return (
+    <figure className="project-release-preview">
+      <img
+        src={release.thumbnail}
+        alt={release.thumbnailAlt}
+        width="1200"
+        height="630"
+        loading="lazy"
+      />
+      <figcaption>
+        <h4>{release.invitation}</h4>
+        <p>{release.note}</p>
+        <span className="project-release-revision">
+          Reviewed source {release.sourceCommit.slice(0, 7)}
+        </span>
+      </figcaption>
+    </figure>
   );
 }
 

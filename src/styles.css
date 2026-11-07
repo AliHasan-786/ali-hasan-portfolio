@@ -803,6 +803,56 @@ h3 {
   text-transform: uppercase;
 }
 
+.lab-section .project-evidence-label {
+  color: var(--flag);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.project-permalink {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--dark-muted);
+  font-size: 0.76rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.project-release-preview {
+  align-self: start;
+  min-width: 0;
+  margin: 22px 0 0;
+  border: 1px solid var(--dark-line);
+}
+
+.project-release-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+}
+
+.project-release-preview figcaption {
+  padding: 20px;
+}
+
+.project-release-preview h4 {
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+.project-release-preview p {
+  font-size: 0.84rem;
+}
+
+.project-release-revision {
+  color: var(--dark-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
 .project-links,
 .case-study-actions {
   display: flex;
@@ -1379,6 +1429,19 @@ h3 {
 }
 
 @media (max-width: 640px) {
+  .architecture-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .crypto-case-study .case-study-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-study-block-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .proof-strip {
     grid-template-columns: 1fr;
   }
