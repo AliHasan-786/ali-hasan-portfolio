@@ -1,5 +1,8 @@
 # Project Integration
 
+Cornell extensions also follow the [research extension standard](./RESEARCH_STANDARD.md).
+Deployment and scientific contribution are separate acceptance gates.
+
 Projects keep their own design, stack, views, and interactions. The portfolio
 hub supplies discovery and introductions; each project supplies its deeper
 experience. Independent demo deployments are the default. Embedding or importing

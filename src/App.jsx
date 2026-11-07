@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { projectReleases } from "./projectReleases";
+import { workStories } from "./workStories";
 
 const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
@@ -7,7 +8,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build trust systems that show their work.",
   focus:
-    "Cornell Tech M.Eng. working in AI evaluation and safety \u2014 I build and stress-test the systems that decide whether an AI product is good enough to ship. Recent work: found a live product's AI quality scores couldn't be trusted and rebuilt how they're measured, shipped the safety layer for a customer-facing generative-AI feature, and built a content-moderation system end to end. Explore the demos, evidence, and code below.",
+    "Cornell Tech M.Eng. working in AI evaluation and safety. I build and stress-test AI systems, from policy-grounded safeguards to reliable evaluation and multimodal workflows. My work spans House IQ, Cornell Tech's SETS AI Red Team Clinic, and enterprise AI delivery. Work case studies stay high-level; independent labs expose methods, evidence, and limits.",
 };
 
 const artifactLedger = [
@@ -50,14 +51,14 @@ const proofStats = [
     detail: "Every metric regenerated and re-verified on every commit",
   },
   {
-    value: "200K",
-    label: "AI quality scores I audited",
-    detail: "House IQ — validated against 9 human labels in 30 days, 3 disagreeing",
+    value: "Human review",
+    label: "Evaluation practice",
+    detail: "Designing how automated judgments are checked against human evidence",
   },
   {
-    value: "org-wide",
-    label: "Evaluation code adopted",
-    detail: "My safety and on-topic evaluators run on every production deploy",
+    value: "Policy to code",
+    label: "Safety engineering",
+    detail: "Connecting written boundaries, product behavior, and regression tests",
   },
   {
     value: "arXiv",
@@ -69,21 +70,21 @@ const proofStats = [
 const caseFiles = [
   {
     org: "House IQ",
-    title: "Checking whether the metrics we trusted were true",
+    title: "Designing trustworthy AI evaluation",
     date: "2026",
     status: "Shipped analysis, owns follow-on",
     tags: ["LLM-as-judge", "evals", "measurement integrity", "AI quality"],
-    summary: "Teams ship AI on automated quality scores. I asked whether ours could be trusted, found they couldn't, and started the fix.",
+    summary: "I work on the question behind an automated quality score: what evidence makes it trustworthy enough to inform a product decision?",
     lead:
-      "AI products increasingly ship on the strength of an LLM-as-judge grading their own output \u2014 and the hard question is whether that judge can be trusted. I audited ours: roughly 200,000 automated quality scores a month, resting on 9 human labels in 30 days, three of which disagreed with the model.",
+      "My work includes examining automated evaluation, understanding the limits of a metric, and designing human validation around the decisions it is meant to support.",
     body:
-      "I made it concrete with a single receipt: a release-blocking bug from a real user \u2014 the assistant recommended options outside a budget they'd stated one message earlier \u2014 that the live judges scored a perfect 5.00 out of 5. Anyone trusting the score would never have caught it. That finding opened a problem nobody owned: validating the scores against human ground truth. I designed the program to do it and took the work.",
+      "The important engineering question is not simply whether a judge produces a score. It is whether the rubric is meaningful, the sample reflects the intended use, disagreement is understood, and uncertainty remains visible to the person making a decision.",
     did: [
-      "Verified every figure against live production dashboards before proposing anything.",
+      "Examined the relationship between automated judgments and human evidence.",
       "Designed the calibration program end to end: stratified sampling, blind labeling, agreement statistics with confidence intervals, and failure-recall.",
-      "Built the supporting statistics toolkit; the lane went from no owner to mine.",
+      "Built supporting statistical tooling while keeping proposed evaluation work separate from measured outcomes.",
     ],
-    note: "Program is proposed and instrumented; internal dashboards are not public.",
+    note: "High-level account only. Internal metrics, examples, dashboards, and findings are not disclosed.",
   },
   {
     org: "House IQ",
@@ -91,17 +92,17 @@ const caseFiles = [
     date: "Dec 2025 - present",
     status: "Shipped",
     tags: ["AI safety", "red teaming", "guardrails", "LLM-as-judge"],
-    summary: "I own the safety layer for a live AI image product end to end \u2014 the policy, the model that enforces it, and the red-teaming that hardens it.",
+    summary: "I connect written safety policy, evaluation, and application behavior for generative-AI features.",
     lead:
-      "I own safety for a customer-facing AI image-generation feature: I wrote the harm policy, built the multimodal judge that enforces it on every render, and red-team it myself. This became my lane after I traced the feature and found its generated images were reaching users with the content checks never actually running.",
+      "My responsibilities span safety-policy design, multimodal evaluation, adversarial testing, and application-level safeguards for generative-AI features.",
     body:
-      "The work that matters most here is judgment under real constraints. I chose defense-in-depth over a single checkpoint, and made the enforcement fail closed \u2014 never serve an un-vetted image \u2014 while letting the semantic judge behind it fail open, so a model outage degrades safely instead of taking down all rendering. When a review tool caught that my own guardrail could be skipped on a cached image, I re-vetted every cache hit through the full pipeline rather than take the cheaper exemption.",
+      "The public takeaway is a design principle, not a description of internal architecture: safety depends on how policy, model judgment, failure handling, and product behavior work together. Testing needs to cover the surrounding workflow as well as the model.",
     did: [
-      "Authored a 12-rule multimodal judge across 9 harm categories; my own red-teaming (~21 rounds, 114 adversarial prompts) exposed two live policy gaps I then closed and re-tested to confirmed blocking.",
-      "Shipped the input and output guardrail cascade behind 31 tests, instrumented so a silent judge failure is alarmable rather than invisible.",
-      "Designed and registered a prompt-injection threat model for the agent's web-retrieval path \u2014 built and ready, not yet run.",
+      "Translated harm-policy requirements into evaluable criteria and application checks.",
+      "Developed adversarial tests and regression coverage around intended product behavior.",
+      "Worked on threat modeling and clear boundaries between tested behavior and planned evaluation.",
     ],
-    note: "Feature names, prompts, and vendor details are generalized under NDA.",
+    note: "Internal architecture, vulnerabilities, prompts, policies, vendor details, and performance are not disclosed.",
   },
   {
     org: "House IQ",
@@ -111,12 +112,12 @@ const caseFiles = [
     tags: ["product judgment", "evaluation", "benchmark design", "AI quality"],
     summary: "Deciding what \u201cgood\u201d means may be the hardest problem in an AI product. I own the system the team uses to define and measure it.",
     lead:
-      "The benchmark that measures our agent against competitors is a product question in disguise: what does a good answer actually look like, and for whom? I designed the system the team uses to answer it.",
+      "I design evaluation workflows around a product question: what does a good answer look like for the person relying on it?",
     body:
-      "Good evaluation comes down to realism and trust \u2014 scenarios that reflect how real users behave, scored by a grader you can believe. So I grounded the scenarios in customer interviews and published research instead of my own intuition, and built the grader to score independently of whatever generated a scenario, so the system can't simply agree with itself. I hold my own work to the same bar: when I A/B-tested a richer scenario prompt of mine against a leaner one, the leaner won, and I shipped it over my own version.",
+      "Useful scenarios should represent intended use rather than reward a system for agreeing with itself. My work separates scenario construction from evaluation, makes rubrics explicit, and treats comparison results as evidence to inspect rather than an automatic verdict.",
     did: [
-      "Authored 7 of the first 11 scenarios and reviewed each one line-by-line with the product lead.",
-      "Packaged the generation and independent-validation halves as installable tools the team runs; the framework is what scales scenario-writing toward the team's several-hundred-scenario target.",
+      "Authored and reviewed product-grounded evaluation scenarios.",
+      "Packaged scenario-generation and independent-validation workflows into reusable tooling.",
     ],
     note: "Benchmark contents and internal targets are not public.",
   },
@@ -126,16 +127,16 @@ const caseFiles = [
     date: "2026",
     status: "Shipped",
     tags: ["production ML", "multimodal", "performance", "reliability"],
-    summary: "I take AI capabilities from prototype to production-grade on inputs you can't control \u2014 this one became a competitive differentiator.",
+    summary: "I work on making multimodal AI useful when real inputs are incomplete, inconsistent, or difficult to process.",
     lead:
-      "I built the capability that turns the documents users actually have \u2014 inspection reports, scans, phone photos \u2014 into structured data the product can use, and got it to production quality. Product later named it a competitive differentiator for that surface.",
+      "I built document and image-processing capabilities that turn heterogeneous inputs into structured information for product workflows.",
     body:
-      "The hard part of shipping AI features is robustness and speed on inputs you don't control. On a real 31-page report it extracted 60 images correctly and identified brand, model, and condition; I took a full-report pass from about five minutes to roughly 30 seconds with bounded concurrency, and made oversized photos degrade gracefully instead of failing outright.",
+      "The challenge is the system around the model: input handling, bounded resource use, partial failures, observability, and integration with the surrounding service. I improved that workflow without assuming every document or image arrives in an ideal format.",
     did: [
       "Extended the pipeline to the formats real users bring: scanned PDFs, embedded-office images, and iPhone photos.",
-      "Rebuilt my initial prototype onto the service's production patterns after a senior review \u2014 the version that shipped and became the foundation for a five-PR arc.",
+      "Adapted the implementation to production service patterns through engineering review.",
     ],
-    note: "Throughput and per-document economics are internal; figures are from my own test records.",
+    note: "No customer documents, internal throughput figures, costs, or implementation details are shown.",
   },
   {
     org: "House IQ",
@@ -145,9 +146,9 @@ const caseFiles = [
     tags: ["data modeling", "semantic search", "product infrastructure"],
     summary: "A recommendation feature is only as good as the data under it. I designed that foundation from an industry standard and built the pipeline that fills it.",
     lead:
-      "The renovation-cost recommendations need a structured cost catalog to reason over; the raw source was about 1,200 uncategorized construction jobs with no shared taxonomy. I designed the schema and built the pipeline that populates it.",
+      "I designed structured domain-data foundations and the processing workflows that make them usable by a product.",
     body:
-      "I read the industry construction-cost standard and designed a product-specific schema from it, then built a mapping pipeline using semantic search with LLM validation and tiered confidence thresholds \u2014 auto-mapping the confident matches and routing the rest to human review. The categorized catalog now backs the production cost-estimate path.",
+      "That work connects taxonomy design, retrieval, validation, and human review. The public lesson is that reliable AI behavior often depends on careful data modeling and uncertainty handling, not just model selection.",
     did: [],
     note: "The data provider and internal schema are confidential.",
   },
@@ -157,13 +158,13 @@ const caseFiles = [
     date: "Oct - Nov 2025",
     status: "Inaugural cohort",
     tags: ["red team", "public-sector AI", "adversarial testing"],
-    summary: "Before this was my job, I was one of five students chosen for the first cohort of Cornell Tech's AI red-team clinic.",
+    summary: "I was part of the inaugural SETS AI Content Red Team Clinic cohort, working on public-sector AI assessment.",
     lead:
-      "AI that helps people manage a health condition can give unsafe guidance or invent sources, and the public agency running it couldn't staff adversarial testing itself. I was one of five students in the first cohort of Cornell Tech's red-team clinic, testing two tools operated by NYC's health department.",
+      "The clinic brought students and public-sector practitioners together to examine the behavior and limits of AI tools. Cornell's public account names the inaugural cohort and describes the engagement with New York City's health department.",
     body:
-      "I designed adversarial personas and multi-turn attacks, triaged outputs into a 653-item judging dataset, and helped build the pipeline that pre-screened 1,607 text and multimodal pairs for human review. Our findings on unsafe guidance and fabricated citations shaped the report back to the agency.",
+      "My contribution included adversarial test design and review-oriented evaluation work with the team. The portfolio explains the general workflow: define intended use, test behavior across contexts, organize evidence for human review, and communicate limitations. It does not disclose client findings or reproduce attack transcripts.",
     did: [],
-    note: "Specific vulnerabilities stay confidential; the coverage below is the public record.",
+    note: "Program context is supported by the public coverage below. Client artifacts, findings, transcripts, datasets, and remediation details remain private.",
     links: [
       { label: "Cornell Tech: the clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
       { label: "Cornell Chronicle", href: "https://news.cornell.edu/stories/2025/12/red-team-students-stress-test-nyc-health-departments-ai" },
@@ -326,14 +327,6 @@ const courseProjects = [
 
 const sideProjects = [
   {
-    title: "PromptPlay",
-    status: "Live app",
-    description:
-      "Turn YouTube into a learning path. Import a playlist or describe a goal, audit gaps and quality, then structure and repair the path. Sign-in is required to build your own.",
-    action: "Open PromptPlay",
-    href: "https://promptplay-ai.vercel.app",
-  },
-  {
     title: "DeepShield",
     status: "Startup Studio",
     description:
@@ -465,6 +458,8 @@ function App() {
         activeCase={activeCase}
         setActiveCase={setActiveCase}
       />
+      <WorkPractice story={workStories.houseIQ} />
+      <WorkPractice story={workStories.sets} />
       <CourseLab
         activeProject={activeProject}
         setActiveProject={selectProject}
@@ -727,6 +722,10 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
           across safety, product, and engineering. Some client and feature specifics are
           generalized under NDA.
         </p>
+        <div className="link-row">
+          <a href="#house-iq">House IQ: evaluation decisions</a>
+          <a href="#sets">SETS: red-team practice</a>
+        </div>
       </div>
 
       <div className="case-layout">
@@ -780,6 +779,60 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
             </div>
           )}
         </article>
+      </div>
+    </section>
+  );
+}
+
+function WorkPractice({ story }) {
+  const [activeId, setActiveId] = useState(story.scenarios[0].id);
+  const active = story.scenarios.find((scenario) => scenario.id === activeId);
+  return (
+    <section className="section-shell practice-section" id={story.id}>
+      <div className="section-heading">
+        <p className="eyebrow">{story.organization}</p>
+        <h2>{story.title}</h2>
+        <p>{story.introduction}</p>
+      </div>
+      <div className="practice-layout">
+        <aside className="practice-context">
+          <p className="practice-label">{story.label}</p>
+          <h3>My contribution</h3>
+          <p>{story.role}</p>
+          <h3>The public boundary</h3>
+          <p>{story.boundary}</p>
+          <div className="link-row">
+            {story.sources.map((source) => (
+              <a key={source.href} href={source.href} target="_blank" rel="noreferrer">{source.label}</a>
+            ))}
+          </div>
+        </aside>
+        <div className="practice-explorer">
+          <p className="practice-label">{story.exampleLabel}</p>
+          <h3>{story.question}</h3>
+          <div className="practice-controls" aria-label={`${story.organization} examples`}>
+            {story.scenarios.map((scenario) => (
+              <button
+                key={scenario.id}
+                type="button"
+                aria-pressed={scenario.id === active.id}
+                aria-controls={`${story.id}-example`}
+                onClick={() => setActiveId(scenario.id)}
+              >
+                {scenario.title}
+              </button>
+            ))}
+          </div>
+          <article id={`${story.id}-example`} className="practice-example">
+            <h4>{active.title}</h4>
+            <p>{active.situation}</p>
+            <dl>
+              <dt>Evidence to inspect</dt><dd>{active.evidence}</dd>
+              <dt>Decision principle</dt><dd>{active.decision}</dd>
+              <dt>The tradeoff</dt><dd>{active.tradeoff}</dd>
+            </dl>
+          </article>
+        </div>
       </div>
     </section>
   );

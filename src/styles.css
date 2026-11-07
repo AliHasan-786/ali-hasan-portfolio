@@ -803,6 +803,97 @@ h3 {
   text-transform: uppercase;
 }
 
+.practice-section {
+  scroll-margin-top: 84px;
+  border-top: 1px solid var(--line);
+}
+
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(28px, 5vw, 80px);
+}
+
+.practice-context p {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.practice-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.practice-context h3 {
+  margin: 22px 0 10px;
+}
+
+.practice-explorer {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 36px);
+  color: var(--bone);
+  background: var(--dark);
+  border-top: 3px solid var(--flag);
+}
+
+.practice-explorer .practice-label {
+  color: var(--dark-muted);
+}
+
+.practice-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0;
+}
+
+.practice-controls button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--dark-line);
+  color: var(--bone);
+  background: transparent;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.practice-controls button[aria-pressed="true"] {
+  border-color: var(--flag);
+  color: var(--flag);
+}
+
+.practice-example {
+  padding-top: 16px;
+  border-top: 1px solid var(--dark-line);
+}
+
+.practice-example h4 {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+}
+
+.practice-example p,
+.practice-example dd {
+  color: var(--dark-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.practice-example dt {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.practice-example dd {
+  margin: 6px 0 0;
+}
+
 .lab-section .project-evidence-label {
   color: var(--flag);
   font-family: var(--font-mono);
@@ -1403,6 +1494,7 @@ h3 {
 
 @media (max-width: 900px) {
   .case-layout,
+  .practice-layout,
   .lab-grid,
   .project-body,
   .crypto-case-study .case-study-layout,

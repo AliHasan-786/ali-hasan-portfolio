@@ -33,11 +33,18 @@ Run the reviewed project-snapshot checks with `npm test`.
 
 - [The Brunch Index](https://the-brunch-index.vercel.app): an observational data essay across five metros, with a corrected 1,105-ZIP-year panel and explicit non-causal limits.
 - [Representation Drift Lab](https://representation-drift-lab.vercel.app): a checkpoint explorer, class microscope, and adaptation comparisons with preliminary local three-seed evidence.
-- [PromptPlay](https://promptplay-ai.vercel.app): YouTube learning paths; sign-in is required to build a path.
 
 Reviewed snapshots and packaged thumbnails live in `src/projectReleases.js` and
 `public/projects/`. These are not fetched from project repositories at runtime.
 Share a selected project using `?project=yelp-rent#lab` or `?project=drift#lab`.
+
+## Work Case Studies
+
+House IQ (`#house-iq`) and Cornell Tech SETS (`#sets`) have separate high-level
+case-study sections. Their interactive examples are newly authored fiction,
+not employer/client data, internal implementation, findings, or measured results.
+SETS program context links to Cornell's public coverage. PromptPlay is parked
+and is not part of the active showcase.
 
 ## Project Structure
 
