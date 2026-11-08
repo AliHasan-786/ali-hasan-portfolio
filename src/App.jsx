@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { projectReleases } from "./projectReleases";
 import { workStories } from "./workStories";
+import { deepShieldSourceCase, housingSourceCase } from "./sourceCases";
 
 const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
@@ -231,30 +232,7 @@ const courseProjects = [
     id: "drift",
     ...projectReleases.drift,
   },
-  {
-    id: "rl-housing",
-    course: "ORIE 5570 Reinforcement Learning",
-    title: "NYC Housing Inspection Dispatch",
-    theme: "Public-sector RL",
-    metric: "Real 311 pipeline",
-    caption: "Modeled 311 after-hours construction complaints as a dispatch policy problem with resource and fairness tradeoffs.",
-    bullets: [
-      "Built an MDP with complaint category, borough, inspector budget, prior count, and time bin.",
-      "Compared Monte Carlo, tabular Q-learning, DQN, REINFORCE, and baselines.",
-      "Framed reward design around missed violations, wasted inspections, and displacement risk.",
-      "Co-author on the cohort's arXiv preprint; my hands-on agents: tabular TD and REINFORCE over 755 real-data-calibrated complaints, with reward-component and policy-heatmap analysis.",
-    ],
-    links: [
-      { label: "Paper: arXiv:2605.06482", href: "https://arxiv.org/abs/2605.06482" },
-      { label: "Ongoing lab repo", href: "https://github.com/AliHasan-786/nyc-housing-inspection-rl" },
-    ],
-    expansion: [
-      "Policy simulator for inspect/dismiss/aggressive enforcement.",
-      "Fairness penalty slider showing over-policing tradeoffs.",
-      "Pareto frontier for violations caught vs inspection cost vs tenant retention.",
-    ],
-    viz: "rl",
-  },
+  housingSourceCase,
   {
     id: "kreyol",
     course: "CS 5382 Fairness in ML",
@@ -319,20 +297,13 @@ const courseProjects = [
 ];
 
 const sideProjects = [
-  {
-    title: "DeepShield",
-    status: "Startup Studio",
-    description:
-      "Adversarial protection against AI image manipulation: an EOT-PGD engine with multi-VAE ensemble gradients across SD and Flux latent spaces, JPEG-robust augmentations, and a FastAPI service. Grounded in 20 customer interviews.",
-    action: "github.com/AliHasan-786/DeepShield",
-    href: "https://github.com/AliHasan-786/DeepShield",
-  },
+  deepShieldSourceCase,
   {
     title: "Guard-model research program",
     status: "In progress",
     description:
-      "Two preregistered studies of open moderation models: whether they punish counter-speech (people warning about scams score like scammers), and whether false-positive rates differ across dialect and identity mentions. Frozen datasets, pinned models, results published either way.",
-    action: "Opening with first results",
+      "Studying whether moderation mistakes warnings about scams for promotion, and how error rates change across dialect and identity mentions. A local synthetic stance pilot exists; the broader matched-pair study and model comparison remain unrun.",
+    action: "Protocols and evaluations in progress",
   },
 ];
 
@@ -431,8 +402,6 @@ function App() {
   });
   const [threshold, setThreshold] = useState(1.77);
   const [fraudThreshold, setFraudThreshold] = useState(0.48);
-  const [budget, setBudget] = useState(3);
-  const [risk, setRisk] = useState(2);
 
   function selectProject(project) {
     setActiveProject(project);
@@ -460,10 +429,6 @@ function App() {
         setThreshold={setThreshold}
         fraudThreshold={fraudThreshold}
         setFraudThreshold={setFraudThreshold}
-        budget={budget}
-        setBudget={setBudget}
-        risk={risk}
-        setRisk={setRisk}
       />
       <CryptoCaseStudy />
       <SideProjects />
@@ -835,10 +800,6 @@ function CourseLab({
   setThreshold,
   fraudThreshold,
   setFraudThreshold,
-  budget,
-  setBudget,
-  risk,
-  setRisk,
 }) {
   return (
     <section className="section-shell lab-section" id="lab">
@@ -937,10 +898,6 @@ function CourseLab({
                 setThreshold={setThreshold}
                 fraudThreshold={fraudThreshold}
                 setFraudThreshold={setFraudThreshold}
-                budget={budget}
-                setBudget={setBudget}
-                risk={risk}
-                setRisk={setRisk}
               />
             )}
           </div>
@@ -978,10 +935,6 @@ function InteractiveViz({
   setThreshold,
   fraudThreshold,
   setFraudThreshold,
-  budget,
-  setBudget,
-  risk,
-  setRisk,
 }) {
   if (project.viz === "trust-safety") {
     const precision = Math.min(96, Math.round(54 + fraudThreshold * 72));
@@ -1065,41 +1018,21 @@ function InteractiveViz({
     );
   }
 
-  if (project.viz === "rl") {
-    const dismiss = risk < 2 ? 10 : -500;
-    const standard = risk * 85 - budget * 6;
-    const aggressive = risk * 125 - 30 - budget * 10;
-    const best = Math.max(dismiss, standard, aggressive);
+  if (project.viz === "source-audit") {
     return (
       <div className="viz-card">
         <div className="viz-header">
-          <span>Dispatch simulator</span>
-          <strong>{best === aggressive ? "Aggressive" : best === standard ? "Inspect" : "Dismiss"}</strong>
+          <span>Source checkpoint</span>
+          <strong>{project.audit.sourceCommit.slice(0, 7)}</strong>
         </div>
-        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
-        <PolicyBars values={[dismiss, standard, aggressive]} />
-        <label>
-          Inspector budget: {budget}
-          <input
-            type="range"
-            min="0"
-            max="5"
-            step="1"
-            value={budget}
-            onChange={(event) => setBudget(Number(event.target.value))}
-          />
-        </label>
-        <label>
-          Violation risk signal: {risk}
-          <input
-            type="range"
-            min="0"
-            max="4"
-            step="1"
-            value={risk}
-            onChange={(event) => setRisk(Number(event.target.value))}
-          />
-        </label>
+        <h4>{project.audit.title}</h4>
+        {project.audit.steps.map((step) => (
+          <div key={step.title}>
+            <h4>{step.title}</h4>
+            <p>{step.text}</p>
+          </div>
+        ))}
+        <p className="viz-note">The interactive benchmark will be linked after its artifacts and result accounting pass review.</p>
       </div>
     );
   }
@@ -1233,28 +1166,6 @@ function WatermarkChart({ threshold }) {
   );
 }
 
-function PolicyBars({ values }) {
-  const labels = ["Dismiss", "Inspect", "Aggressive"];
-  const min = -520;
-  const max = 480;
-  return (
-    <div className="policy-bars">
-      {values.map((value, index) => {
-        const width = Math.max(4, ((value - min) / (max - min)) * 100);
-        return (
-          <div className="policy-row" key={labels[index]}>
-            <span>{labels[index]}</span>
-            <div>
-              <i style={{ width: `${width}%` }} />
-            </div>
-            <strong>{Math.round(value)}</strong>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 function LineChart({ lines }) {
   const max = Math.max(...lines.flatMap((line) => line.values));
   const min = Math.min(...lines.flatMap((line) => line.values));
@@ -1316,9 +1227,9 @@ function SideProjects() {
     <section className="section-shell side-section" id="side">
       <div className="section-heading">
         <p className="eyebrow">More</p>
-        <h2>Side projects.</h2>
+        <h2>Further explorations.</h2>
         <p>
-          Built outside coursework and work, on my own time.
+          Supporting engineering work and research in progress.
         </p>
       </div>
       <div className="side-grid">
