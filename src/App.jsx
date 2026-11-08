@@ -39,9 +39,9 @@ const artifactLedger = [
 
 const proofStats = [
   {
-    value: "$5.8B",
-    label: "Problem on the table",
-    detail: "US crypto-fraud losses (FBI IC3) my moderation lab is built against",
+    value: "Speaker intent",
+    label: "Policy boundary",
+    detail: "Distinguishing scam promotion from warnings, reporting, and help-seeking",
   },
   {
     value: "50k/day",
@@ -50,8 +50,8 @@ const proofStats = [
   },
   {
     value: "15-step",
-    label: "CI release gate",
-    detail: "Every metric regenerated and re-verified on every commit",
+    label: "Executable release gate",
+    detail: "Reproducible checks regenerate and verify benchmark reports before release",
   },
   {
     value: "Human review",
