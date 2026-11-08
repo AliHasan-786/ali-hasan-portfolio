@@ -1,10 +1,8 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&f[]=switzer@400,500,600,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
-
 /* ============================================================
    THE INDEX — Evidence Labs v2
    Bone / ink / one flag color. Hairlines, not boxes.
-   Display: Clash Display · Text: Switzer · Data: IBM Plex Mono
+   Display: Bricolage Grotesque · Text: Instrument Sans · Data: IBM Plex Mono
+   Open-licensed fonts are bundled locally; see THIRD_PARTY.md.
    ============================================================ */
 
 :root {
@@ -12,18 +10,19 @@
   --bone-deep: #e9e6dd;
   --panel: #fbfaf7;
   --ink: #131311;
-  --muted: #6b695f;
+  --muted: #656359;
   --line: #d8d4c8;
   --flag: #e8490f;
-  --flag-deep: #c43a08;
+  --flag-deep: #b83608;
+  --flag-text: var(--flag-deep);
   --dark: #0f0f0e;
   --dark-2: #171716;
   --dark-line: rgba(242, 240, 234, 0.16);
   --dark-muted: #a3a198;
   --good: #2e7d4f;
   --warn: #c28a1e;
-  --font-display: "Clash Display", "Arial Narrow", sans-serif;
-  --font-text: "Switzer", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Arial Narrow", sans-serif;
+  --font-text: "Instrument Sans Variable", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
@@ -40,6 +39,7 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-text);
+  font-optical-sizing: auto;
   font-size: 16px;
   line-height: 1.55;
   background: var(--bone);
@@ -89,6 +89,7 @@ h2 {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 0.94;
+  text-wrap: balance;
 }
 
 h1 {
@@ -147,7 +148,7 @@ h3 {
 }
 
 .brand-group:hover .brand {
-  background: var(--flag);
+  background: var(--flag-deep);
 }
 
 .brand-word {
@@ -207,7 +208,7 @@ h3 {
 
 .nav-cta::after {
   content: "↗";
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .nav-cta:hover {
@@ -223,7 +224,7 @@ h3 {
 
 .eyebrow {
   margin: 0 0 18px;
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
@@ -341,7 +342,7 @@ h3 {
 }
 
 .primary-link:hover {
-  background: var(--flag);
+  background: var(--flag-deep);
   color: #fff;
 }
 
@@ -414,7 +415,7 @@ h3 {
 }
 
 .artifact-trace span {
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
@@ -516,7 +517,7 @@ h3 {
 }
 
 .ledger-grid span {
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
@@ -629,7 +630,7 @@ h3 {
 }
 
 .case-card.active span {
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .case-detail {
@@ -670,7 +671,7 @@ h3 {
 }
 
 .case-points dt {
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;
@@ -693,7 +694,7 @@ h3 {
 }
 
 .lab-section .eyebrow {
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .lab-section .section-heading p,
@@ -776,7 +777,7 @@ h3 {
 
 .project-stage-head .pill {
   border-color: var(--dark-line);
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .project-body {
@@ -795,7 +796,7 @@ h3 {
 
 .project-body h4 {
   margin: 22px 0 8px;
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
@@ -862,7 +863,7 @@ h3 {
 
 .practice-controls button[aria-pressed="true"] {
   border-color: var(--flag);
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .practice-example {
@@ -895,7 +896,7 @@ h3 {
 }
 
 .lab-section .project-evidence-label {
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
@@ -972,12 +973,12 @@ h3 {
 .project-links a::after,
 .case-study-actions a::after {
   content: "↗";
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .project-links a:first-child {
   border-color: var(--flag);
-  background: var(--flag);
+  background: var(--flag-deep);
   color: #fff;
 }
 
@@ -988,7 +989,7 @@ h3 {
 .project-links a:hover,
 .case-study-actions a:hover {
   border-color: var(--flag);
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .project-links a:first-child:hover {
@@ -1008,11 +1009,11 @@ h3 {
 
 .crypto-case-study .case-study-actions a:hover {
   border-color: var(--flag);
-  color: var(--flag);
+  color: var(--flag-text);
 }
 
 .crypto-case-study .case-study-actions a:first-child:hover {
-  background: var(--flag);
+  background: var(--flag-deep);
   color: #fff;
 }
 
@@ -1272,7 +1273,7 @@ h3 {
 .architecture-node b {
   display: block;
   margin-bottom: 6px;
-  color: var(--flag);
+  color: var(--flag-text);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1297,7 +1298,7 @@ h3 {
 }
 
 .flow-step b {
-  color: var(--flag);
+  color: var(--flag-text);
   font-family: var(--font-mono);
   font-weight: 600;
 }
@@ -1443,16 +1444,23 @@ h3 {
 }
 
 .labs-footer-row a:hover {
-  color: var(--flag);
+  color: var(--flag-text);
   border-bottom-color: var(--flag);
 }
 
 .labs-footer-row a[aria-current="page"] {
-  color: var(--flag);
+  color: var(--flag-text);
   border-bottom-color: var(--flag);
 }
 
 /* ---------- responsive ---------- */
+
+.signal-console,
+.lab-section,
+.practice-explorer,
+.labs-footer {
+  --flag-text: var(--flag);
+}
 
 @media (max-width: 1100px) {
   .proof-strip {
@@ -1584,6 +1592,21 @@ h3 {
   color: var(--muted, #667085);
   margin: 4px 0 10px;
   font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .link-row {

@@ -47,6 +47,10 @@ parked and is not part of the active showcase.
 
 ## Project Structure
 
+The lead-design contract is [DESIGN.md](./DESIGN.md): shared visual grammar,
+project-specific interactions, open-source experiments and release review.
+Fonts are self-hosted; attribution is in [THIRD_PARTY.md](./THIRD_PARTY.md).
+
 ```text
 src/App.jsx       Main React application and portfolio content
 src/styles.css    Visual system, responsive layout, and chart styling

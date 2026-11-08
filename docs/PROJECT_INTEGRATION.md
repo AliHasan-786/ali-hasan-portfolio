@@ -2,6 +2,8 @@
 
 Cornell extensions also follow the [research extension standard](./RESEARCH_STANDARD.md).
 Deployment and scientific contribution are separate acceptance gates.
+Visual and interaction review follows the shared [design system](../DESIGN.md).
+The portfolio coordinator owns final art direction and release design review.
 
 Projects keep their own design, stack, views, and interactions. The portfolio
 hub supplies discovery and introductions; each project supplies its deeper
