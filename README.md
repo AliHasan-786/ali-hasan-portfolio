@@ -38,6 +38,12 @@ Reviewed snapshots and packaged thumbnails live in `src/projectReleases.js` and
 `public/projects/`. These are not fetched from project repositories at runtime.
 Share a selected project using `?project=yelp-rent#lab` or `?project=drift#lab`.
 
+Hub controls do not manufacture performance curves. The crypto walkthrough
+uses authored examples of the pinned written policy, not model predictions.
+Watermarking currently explores evidence requirements, not a live detector.
+The sports comparison transcribes saved coursework values with its source hash
+in `public/evidence/sports-coursework.json`; it is not a fresh experiment.
+
 ## Work Case Studies
 
 House IQ (`#house-iq`) and Cornell Tech SETS (`#sets`) have separate case-study

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { projectReleases } from "./projectReleases";
 import { workStories } from "./workStories";
 import { deepShieldSourceCase, housingSourceCase } from "./sourceCases";
+import { policyCases, policySource, watermarkQuestions } from "./explorationCases";
+import sportsCoursework from "./sports-coursework.json";
 
 const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
@@ -63,7 +65,7 @@ const proofStats = [
   },
   {
     value: "arXiv",
-    label: "Published research",
+    label: "Research preprint",
     detail: "Co-author, Scaling the Queue — RL for NYC municipal complaint triage",
   },
 ];
@@ -210,12 +212,12 @@ const courseProjects = [
     course: "CS 5788 Generative Models",
     title: "Invisible Watermarking for LLMs",
     theme: "AI provenance",
-    metric: "98.7% TPR",
-    caption: "Green-list logit-bias watermarking on modern instruction-tuned LLMs.",
+    metric: "Coursework evidence",
+    caption: "Green-list logit-bias watermarking, preserved detector evidence, and a separately preregistered comparison that remains unrun.",
     bullets: [
       "Implemented watermark injection as inference-time logit manipulation.",
-      "Detected watermark via one-sided z-test calibrated to 1% FPR.",
-      "Measured robustness to substitution, insertion, deletion, and LLM paraphrase attacks.",
+      "Preserved one-sided detector scores and coursework threshold results; confirmatory held-out calibration remains separate.",
+      "Cached evidence covers controlled edits and length conditions. A paraphrase score series does not recover the missing rewritten text or establish its quality.",
     ],
     expansion: [
       "Interactive threshold explorer over z-score distributions.",
@@ -238,11 +240,11 @@ const courseProjects = [
     course: "CS 5382 Fairness in ML",
     title: "Kreyol AI Healthcare Translation",
     theme: "Fairness product",
-    metric: "HIPAA + HITL",
+    metric: "Coursework concept",
     caption: "A responsible AI concept for Haitian Creole clinical translation with human review for high-stakes content.",
     bullets: [
       "Framed language access as disparate impact under healthcare translation constraints.",
-      "Positioned fine-tuned open translation models inside a HIPAA-compliant workflow.",
+      "Proposed a translation workflow with privacy requirements and qualified human review; the concept does not establish clinical validity or compliance.",
       "Designed human-in-the-loop review tiers and launch focus on South Florida.",
     ],
     expansion: [
@@ -280,12 +282,12 @@ const courseProjects = [
     course: "CS 5785 Applied Machine Learning",
     title: "Sports Time-Series Bias-Variance Study",
     theme: "Forecasting",
-    metric: "MAE 7.54",
+    metric: "Course MAE 7.54",
     caption: "Predicted Nikola Jokic game-by-game points using leakage-safe rolling features and chronological validation.",
     bullets: [
       "Engineered rolling form, usage volatility, rest-days, and back-to-back features.",
       "Compared Ridge and GBDT under TimeSeriesSplit and chronological test split.",
-      "Showed simpler regularized models beat added complexity on limited noisy data.",
+      "The saved coursework output favors Ridge over gradient boosting on that test set; it does not establish a general advantage or current forecasting performance.",
     ],
     expansion: [
       "Feature-window explorer for rolling momentum and usage volatility.",
@@ -400,8 +402,6 @@ function App() {
     const id = new URLSearchParams(window.location.search).get("project");
     return courseProjects.find((project) => project.id === id) || courseProjects[0];
   });
-  const [threshold, setThreshold] = useState(1.77);
-  const [fraudThreshold, setFraudThreshold] = useState(0.48);
 
   function selectProject(project) {
     setActiveProject(project);
@@ -425,10 +425,6 @@ function App() {
       <CourseLab
         activeProject={activeProject}
         setActiveProject={selectProject}
-        threshold={threshold}
-        setThreshold={setThreshold}
-        fraudThreshold={fraudThreshold}
-        setFraudThreshold={setFraudThreshold}
       />
       <CryptoCaseStudy />
       <SideProjects />
@@ -796,10 +792,6 @@ function WorkPractice({ story }) {
 function CourseLab({
   activeProject,
   setActiveProject,
-  threshold,
-  setThreshold,
-  fraudThreshold,
-  setFraudThreshold,
 }) {
   return (
     <section className="section-shell lab-section" id="lab">
@@ -807,9 +799,8 @@ function CourseLab({
         <p className="eyebrow">Projects</p>
         <h2>Selected projects.</h2>
         <p>
-          Open a full project, inspect its evidence, or explore a sketch here.
-          Sketches are illustrative; each lab distinguishes what was measured
-          from what is still being built.
+          Start with a decision or a piece of evidence, then open the full project.
+          Policy examples, saved coursework and measured lab releases are kept distinct.
         </p>
       </div>
 
@@ -874,7 +865,7 @@ function CourseLab({
               </a>
             </div>
           )}
-          <div className="project-body">
+          <div className={`project-body${["trust-safety", "watermark", "sports"].includes(activeProject.viz) ? " project-body--exploration" : ""}`}>
             <div>
               <h4>What exists</h4>
               <ul>
@@ -882,23 +873,19 @@ function CourseLab({
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
-              <h4>{activeProject.nextHeading || "Expansion roadmap"}</h4>
-              <ul>
-                {activeProject.expansion.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              {activeProject.nextHeading ? (
+                <><h4>{activeProject.nextHeading}</h4><ul>{activeProject.expansion.map((item) => <li key={item}>{item}</li>)}</ul></>
+              ) : (
+                <details className="project-roadmap">
+                  <summary>Explore the extension roadmap</summary>
+                  <ul>{activeProject.expansion.map((item) => <li key={item}>{item}</li>)}</ul>
+                </details>
+              )}
             </div>
             {activeProject.release ? (
               <ProjectReleasePreview project={activeProject} />
             ) : (
-              <InteractiveViz
-                project={activeProject}
-                threshold={threshold}
-                setThreshold={setThreshold}
-                fraudThreshold={fraudThreshold}
-                setFraudThreshold={setFraudThreshold}
-              />
+              <InteractiveViz key={activeProject.id} project={activeProject} />
             )}
           </div>
         </article>
@@ -929,297 +916,112 @@ function ProjectReleasePreview({ project }) {
   );
 }
 
-function InteractiveViz({
-  project,
-  threshold,
-  setThreshold,
-  fraudThreshold,
-  setFraudThreshold,
-}) {
-  if (project.viz === "trust-safety") {
-    const precision = Math.min(96, Math.round(54 + fraudThreshold * 72));
-    const recall = Math.max(48, Math.round(118 - fraudThreshold * 70));
-    const reviewLoad = Math.max(12, Math.round(118 - fraudThreshold * 130));
-    return (
-      <div className="viz-card trust-viz">
-        <div className="viz-header">
-          <span>Reviewer threshold</span>
-          <strong>{recall}% recall</strong>
-        </div>
-        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
-        <div className="trust-mini-grid">
-          <div>
-            <strong>{precision}%</strong>
-            <span>sim precision</span>
-          </div>
-          <div>
-            <strong>{reviewLoad}</strong>
-            <span>review cases</span>
-          </div>
-          <div>
-            <strong>0.94</strong>
-            <span>reported F1</span>
-          </div>
-        </div>
-        <label>
-          Risk threshold: {Math.round(fraudThreshold * 100)}%
-          <input
-            type="range"
-            min="0.3"
-            max="0.8"
-            step="0.01"
-            value={fraudThreshold}
-            onChange={(event) => setFraudThreshold(Number(event.target.value))}
-          />
-        </label>
-        <div className="flow-step">
-          <span>C</span>
-          <strong>Potential Crypto Fraud label</strong>
-        </div>
-        <div className="flow-step">
-          <span>B</span>
-          <strong>DM throttles and warning friction</strong>
-        </div>
-        <div className="flow-step">
-          <span>A</span>
-          <strong>Repeated-domain and wallet escalation</strong>
-        </div>
-      </div>
-    );
-  }
-
-  if (project.viz === "watermark") {
-    const tpr = Math.max(27, Math.min(99, Math.round(112 - threshold * 12)));
-    const fpr = Math.max(0.2, Math.min(8, Number((threshold / 2.3).toFixed(1))));
-    return (
-      <div className="viz-card">
-        <div className="viz-header">
-          <span>Threshold explorer</span>
-          <strong>{tpr}% TPR</strong>
-        </div>
-        <p className="viz-note">Illustrative sketch for orientation; measured results live in the linked project and its repo.</p>
-        <WatermarkChart threshold={threshold} />
-        <label>
-          Detection threshold z = {threshold.toFixed(2)}
-          <input
-            type="range"
-            min="0.8"
-            max="4.2"
-            step="0.01"
-            value={threshold}
-            onChange={(event) => setThreshold(Number(event.target.value))}
-          />
-        </label>
-        <div className="mini-metrics">
-          <span>Estimated FPR {fpr}%</span>
-          <span>Long-text TPR 98.7%</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (project.viz === "source-audit") {
-    return (
-      <div className="viz-card">
-        <div className="viz-header">
-          <span>Source checkpoint</span>
-          <strong>{project.audit.sourceCommit.slice(0, 7)}</strong>
-        </div>
-        <h4>{project.audit.title}</h4>
-        {project.audit.steps.map((step) => (
-          <div key={step.title}>
-            <h4>{step.title}</h4>
-            <p>{step.text}</p>
-          </div>
-        ))}
-        <p className="viz-note">The interactive benchmark will be linked after its artifacts and result accounting pass review.</p>
-      </div>
-    );
-  }
-
-  if (project.viz === "drift") {
-    return (
-      <div className="viz-card">
-        <div className="viz-header">
-          <span>Checkpoint drift</span>
-          <strong>Trackable forgetting</strong>
-        </div>
-        <LineChart
-          lines={[
-            { name: "Food101", color: "#0d9488", values: [42, 55, 67, 74, 80, 83] },
-            { name: "CIFAR-10", color: "#f97316", values: [79, 77, 74, 70, 67, 64] },
-            { name: "Drift", color: "#334155", values: [8, 14, 21, 31, 43, 55] },
-          ]}
-        />
-        <p className="viz-note">
-          The portfolio version can let viewers scrub checkpoints and watch the embedding
-          space warp as fine-tuning improves the target task.
-        </p>
-      </div>
-    );
-  }
-
-  if (project.viz === "kreyol") {
-    return (
-      <div className="viz-card flow-card">
-        <div className="viz-header">
-          <span>Clinical translation route</span>
-          <strong>Human review gate</strong>
-        </div>
-        {["Patient text", "Domain model", "Risk classifier", "Qualified reviewer", "EHR delivery"].map(
-          (step, index) => (
-            <div className="flow-step" key={step}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step}</strong>
-            </div>
-          ),
-        )}
-      </div>
-    );
-  }
-
-  if (project.viz === "casekick") {
-    return (
-      <div className="viz-card flow-card">
-        <div className="viz-header">
-          <span>Voice intake state machine</span>
-          <strong>Compliance first</strong>
-        </div>
-        {["Disclosure", "Matter class", "Detailed intake", "Refusal checks", "Case package"].map(
-          (step, index) => (
-            <div className="flow-step" key={step}>
-              <span>{index === 0 ? "Start" : `S${index}`}</span>
-              <strong>{step}</strong>
-            </div>
-          ),
-        )}
-      </div>
-    );
-  }
-
-  if (project.viz === "yelp") {
-    return (
-      <div className="viz-card">
-        <div className="viz-header">
-          <span>ZIP-year signal sketch</span>
-          <strong>EDA layer</strong>
-        </div>
-        <ScatterPlot />
-        <p className="viz-note">
-          A next version can load cleaned ZIP-year aggregates and let viewers filter by review
-          coverage and metro/year controls.
-        </p>
-      </div>
-    );
-  }
-
+function PolicyWalkthrough() {
+  const [activeId, setActiveId] = useState(policyCases[0].id);
+  const active = policyCases.find((item) => item.id === activeId);
   return (
-    <div className="viz-card">
-      <div className="viz-header">
-        <span>Bias-variance explorer</span>
-        <strong>Ridge wins</strong>
+    <div className="viz-card evidence-walkthrough">
+      <div className="viz-header"><span>Same vocabulary. Different intent.</span></div>
+      <h4>Who is asking whom to do what?</h4>
+      <p className="viz-note">Authored policy examples, not model predictions or evaluation cases.</p>
+      <div className="evidence-choices" aria-label="Policy examples">
+        {policyCases.map((item) => (
+          <button key={item.id} type="button" aria-pressed={item.id === activeId}
+            aria-controls="policy-example" onClick={() => setActiveId(item.id)}>
+            {item.title}
+          </button>
+        ))}
       </div>
-      <LineChart
-        lines={[
-          { name: "Ridge MAE", color: "#0d9488", values: [11, 9.3, 8.2, 7.7, 7.54] },
-          { name: "GBDT MAE", color: "#e11d48", values: [12.3, 10, 8.4, 7.9, 7.62] },
-        ]}
-      />
-      <p className="viz-note">
-        Simpler regularization wins when game-level sports data has limited samples and high noise.
-      </p>
+      <article id="policy-example" className="evidence-example">
+        <blockquote>{active.text}</blockquote>
+        <p className="evidence-route">{active.route}</p>
+        <dl><dt>Evidence</dt><dd>{active.evidence}</dd><dt>Why the boundary changes</dt><dd>{active.reason}</dd></dl>
+        <a href={policySource.href} target="_blank" rel="noreferrer">{active.section} in the written policy</a>
+      </article>
     </div>
   );
 }
 
-function WatermarkChart({ threshold }) {
-  const control = [0.2, 0.5, 0.7, 1.0, 1.2, 1.5, 1.7, 2.0];
-  const watermarked = [2.4, 3.0, 3.5, 4.1, 4.6, 5.3, 5.8, 6.5];
-  const scaleX = (value) => 32 + value * 46;
-  const scaleY = (index, offset) => 150 - index * 13 - offset;
+function WatermarkQuestions() {
+  const [activeId, setActiveId] = useState(watermarkQuestions[0].id);
+  const active = watermarkQuestions.find((item) => item.id === activeId);
   return (
-    <svg viewBox="0 0 360 190" role="img" aria-label="Watermark z-score histogram">
-      <line x1="30" y1="160" x2="330" y2="160" className="axis" />
-      <line x1={scaleX(threshold)} y1="24" x2={scaleX(threshold)} y2="160" className="threshold" />
-      <text x={scaleX(threshold) + 6} y="34" className="chart-label">
-        z
-      </text>
-      {control.map((value, index) => (
-        <circle key={`c-${value}`} cx={scaleX(value)} cy={scaleY(index, 0)} r="8" className="control-dot" />
-      ))}
-      {watermarked.map((value, index) => (
-        <circle
-          key={`w-${value}`}
-          cx={scaleX(value)}
-          cy={scaleY(index, 28)}
-          r="8"
-          className="watermark-dot"
-        />
-      ))}
-      <text x="34" y="180" className="chart-label">
-        control
-      </text>
-      <text x="238" y="180" className="chart-label">
-        watermarked
-      </text>
-    </svg>
+    <div className="viz-card evidence-walkthrough">
+      <div className="viz-header"><span>Provenance questions</span><strong>Evidence before a verdict</strong></div>
+      <p className="viz-note">Explore the measurement problem, not a live detector.</p>
+      <div className="evidence-choices" aria-label="Watermark evidence questions">
+        {watermarkQuestions.map((item) => (
+          <button key={item.id} type="button" aria-pressed={item.id === activeId}
+            aria-controls="watermark-question" onClick={() => setActiveId(item.id)}>
+            {item.title}
+          </button>
+        ))}
+      </div>
+      <article id="watermark-question" className="evidence-example">
+        <h4>{active.question}</h4>
+        <dl><dt>Evidence needed</dt><dd>{active.need}</dd><dt>What not to infer</dt><dd>{active.limit}</dd></dl>
+      </article>
+    </div>
   );
 }
 
-function LineChart({ lines }) {
-  const max = Math.max(...lines.flatMap((line) => line.values));
-  const min = Math.min(...lines.flatMap((line) => line.values));
-  const x = (index, length) => 24 + (index * 290) / (length - 1);
-  const y = (value) => 150 - ((value - min) / (max - min || 1)) * 112;
+function CourseworkMetrics() {
+  const [metric, setMetric] = useState("mae");
+  const max = Math.ceil(Math.max(...sportsCoursework.models.flatMap((model) => [model.mae, model.rmse])));
   return (
-    <svg viewBox="0 0 340 185" role="img" aria-label="Line chart">
-      <line x1="24" y1="150" x2="318" y2="150" className="axis" />
-      <line x1="24" y1="30" x2="24" y2="150" className="axis" />
-      {lines.map((line) => {
-        const points = line.values.map((value, index) => `${x(index, line.values.length)},${y(value)}`).join(" ");
-        return (
-          <g key={line.name}>
-            <polyline points={points} fill="none" stroke={line.color} strokeWidth="4" strokeLinecap="round" />
-            {line.values.map((value, index) => (
-              <circle key={`${line.name}-${index}`} cx={x(index, line.values.length)} cy={y(value)} r="4" fill={line.color} />
-            ))}
-          </g>
-        );
-      })}
-      {lines.map((line, index) => (
-        <text key={line.name} x="26" y={18 + index * 16} className="chart-label" fill={line.color}>
-          {line.name}
-        </text>
-      ))}
-    </svg>
+    <div className="viz-card evidence-walkthrough">
+      <div className="viz-header"><span>Saved coursework output</span><strong>Lower error is better</strong></div>
+      <div className="evidence-choices" aria-label="Coursework error metric">
+        {["mae", "rmse"].map((item) => (
+          <button key={item} type="button" aria-pressed={item === metric}
+            aria-controls="course-error-values" onClick={() => setMetric(item)}>
+            {item.toUpperCase()}
+          </button>
+        ))}
+      </div>
+      <p className="viz-note">{metric === "mae" ? "Mean absolute error: average size of a prediction error." : "Root mean squared error: gives larger mistakes more weight."} Units: points.</p>
+      <p className="viz-note">Shared bar scale: 0 to {max} points for both metrics.</p>
+      <dl id="course-error-values" className="course-error-values">
+        {sportsCoursework.models.map((model) => (
+          <div key={model.id}>
+            <dt>{model.label}</dt><dd>{model[metric].toFixed(2)} points</dd>
+            <span aria-hidden="true" className="course-error-bar" style={{ width: `${model[metric] / max * 100}%` }} />
+          </div>
+        ))}
+      </dl>
+      <p className="viz-note">One saved test-set comparison, not a new run or a general superiority claim. Test size and uncertainty have not been verified here.</p>
+      <a href="/evidence/sports-coursework.json">Inspect the values and source fingerprint</a>
+    </div>
   );
 }
 
-function ScatterPlot() {
-  const points = [
-    [40, 118],
-    [70, 96],
-    [96, 84],
-    [120, 72],
-    [154, 65],
-    [180, 50],
-    [210, 74],
-    [238, 42],
-    [270, 34],
-  ];
-  return (
-    <svg viewBox="0 0 320 170" role="img" aria-label="Scatterplot">
-      <line x1="34" y1="140" x2="290" y2="140" className="axis" />
-      <line x1="34" y1="20" x2="34" y2="140" className="axis" />
-      {points.map(([cx, cy], index) => (
-        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={5 + (index % 3)} className="scatter-dot" />
-      ))}
-      <path d="M42 124 C 92 104, 152 78, 276 40" fill="none" className="trend-line" />
-      <text x="40" y="160" className="chart-label">
-        gentrification-coded Yelp signal
-      </text>
-    </svg>
-  );
+function InteractiveViz({ project }) {
+  if (project.viz === "trust-safety") return <PolicyWalkthrough />;
+  if (project.viz === "watermark") return <WatermarkQuestions />;
+  if (project.viz === "source-audit") {
+    return (
+      <div className="viz-card">
+        <div className="viz-header"><span>Source checkpoint</span><strong>{project.audit.sourceCommit.slice(0, 7)}</strong></div>
+        <h4>{project.audit.title}</h4>
+        {project.audit.steps.map((step) => <div key={step.title}><h4>{step.title}</h4><p>{step.text}</p></div>)}
+        <p className="viz-note">The interactive benchmark will be linked after its artifacts and result accounting pass review.</p>
+      </div>
+    );
+  }
+  if (project.viz === "kreyol" || project.viz === "casekick") {
+    const translation = project.viz === "kreyol";
+    const steps = translation
+      ? ["Patient text", "Translation draft", "Risk assessment", "Qualified review", "Proposed handoff"]
+      : ["Disclosure", "Matter class", "Detailed intake", "Refusal checks", "Case package"];
+    return (
+      <div className="viz-card flow-card">
+        <div className="viz-header"><span>{translation ? "Coursework concept" : "Intake workflow"}</span><strong>Review before use</strong></div>
+        {steps.map((step, index) => <div className="flow-step" key={step}><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong></div>)}
+      </div>
+    );
+  }
+  if (project.viz === "sports") return <CourseworkMetrics />;
+  return <div className="viz-card"><p>No reviewed evidence preview is available yet.</p></div>;
 }
 
 function SideProjects() {

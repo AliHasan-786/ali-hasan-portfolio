@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "evidenceStage": "historical-coursework-output",
+  "source": {
+    "filename": "AML_Final.md",
+    "sha256": "e97b0ae34814fe639d6ec82274993cc5de83b95f276c642851677c0ff1d3162a",
+    "section": "Final Test Set Metrics",
+    "checkedAt": "2026-11-08",
+    "verification": "Transcribed from saved course output; not independently rerun."
+  },
+  "units": "points",
+  "evaluationGameCount": null,
+  "uncertaintyInterval": null,
+  "splitInSourceCode": "70/30 chronological; five TimeSeriesSplit folds for model selection",
+  "models": [
+    {"id": "lag1", "label": "Previous game", "mae": 10.666667, "rmse": 13.767918},
+    {"id": "roll5", "label": "Five-game average", "mae": 8.244444, "rmse": 10.917875},
+    {"id": "ridge", "label": "Ridge", "mae": 7.541359, "rmse": 10.388711},
+    {"id": "gbdt", "label": "Gradient boosting", "mae": 7.623263, "rmse": 10.488378}
+  ],
+  "scope": "One saved coursework comparison, not current NBA forecasting, a reproduced experiment, or a general superiority claim."
+}
