@@ -9,31 +9,31 @@ const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
 
 const heroCopy = {
-  headline: "I build trust systems that show their work.",
+  headline: "I build AI systems and test where they fail.",
   focus:
-    "Cornell Tech M.Eng. working in AI evaluation and safety. I build and stress-test AI systems, from policy-grounded safeguards to reliable evaluation and multimodal workflows. My work spans House IQ, Cornell Tech's SETS AI Red Team Clinic, and enterprise AI delivery. Explore practical decisions from my work and inspect the methods, evidence, and limits behind my independent labs.",
+    "I'm a Cornell Tech M.Eng. working on AI evaluation and safety at House IQ. Here you'll find my work, projects you can try, and the results behind them, including what didn't work.",
 };
 
 const artifactLedger = [
   {
     title: "Policy boundary",
     text:
-      "Crypto-fraud enforcement is separated from warnings, satire, market news, debugging, and help-seeking.",
+      "Separate scam promotion from warnings, news, satire, and requests for help.",
   },
   {
     title: "Evaluation program",
     text:
-      "Scenario, adversarial, production-hardening, evidence-faithfulness, calibration, and launch-gate checks are executable artifacts.",
+      "Run tests for scam detection, false positives, source evidence, and reviewer decisions.",
   },
   {
     title: "Reviewer workflow",
     text:
-      "The lab includes queue states, evidence views, threshold tuning, appeals, transparency, and reviewer decision history.",
+      "Review a case, check its evidence, change thresholds, and follow an appeal.",
   },
   {
     title: "Operational loop",
     text:
-      "SQL-readable analytics track backlog, review coverage, action mix, false-positive candidates, entity leads, and incident readiness.",
+      "Track the review backlog, action mix, possible false positives, and related campaigns.",
   },
 ];
 
@@ -45,8 +45,8 @@ const proofStats = [
   },
   {
     value: "50k/day",
-    label: "Scale economics modeled",
-    detail: "Every review threshold priced in queue load, reviewers, and payroll",
+    label: "Workload model",
+    detail: "Modeled review staffing and cost at 50,000 posts per day",
   },
   {
     value: "15-step",
@@ -56,32 +56,32 @@ const proofStats = [
   {
     value: "Human review",
     label: "Evaluation practice",
-    detail: "Designing how automated judgments are checked against human evidence",
+    detail: "Designing human checks of automated scores",
   },
   {
     value: "Policy to code",
     label: "Safety engineering",
-    detail: "Connecting written boundaries, product behavior, and regression tests",
+    detail: "Turn policy requirements into product checks and tests",
   },
   {
     value: "arXiv",
     label: "Research preprint",
-    detail: "Co-author, Scaling the Queue — RL for NYC municipal complaint triage",
+    detail: "Co-author of Scaling the Queue, on RL for NYC complaint triage",
   },
 ];
 
 const caseFiles = [
   {
     org: "House IQ",
-    title: "Designing trustworthy AI evaluation",
+    title: "AI evaluation and human review",
     date: "2026",
     status: "Shipped analysis, owns follow-on",
     tags: ["LLM-as-judge", "evals", "measurement integrity", "AI quality"],
-    summary: "I work on the question behind an automated quality score: what evidence makes it trustworthy enough to inform a product decision?",
+    summary: "I work on how to check automated quality scores against human judgment.",
     lead:
-      "My work includes examining automated evaluation, understanding the limits of a metric, and designing human validation around the decisions it is meant to support.",
+      "I examine automated evaluations and design the human checks needed to interpret them.",
     body:
-      "The important engineering question is not simply whether a judge produces a score. It is whether the rubric is meaningful, the sample reflects the intended use, disagreement is understood, and uncertainty remains visible to the person making a decision.",
+      "A score is useful only if we know what it measures. I look at the rubric, the sample, where reviewers disagree, and which failures the evaluation misses.",
     did: [
       "Examined the relationship between automated judgments and human evidence.",
       "Designed the calibration program end to end: stratified sampling, blind labeling, agreement statistics with confidence intervals, and failure-recall.",
@@ -90,15 +90,15 @@ const caseFiles = [
   },
   {
     org: "House IQ",
-    title: "Owning safety for a customer-facing generative AI feature",
+    title: "Safety checks for generative AI features",
     date: "Dec 2025 - present",
     status: "Shipped",
     tags: ["AI safety", "red teaming", "guardrails", "LLM-as-judge"],
-    summary: "I connect written safety policy, evaluation, and application behavior for generative-AI features.",
+    summary: "I turn safety policy into product checks and tests.",
     lead:
-      "My responsibilities span safety-policy design, multimodal evaluation, adversarial testing, and application-level safeguards for generative-AI features.",
+      "I work on safety policy, multimodal evaluations, adversarial tests, and application safeguards.",
     body:
-      "The public takeaway is a design principle, not a description of internal architecture: safety depends on how policy, model judgment, failure handling, and product behavior work together. Testing needs to cover the surrounding workflow as well as the model.",
+      "I test the workflow around the model too: what happens when a check fails, an input is incomplete, or a dependency is unavailable.",
     did: [
       "Translated harm-policy requirements into evaluable criteria and application checks.",
       "Developed adversarial tests and regression coverage around intended product behavior.",
@@ -111,11 +111,11 @@ const caseFiles = [
     date: "2026",
     status: "In progress",
     tags: ["product judgment", "evaluation", "benchmark design", "AI quality"],
-    summary: "Deciding what \u201cgood\u201d means may be the hardest problem in an AI product. I own the system the team uses to define and measure it.",
+    summary: "I design the scenarios and rubrics used to judge answer quality.",
     lead:
       "I design evaluation workflows around a product question: what does a good answer look like for the person relying on it?",
     body:
-      "Useful scenarios should represent intended use rather than reward a system for agreeing with itself. My work separates scenario construction from evaluation, makes rubrics explicit, and treats comparison results as evidence to inspect rather than an automatic verdict.",
+      "I keep scenario construction separate from evaluation and make the scoring rules explicit. That helps us check whether a result reflects useful behavior or just how a test was written.",
     did: [
       "Authored and reviewed product-grounded evaluation scenarios.",
       "Packaged scenario-generation and independent-validation workflows into reusable tooling.",
@@ -123,15 +123,15 @@ const caseFiles = [
   },
   {
     org: "House IQ",
-    title: "Shipping AI that survives real, messy user data",
+    title: "Processing messy documents and images",
     date: "2026",
     status: "Shipped",
     tags: ["production ML", "multimodal", "performance", "reliability"],
-    summary: "I work on making multimodal AI useful when real inputs are incomplete, inconsistent, or difficult to process.",
+    summary: "I build processing workflows for documents and images that don't arrive in a clean format.",
     lead:
-      "I built document and image-processing capabilities that turn heterogeneous inputs into structured information for product workflows.",
+      "I built document and image processing that turns varied inputs into structured data.",
     body:
-      "The challenge is the system around the model: input handling, bounded resource use, partial failures, observability, and integration with the surrounding service. I improved that workflow without assuming every document or image arrives in an ideal format.",
+      "The work includes handling file formats, limiting resource use, tracking partial failures, and fitting the pipeline into the service.",
     did: [
       "Extended the pipeline to the formats real users bring: scanned PDFs, embedded-office images, and iPhone photos.",
       "Adapted the implementation to production service patterns through engineering review.",
@@ -139,15 +139,15 @@ const caseFiles = [
   },
   {
     org: "House IQ",
-    title: "The data foundation under a product feature",
+    title: "Data for recommendations",
     date: "2025 - 2026",
     status: "Shipped",
     tags: ["data modeling", "semantic search", "product infrastructure"],
-    summary: "A recommendation feature is only as good as the data under it. I designed that foundation from an industry standard and built the pipeline that fills it.",
+    summary: "I structured domain data and built the pipeline used to populate it.",
     lead:
-      "I designed structured domain-data foundations and the processing workflows that make them usable by a product.",
+      "I worked on the data model and processing needed for a recommendation feature.",
     body:
-      "That work connects taxonomy design, retrieval, validation, and human review. The public lesson is that reliable AI behavior often depends on careful data modeling and uncertainty handling, not just model selection.",
+      "I worked through the taxonomy, retrieval, validation, and review steps so the product could use the data consistently.",
     did: [],
   },
   {
@@ -160,7 +160,7 @@ const caseFiles = [
     lead:
       "The clinic brought students and public-sector practitioners together to examine the behavior and limits of AI tools. Cornell's public account names the inaugural cohort and describes the engagement with New York City's health department.",
     body:
-      "My contribution included adversarial test design and review-oriented evaluation work with the team: define intended use, test behavior across contexts, organize evidence for human review, and communicate the limits of an observation.",
+      "I helped design adversarial tests, review behavior across contexts, and organize findings for the team. Each finding needed enough context for someone else to check it.",
     did: [],
     links: [
       { label: "Cornell Tech: the clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
@@ -418,7 +418,7 @@ function App() {
 function LabsFooter() {
   return (
     <footer className="labs-footer">
-      <p>ALI HASAN · EVIDENCE LABS — AI systems held to evidence standards</p>
+      <p>Ali Hasan · AI evaluation, safety, and engineering</p>
       <div className="labs-footer-row">
         <a href="#top" aria-current="page">
           Portfolio
@@ -452,9 +452,8 @@ function ArtifactLedger() {
         <p className="eyebrow">Featured project</p>
         <h2>Inside the crypto-scam moderation lab.</h2>
         <p>
-          A content-moderation system for crypto investment scams, built end to end:
-          written policy, tiered enforcement with human review, an evaluation suite with a
-          CI release gate, and live-traffic calibration. Deployed and open source.
+          A working system for reviewing crypto investment scams. Try the review queue,
+          inspect the tests, and follow cases through appeals. The code is open source.
         </p>
       </div>
       <div className="ledger-grid">
@@ -499,10 +498,9 @@ function CryptoCaseStudy() {
         <p className="eyebrow">Featured case study</p>
         <h2>From a class policy proposal to a working moderation system.</h2>
         <p>
-          The project begins with a narrow policy question: how should Bluesky reduce
-          investment scams without suppressing legitimate financial speech? That boundary
-          becomes a classifier, an evaluation program, and an inspectable operations console
-          for review, campaigns, incidents, appeals, and transparency.
+          How can Bluesky flag investment scams without flagging people who warn about
+          them? I turned that question into a written policy, classifier, test suite,
+          and review console with appeals and campaign tracking.
         </p>
         <div className="case-study-actions">
           <a className="primary-link" href={trustSafetyLabUrl} target="_blank" rel="noreferrer">
@@ -653,8 +651,8 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
         <p className="eyebrow">Experience</p>
         <h2>Where I've worked.</h2>
         <p>
-          House IQ, the SETS AI Red Team Clinic at Cornell Tech, and Myridius —
-          across safety, product, and engineering.
+          AI evaluation and engineering at House IQ, red-teaming at Cornell Tech,
+          and enterprise assistants at Myridius.
         </p>
         <div className="link-row">
           <a href="#house-iq">House IQ: evaluation decisions</a>

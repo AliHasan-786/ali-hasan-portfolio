@@ -3,6 +3,10 @@
 Owner: Ali Hasan's portfolio coordinator and lead designer. Updated 2026-11-08.
 This is the shared visual and interaction contract, not a mandatory page template.
 
+Writing follows [WRITING.md](./WRITING.md): plain language, concrete actions,
+short explanations, no em dashes or stock AI phrasing. Copy is part of design
+review, not a finishing pass after layout.
+
 ## Direction
 
 An editorial research studio: confident typography, warm paper, precise data,
