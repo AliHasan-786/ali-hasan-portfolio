@@ -12,3 +12,10 @@ copyright and SIL Open Font License 1.1 notices ship in `public/licenses/`.
 Fontsource packages are distributed through npm. No font binaries are modified
 or rebranded. Dependencies retain their individual licenses in their packages.
 This file does not grant rights to third-party research data or project assets.
+
+## Project Artwork
+
+`public/projects/text-provenance-lab.svg` is Ali Hasan's self-authored thumbnail
+from the reviewed [Text Provenance Lab release](https://github.com/AliHasan-786/llm-invisible-watermarking/blob/e794de39b9100dc51bdbff398f0a35b986abcd4b/assets/ASSET_LICENSES.md),
+licensed CC BY 4.0. It is reproduced unchanged and depicts historical numeric
+derivatives, not upstream prompt or completion text.

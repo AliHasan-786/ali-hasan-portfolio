@@ -1,5 +1,38 @@
 // Reviewed snapshots, not live repository metadata. Update after release review.
 export const projectReleases = {
+  watermarking: {
+    course: "CS 5788 Generative Models",
+    title: "Text Provenance Lab",
+    theme: "AI provenance",
+    metric: "Historical replay",
+    caption:
+      "What survives an edit? Inspect preserved detector evidence across two models, text lengths, and edit conditions, then separate what the scores show from what they cannot establish.",
+    bullets: [
+      "Implemented green-list watermark injection and a one-sided detector, then built an interactive replay of the preserved coursework evidence.",
+      "Compare clean distributions, eight text-length cells per model, and saved edit scores on fixed scales with sample counts and accessible numeric tables.",
+      "The exporter verifies 17 source-artifact hashes. Missing experiments and unavailable rewritten text stay visibly distinct from measured zero.",
+    ],
+    expansion: [
+      "Historical thresholds do not preserve a calibration/held-out split; these are not confirmatory calibrated-FPR results.",
+      "The Llama paraphrase scores survive, but the rewritten passages do not. They cannot establish reconstruction or text quality.",
+      "The planned SynthID comparison, fresh paraphrase replication, and November extension remain unrun.",
+    ],
+    nextHeading: "What remains unproven",
+    links: [
+      { label: "Source", href: "https://github.com/AliHasan-786/llm-invisible-watermarking" },
+      { label: "Evidence contract", href: "https://github.com/AliHasan-786/llm-invisible-watermarking/blob/e794de39b9100dc51bdbff398f0a35b986abcd4b/docs/HISTORICAL_REPLAY_CONTRACT.md" },
+    ],
+    release: {
+      sourceCommit: "e794de39b9100dc51bdbff398f0a35b986abcd4b",
+      checkedAt: "2026-11-09",
+      demoUrl: "https://text-provenance-lab.vercel.app",
+      evidenceStage: "Historical coursework evidence",
+      thumbnail: "/projects/text-provenance-lab.svg",
+      thumbnailAlt: "Historical clean TPR: Gemma 90.0 percent and Llama 98.0 percent; Llama paraphrase 27.3 percent from scores only. SynthID remains unrun.",
+      invitation: "Choose a model. Follow the signal through an edit.",
+      note: "Two English-language models and one Kirchenbauer-style scheme. Fixed historical thresholds, not held-out calibration. The separate word-level mechanics toy is illustrative, not a study result.",
+    },
+  },
   drift: {
     course: "CS 5787 Deep Learning",
     title: "Representation Drift Lab",

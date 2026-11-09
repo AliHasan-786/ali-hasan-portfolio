@@ -40,3 +40,15 @@ test("local drift evidence does not promote the unrun full-scale tier", () => {
   assert.ok(project.expansion.some((line) => line.includes("not yet complete")));
   assert.ok(project.expansion.some((line) => line.includes("synthetic methodology")));
 });
+
+test("watermark release promotes historical replay, not the unrun comparison", () => {
+  const project = projectReleases.watermarking;
+  assert.equal(project.title, "Text Provenance Lab");
+  assert.equal(project.metric, "Historical replay");
+  assert.equal(project.release.sourceCommit, "e794de39b9100dc51bdbff398f0a35b986abcd4b");
+  assert.equal(project.release.demoUrl, "https://text-provenance-lab.vercel.app");
+  assert.equal(project.release.evidenceStage, "Historical coursework evidence");
+  assert.ok(project.expansion.some((line) => line.includes("remain unrun")));
+  assert.ok(project.expansion.some((line) => line.includes("calibration/held-out split")));
+  assert.ok(project.expansion.some((line) => line.includes("rewritten passages do not")));
+});

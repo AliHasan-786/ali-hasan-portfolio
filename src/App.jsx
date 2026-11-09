@@ -209,26 +209,7 @@ const courseProjects = [
   },
   {
     id: "watermarking",
-    course: "CS 5788 Generative Models",
-    title: "Invisible Watermarking for LLMs",
-    theme: "AI provenance",
-    metric: "Coursework evidence",
-    caption: "Green-list logit-bias watermarking, preserved detector evidence, and a separately preregistered comparison that remains unrun.",
-    bullets: [
-      "Implemented watermark injection as inference-time logit manipulation.",
-      "Preserved one-sided detector scores and coursework threshold results; confirmatory held-out calibration remains separate.",
-      "Cached evidence covers controlled edits and length conditions. A paraphrase score series does not recover the missing rewritten text or establish its quality.",
-    ],
-    expansion: [
-      "Interactive threshold explorer over z-score distributions.",
-      "Prompt playground showing quality vs detectability as delta changes.",
-      "Attack lab comparing mild edits vs full paraphrase failure.",
-    ],
-    links: [
-      { label: "Repo", href: "https://github.com/AliHasan-786/llm-invisible-watermarking" },
-      { label: "SynthID-Text comparison (in progress, preregistered)", href: "https://github.com/AliHasan-786/llm-invisible-watermarking/pull/3" },
-    ],
-    viz: "watermark",
+    ...projectReleases.watermarking,
   },
   {
     id: "drift",
