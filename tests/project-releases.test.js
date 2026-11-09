@@ -57,3 +57,12 @@ test("watermark release promotes historical replay, not the unrun comparison", (
   assert.ok(project.expansion.some((line) => line.includes("calibration/held-out split")));
   assert.ok(project.expansion.some((line) => line.includes("rewritten passages do not")));
 });
+
+test("housing promotes the corrected replay without population or field claims", () => {
+  const project = projectReleases["rl-housing"];
+  assert.equal(project.release.demoUrl, "https://civic-inspection-lab.vercel.app");
+  assert.equal(project.release.evidenceStage, "Small counterfactual simulator study");
+  assert.ok(project.bullets.some((line) => line.includes("three evaluation actionables")));
+  assert.ok(project.expansion.some((line) => line.includes("learned policies lose")));
+  assert.ok(project.expansion.some((line) => line.includes("not population uncertainty")));
+});

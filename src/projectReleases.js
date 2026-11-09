@@ -1,5 +1,39 @@
 // Reviewed snapshots, not live repository metadata. Update after release review.
 export const projectReleases = {
+  "rl-housing": {
+    course: "ORIE 5570 Reinforcement Learning",
+    title: "Civic Inspection Lab",
+    theme: "Allocation under capacity",
+    metric: "120 simulator runs",
+    caption: "Can learned triage find more actionable complaints without reducing service? Compare frozen policy, capacity, and access settings, then inspect a recorded seed replay, including where learning fails.",
+    bullets: [
+      "Compare 24 evaluated settings across five declared seeds. The browser reads verified saved results; it does not run a new simulation.",
+      "The corrected benchmark uses 700 training and 82 evaluation complaints, with three evaluation actionables and 13 buildings repeated across the split.",
+      "Inspect admissions, attempts, deferrals, and end-of-day backlog. A small queue can reflect cases never admitted to service, not better outcomes.",
+      "The original team coursework used synthetic in-sample prototypes. My course work focused on tabular TD and REINFORCE; this later explorer presents the corrected counterfactual study separately.",
+    ],
+    expansion: [
+      "The learned policies lose to transparent rules on this small cohort. These results do not establish predictive accuracy, causal effects, field performance, or demographic fairness.",
+      "Intervals describe five simulator seeds, not population uncertainty. A wider verified cohort and current-related-work contribution review remain outstanding.",
+      "The ledger does not preserve exact intra-day ordering or unobserved calendar days. The explorer does not invent either.",
+    ],
+    nextHeading: "What remains unproven",
+    links: [
+      { label: "Source", href: "https://github.com/AliHasan-786/nyc-housing-inspection-rl" },
+      { label: "Corrected results", href: "https://github.com/AliHasan-786/nyc-housing-inspection-rl/blob/b28b0b5fd01a2e131dbc1a9f942b1913f4e15280/docs/research/ahv-temporal-benchmark-v1_1.md" },
+      { label: "Original course paper", href: "https://arxiv.org/abs/2605.06482" },
+    ],
+    release: {
+      sourceCommit: "b28b0b5fd01a2e131dbc1a9f942b1913f4e15280",
+      checkedAt: "2026-11-09",
+      demoUrl: "https://civic-inspection-lab.vercel.app",
+      evidenceStage: "Small counterfactual simulator study",
+      thumbnail: "/projects/civic-inspection-lab.svg",
+      thumbnailAlt: "Civic Inspection Lab's frozen policy comparison with explicit discovery, service, delay and deferral metrics.",
+      invitation: "Choose a policy. Check who was served.",
+      note: "A 123 KB verified index and on-demand seed replays. No live city connection, legal enforcement decision, or new policy execution. Zero service has no comparable delay, not a reassuring zero.",
+    },
+  },
   "stance-bench": {
     course: "Independent research / Trust & Safety",
     title: "StanceBench",

@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { deepShieldSourceCase, housingSourceCase } from "../src/sourceCases.js";
 
-test("housing distinguishes generated coursework from the unreviewed extension", () => {
+test("the historical housing audit snapshot separates generated coursework", () => {
   const project = housingSourceCase;
   assert.equal(project.id, "rl-housing");
   assert.equal(project.viz, "source-audit");
@@ -26,7 +26,7 @@ test("DeepShield credits inherited work and pins an unmeasured source checkpoint
 
 test("the housing hub no longer invents reward outputs or enforcement choices", () => {
   const app = readFileSync(new URL("../src/App.jsx", import.meta.url), "utf8");
-  assert.ok(app.includes("housingSourceCase"));
+  assert.ok(app.includes('projectReleases["rl-housing"]'));
   assert.ok(app.includes("deepShieldSourceCase"));
   assert.ok(!app.includes("const aggressive ="));
   assert.ok(!app.includes("PolicyBars"));

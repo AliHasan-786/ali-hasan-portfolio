@@ -1,4 +1,4 @@
-// Reviewed source checkpoints are not demo releases or effectiveness results.
+// Historical audit snapshot. The released housing entry lives in projectReleases.js.
 export const housingSourceCase = {
   id: "rl-housing",
   course: "ORIE 5570 Reinforcement Learning",

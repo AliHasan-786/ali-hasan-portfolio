@@ -36,3 +36,10 @@ Its code is MIT; its 60 approved synthetic examples and original thumbnail
 are CC BY 4.0, credited to Ali Hasan, 2026. Full notices are included in the
 package. The copied `public/projects/stancebench.svg` thumbnail is unchanged.
 No private repository, reviewer ledger or provider configuration is included.
+
+`public/projects/civic-inspection-lab.svg` is Ali Hasan's original MIT-licensed
+project thumbnail, copied unchanged from the reviewed
+`nyc-housing-inspection-rl` source revision
+`b28b0b5fd01a2e131dbc1a9f942b1913f4e15280`. Its full MIT notice ships at
+`public/licenses/civic-inspection-lab-MIT.txt`. The preview represents a bounded
+simulator study, not city deployment.

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { projectReleases } from "./projectReleases";
 import { workStories } from "./workStories";
-import { deepShieldSourceCase, housingSourceCase } from "./sourceCases";
+import { deepShieldSourceCase } from "./sourceCases";
 import { policyCases, policySource, watermarkQuestions } from "./explorationCases";
 import sportsCoursework from "./sports-coursework.json";
 import { ContextBench } from "./ContextBench.jsx";
@@ -220,7 +220,7 @@ const courseProjects = [
     id: "drift",
     ...projectReleases.drift,
   },
-  housingSourceCase,
+  { id: "rl-housing", ...projectReleases["rl-housing"] },
   {
     id: "kreyol",
     course: "CS 5382 Fairness in ML",
@@ -439,7 +439,7 @@ function LabsFooter() {
           Representation Drift Lab
         </a>
         <a
-          href="https://github.com/AliHasan-786/nyc-housing-inspection-rl"
+          href={projectReleases["rl-housing"].release.demoUrl}
           target="_blank"
           rel="noreferrer"
         >
