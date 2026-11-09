@@ -4,6 +4,7 @@ import { workStories } from "./workStories";
 import { deepShieldSourceCase, housingSourceCase } from "./sourceCases";
 import { policyCases, policySource, watermarkQuestions } from "./explorationCases";
 import sportsCoursework from "./sports-coursework.json";
+import { ContextBench } from "./ContextBench.jsx";
 
 const trustSafetyLabUrl = "https://crypto-scam-lab.vercel.app";
 const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderation-lab";
@@ -592,7 +593,7 @@ function CryptoCaseStudy() {
 
 function Hero() {
   return (
-    <section className="hero" id="top">
+    <section className="hero hero-with-instrument" id="top">
       <div className="hero-copy">
         <p className="eyebrow">Ali Hasan · New York</p>
         <h1>{heroCopy.headline}</h1>
@@ -606,6 +607,7 @@ function Hero() {
           </a>
         </div>
       </div>
+      <ContextBench />
     </section>
   );
 }

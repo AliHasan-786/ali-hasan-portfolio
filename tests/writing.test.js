@@ -6,7 +6,7 @@ import { workStories } from "../src/workStories.js";
 
 const copyFiles = [
   "src/App.jsx", "src/workStories.js", "src/sourceCases.js",
-  "src/projectReleases.js", "src/explorationCases.js", "index.html",
+  "src/projectReleases.js", "src/explorationCases.js", "src/ContextBench.jsx", "index.html",
 ];
 const stockPhrases = [
   "delve into", "ever-evolving landscape", "unlock the potential",

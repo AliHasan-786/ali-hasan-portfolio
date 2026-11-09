@@ -85,6 +85,10 @@ select or compare. Avoid typewriter introductions and looping word carousels.
 
 ## Open-Source Experiments
 
+The installed [visual toolkit](docs/VISUAL_TOOLKIT.md) supplies optional SVG,
+spatial and animation tools. The first adopted figure is the custom context
+sorter in the hub opening. Existing project layouts remain independent.
+
 Variable typography is adopted where it improves hierarchy and responsive fit.
 It must not cause layout shifts or conceal content while animating.
 
