@@ -1,5 +1,39 @@
 // Reviewed snapshots, not live repository metadata. Update after release review.
 export const projectReleases = {
+  "stance-bench": {
+    course: "Independent research / Trust & Safety",
+    title: "StanceBench",
+    theme: "What the speaker means",
+    metric: "60 synthetic examples",
+    caption: "The same scam claim can be a solicitation, a warning, or someone asking for help. Compare six speech stances and inspect where one saved local baseline gets them wrong.",
+    bullets: [
+      "Inspect 48 matched scam records and 12 unrelated controls, with the expected action and saved local TF-IDF decision side by side.",
+      "Compare all six stances for a claim, then trace the input, policy, configuration, and baseline hashes behind a decision.",
+      "The package contains only reviewed synthetic examples and public-safe methods. Missing or malformed data produces an unavailable state, not a substitute result.",
+    ],
+    expansion: [
+      "Seven hosted comparison conditions remain unrun. This is not a hosted-model ranking or a completed benchmark.",
+      "The held-out extension and independent corpus review remain separate work; these synthetic examples cannot establish real-world error rates.",
+    ],
+    nextHeading: "What remains unproven",
+    links: [
+      { label: "Methods and limits", href: "https://ali-hasan-ai.vercel.app/labs/stancebench/public/METHODS.md" },
+      { label: "Evidence provenance", href: "https://ali-hasan-ai.vercel.app/labs/stancebench/public/provenance.json" },
+      { label: "Release manifest", href: "https://ali-hasan-ai.vercel.app/labs/stancebench/PACKAGE_MANIFEST.json" },
+    ],
+    release: {
+      sourceCommit: "4f6378da89ba4b86a985a5f6a3fa6378b606475f",
+      evidenceSourceCommit: "803736102caf49ff3bc48d96fa6ae1e1453e3dfc",
+      checkedAt: "2026-11-09",
+      demoUrl: "https://ali-hasan-ai.vercel.app/labs/stancebench/",
+      packageManifest: "/labs/stancebench/PACKAGE_MANIFEST.json",
+      evidenceStage: "Partial local synthetic baseline",
+      thumbnail: "/projects/stancebench.svg",
+      thumbnailAlt: "StanceBench's saved-decision inspector with synthetic matched speech stances and a local baseline.",
+      invitation: "Change the stance. Inspect the saved decision.",
+      note: "One cached local TF-IDF baseline on 60 approved synthetic examples. No live model call, held-out result, or completed hosted comparison. The source repository remains private; reviewed methods and provenance are public.",
+    },
+  },
   watermarking: {
     course: "CS 5788 Generative Models",
     title: "Text Provenance Lab",

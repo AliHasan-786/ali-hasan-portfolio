@@ -1,0 +1,55 @@
+{
+  "contractVersion": 1,
+  "id": "stance-bench",
+  "project_id": "stance-bench",
+  "title": "StanceBench",
+  "course": "Independent research project",
+  "semester": "Fall 2025",
+  "oneLine": "Choose a synthetic record and see how one saved local baseline handled each speech stance.",
+  "description": "Choose a synthetic record and see how one saved local baseline handled each speech stance. Hosted comparisons have not run.",
+  "themes": ["Engineering", "Data", "Research Method"],
+  "role": "Ali Hasan designed the synthetic record explorer, frozen-data checks, and local baseline replay.",
+  "status": "public-static-package",
+  "evidenceStage": "preliminary",
+  "evidence_stage": "Partial local synthetic baseline",
+  "primaryMetric": null,
+  "demoUrl": "https://ali-hasan-ai.vercel.app/labs/stancebench/",
+  "repoUrl": null,
+  "writeupUrl": "https://ali-hasan-ai.vercel.app/labs/stancebench/public/METHODS.md",
+  "thumbnail": "https://ali-hasan-ai.vercel.app/labs/stancebench/public/assets/stancebench-thumbnail.svg",
+  "thumbnailAlt": "StanceBench page with a selected speech stance and saved local decision.",
+  "thumbnailLicense": "CC BY 4.0",
+  "sourceCommit": "803736102caf49ff3bc48d96fa6ae1e1453e3dfc",
+  "codeLicense": "MIT",
+  "dataLicense": "CC BY 4.0",
+  "schema": "https://ali-hasan-ai.vercel.app/labs/stancebench/public/PORTFOLIO_METADATA.schema.json",
+  "featured": false,
+  "hub_return": {
+    "label": "Return to portfolio hub",
+    "href": "/",
+    "integration_note": "This package is mounted at /labs/stancebench/ beneath the portfolio hub."
+  },
+  "source": {
+    "label": "Evidence source",
+    "href": "public/provenance.json"
+  },
+  "methods": {
+    "label": "Methods and limits",
+    "href": "public/METHODS.md"
+  },
+  "release": {
+    "commit": "803736102caf49ff3bc48d96fa6ae1e1453e3dfc",
+    "metadataCommit": "acfa7133fbfa3c99544a3438bfabcde388eded9f",
+    "checkedAt": "2026-11-09",
+    "publicationStatus": "coordinator-reviewed-public-partial-baseline"
+  },
+  "evidence": [
+    {
+      "label": "Saved local baseline decisions",
+      "artifact": "src/data/benchmark-explorer.manifest.json",
+      "revision": "803736102caf49ff3bc48d96fa6ae1e1453e3dfc",
+      "sample": "60 approved synthetic examples",
+      "scope": "One cached local TF-IDF baseline. Hosted comparisons have not run."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">StanceBench local evidence inspector</title>
+  <desc id="description">An editorial research console with a selected record, saved action, and evidence counts.</desc>
+  <rect width="1200" height="630" fill="#f2f0ea"/>
+  <rect x="58" y="54" width="1084" height="522" fill="#fbfaf7" stroke="#d8d4c8" stroke-width="2"/>
+  <text x="96" y="104" fill="#b83608" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">STANCEBENCH / LOCAL EVIDENCE</text>
+  <text x="96" y="166" fill="#131311" font-family="Georgia, serif" font-size="56">Policy and review console</text>
+  <line x1="96" y1="202" x2="1104" y2="202" stroke="#131311" stroke-width="3"/>
+  <text x="96" y="252" fill="#b83608" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1">SELECTED STANCE</text>
+  <text x="96" y="300" fill="#131311" font-family="Georgia, serif" font-size="38">Matched counter-speech evidence</text>
+  <rect x="96" y="334" width="610" height="124" fill="#f2f0ea"/>
+  <rect x="96" y="334" width="6" height="124" fill="#e8490f"/>
+  <text x="128" y="384" fill="#131311" font-family="Georgia, serif" font-size="27">Same vocabulary. Different intent.</text>
+  <text x="128" y="424" fill="#5d5a52" font-family="Arial, sans-serif" font-size="20">Inspect the saved action and provenance.</text>
+  <rect x="770" y="248" width="300" height="82" fill="#fbfaf7" stroke="#b83608" stroke-width="2"/>
+  <text x="796" y="297" fill="#b83608" font-family="monospace" font-size="24">saved action: flag</text>
+  <line x1="770" y1="374" x2="1070" y2="374" stroke="#d8d4c8" stroke-width="2"/>
+  <text x="770" y="414" fill="#5d5a52" font-family="Arial, sans-serif" font-size="18">FROZEN INPUTS</text>
+  <text x="770" y="462" fill="#131311" font-family="monospace" font-size="40">60</text>
+  <text x="924" y="414" fill="#5d5a52" font-family="Arial, sans-serif" font-size="18">UNRUN HOSTED</text>
+  <text x="924" y="462" fill="#131311" font-family="monospace" font-size="40">7</text>
+  <text x="96" y="536" fill="#5d5a52" font-family="Arial, sans-serif" font-size="18">Partial local synthetic baseline. Not a hosted-model ranking.</text>
+</svg>

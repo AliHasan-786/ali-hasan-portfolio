@@ -1,0 +1,71 @@
+{
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "2abb75d5ab776ba25e293a22b79fdf382d693eb6d728999680e0d4fdd1ef20f6"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "096f3e53c1c33d4a81cc61ceb6a559ffad4519d20b0fba07b627a502aef2fb87"
+    },
+    {
+      "path": "app.js",
+      "sha256": "07d17daa50fbf945e19844177f48765555e07cee1a718a54aaf74907593c1dba"
+    },
+    {
+      "path": "validate.js",
+      "sha256": "9dc7110bed990a39a39493ab253e6c20a91426cb59c1e2e4ab06b105d2cd8410"
+    },
+    {
+      "path": "src/data/benchmark-explorer.js",
+      "sha256": "401494d794f890a82b7bdbd843fce5c7abd0aa988e10b0b6ae45668d43d4aaf3"
+    },
+    {
+      "path": "src/data/benchmark-explorer.json",
+      "sha256": "bd269819369c10e425dceb5ecbb60e54624bd35efbd7ddeb54217d0d9a407197"
+    },
+    {
+      "path": "src/data/benchmark-explorer.manifest.json",
+      "sha256": "3fe020f4faee860c0ab570b99ccb2dbcac3e6e60bf4aa9e9b1de3b69e3bea4e7"
+    },
+    {
+      "path": "public/METHODS.md",
+      "sha256": "6a6ab04691ff9e7be54255ba95509a19de95023f94c7e3e5d67abf32131c1a7e"
+    },
+    {
+      "path": "public/MOUNT.md",
+      "sha256": "c76e1aef26d35bccb170e6fb9d4cd56059f2b83468d8b92d3decf250aa517070"
+    },
+    {
+      "path": "public/PORTFOLIO_METADATA.json",
+      "sha256": "99ae0b9e3746fcbf49596ab210aaf89dfccc94fe7a6a57d77fb525b103568842"
+    },
+    {
+      "path": "public/PORTFOLIO_METADATA.schema.json",
+      "sha256": "38ff74dc949e3354c391f880de51c2d8af42a944faa0147ac8870009555abaff"
+    },
+    {
+      "path": "public/THUMBNAIL_LICENSE.md",
+      "sha256": "835bd533173b4b4619988d8b34786053edd5242a4ab9d8648efe24d8b3230afc"
+    },
+    {
+      "path": "public/provenance.json",
+      "sha256": "379151e2e1eb9da1725ad57c9eacb3bab9ba477220fe09121406684e7153779b"
+    },
+    {
+      "path": "public/assets/stancebench-thumbnail.svg",
+      "sha256": "138427d3416d699bf1970dae7c4873d07079c482aa95ca40dbc01863300c6ff8"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "facb519a8afff704fde0f3191ee34eef3d63dc797fbbcc33fd7816491d49843d"
+    },
+    {
+      "path": "LICENSE-DATA.md",
+      "sha256": "e559d40a2dfce0f5d2534a820af4544f839e713d9f1429ad788a7cfeec68244f"
+    }
+  ],
+  "package_kind": "stancebench-static-review-package",
+  "publication_status": "coordinator_reviewed_public_partial_baseline",
+  "source_artifact_sha256": "2e92b616feb75e07f883386b7c7f19849a5bcf5f047aea880ed565ef462d2cfa"
+}

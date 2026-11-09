@@ -16,7 +16,12 @@ for (const [id, project] of Object.entries(projectReleases)) {
     assert.match(release.thumbnail, /^\/projects\/[a-z0-9.-]+$/);
     const asset = readFileSync(new URL(`../public${release.thumbnail}`, import.meta.url));
     assert.ok(asset.byteLength > 100);
-    assert.ok(project.links.some((link) => link.href.includes(`/blob/${release.sourceCommit}/`)));
+    if (release.packageManifest) {
+      assert.ok(project.links.some((link) => new URL(link.href).pathname === release.packageManifest));
+      assert.match(release.evidenceSourceCommit, /^[a-f0-9]{40}$/);
+    } else {
+      assert.ok(project.links.some((link) => link.href.includes(`/blob/${release.sourceCommit}/`)));
+    }
     for (const link of project.links) {
       assert.equal(new URL(link.href).protocol, "https:");
     }

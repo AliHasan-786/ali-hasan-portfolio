@@ -1,0 +1,90 @@
+{
+  "artifact_kind": "stancebench-public-provenance",
+  "artifact_sha256": "2e92b616feb75e07f883386b7c7f19849a5bcf5f047aea880ed565ef462d2cfa",
+  "available_condition": {
+    "artifact_sha256": "5e9afa694a2c9f69e2017b4e6eb6da8f4ea09d66cf38655c64c67efa4e88d127",
+    "condition_id": "lab_tfidf_baseline__scams_only",
+    "policy_sha256": "8773681725d9ac560647a0197d297dec0d3d226cc1df82b80ea1c552641cabd4",
+    "requested_model_id": "crypto-scam-moderation-lab/fraud_labeler_v2.joblib",
+    "resolved_model_id": "crypto-scam-moderation-lab/fraud_labeler_v2.joblib",
+    "resolved_revision": "14ef15e1dd9dd37fad2da7068dd38ed0fa648f76",
+    "system": "lab_tfidf_baseline"
+  },
+  "derivative_version": "1.0",
+  "evidence_stage": "partial_local_baseline",
+  "publication_status": "local_release_candidate_only",
+  "source_inventory": {
+    "available_record_count": 60,
+    "cache_record_inventory_sha256": "6945d1f6be665e0a8d63b95105e294c00a8c2b150ac4903f35bc9664566e5907",
+    "config_sha256": "49097a871732ba19d8d026ef861f98159d077447641a8110b64d6ffc39f7f1a2",
+    "expected_record_count": 60,
+    "expected_tuple_ids_sha256": "eecf0b0a8ecc0f33b8296638493b7bac37f09463743ac4a4db90996e22121706",
+    "inputs": [
+      {
+        "manifest_path": "data/frozen/scams_v0_1/manifest.json",
+        "manifest_sha256": "2400083e4ae4edf4b1ff40bbe3f656c2237ac836ee5347459da36784dc3574f4",
+        "path": "data/frozen/scams_v0_1/stance_tuples.jsonl",
+        "record_count": 48,
+        "role": "stance_items",
+        "sha256": "3661f576d6fbbe30db80beee9d73f43528d72a1407d9103f88e0d77e69db04e7"
+      },
+      {
+        "manifest_path": "data/frozen/scams_v0_1_controls/manifest.json",
+        "manifest_sha256": "cfded254f255794a61c89f07a923b7b29fe077c6418e7bbe9a1faff35797f8b9",
+        "path": "data/frozen/scams_v0_1_controls/stance_tuples.jsonl",
+        "record_count": 12,
+        "role": "benign_unrelated_controls",
+        "sha256": "72e8e1bab16b2c5963613408a02e645ae8c6a4ea5f0313e01853bd093f9ff1e4"
+      }
+    ]
+  },
+  "text_publication_boundary": {
+    "basis": "Frozen records are approved, low-severity, synthetic, and CC-BY-4.0.",
+    "included": true,
+    "public_release_gate": "Independent release review remains required before any public deployment."
+  },
+  "unavailable_conditions": [
+    {
+      "condition_id": "openai_moderation__default",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "openai_moderation"
+    },
+    {
+      "condition_id": "llama_guard_4__default_taxonomy",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "llama_guard_4"
+    },
+    {
+      "condition_id": "shieldgemma_text_2b__default_taxonomy",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "shieldgemma_text_2b"
+    },
+    {
+      "condition_id": "shieldgemma_text_9b__default_taxonomy",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "shieldgemma_text_9b"
+    },
+    {
+      "condition_id": "gpt_oss_safeguard_20b__generic_policy",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "gpt_oss_safeguard_20b"
+    },
+    {
+      "condition_id": "gpt_oss_safeguard_20b__study_policy",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "gpt_oss_safeguard_20b"
+    },
+    {
+      "condition_id": "claude_mid_tier__study_policy",
+      "reason": "No cached output is available; this condition is not rendered as zero.",
+      "state": "unrun",
+      "system": "claude_mid_tier"
+    }
+  ]
+}

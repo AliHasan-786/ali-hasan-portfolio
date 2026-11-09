@@ -209,6 +209,10 @@ const courseProjects = [
     viz: "trust-safety",
   },
   {
+    id: "stance-bench",
+    ...projectReleases["stance-bench"],
+  },
+  {
     id: "watermarking",
     ...projectReleases.watermarking,
   },

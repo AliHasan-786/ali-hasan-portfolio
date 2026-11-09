@@ -29,3 +29,10 @@ measured benchmark result. No community-gallery upload is performed.
 from the reviewed [Text Provenance Lab release](https://github.com/AliHasan-786/llm-invisible-watermarking/blob/e794de39b9100dc51bdbff398f0a35b986abcd4b/assets/ASSET_LICENSES.md),
 licensed CC BY 4.0. It is reproduced unchanged and depicts historical numeric
 derivatives, not upstream prompt or completion text.
+
+`public/labs/stancebench/` is the exact reviewed 17-file StanceBench static
+package from source revision `4f6378da89ba4b86a985a5f6a3fa6378b606475f`.
+Its code is MIT; its 60 approved synthetic examples and original thumbnail
+are CC BY 4.0, credited to Ali Hasan, 2026. Full notices are included in the
+package. The copied `public/projects/stancebench.svg` thumbnail is unchanged.
+No private repository, reviewer ledger or provider configuration is included.

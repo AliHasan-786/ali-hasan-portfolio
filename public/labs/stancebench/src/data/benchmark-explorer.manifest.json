@@ -1,0 +1,30 @@
+{
+  "artifact_kind": "stancebench-local-workbench",
+  "artifact_sha256": "2e92b616feb75e07f883386b7c7f19849a5bcf5f047aea880ed565ef462d2cfa",
+  "derivative_version": "1.0",
+  "source_inventory": {
+    "available_record_count": 60,
+    "cache_record_inventory_sha256": "6945d1f6be665e0a8d63b95105e294c00a8c2b150ac4903f35bc9664566e5907",
+    "config_sha256": "49097a871732ba19d8d026ef861f98159d077447641a8110b64d6ffc39f7f1a2",
+    "expected_record_count": 60,
+    "expected_tuple_ids_sha256": "eecf0b0a8ecc0f33b8296638493b7bac37f09463743ac4a4db90996e22121706",
+    "inputs": [
+      {
+        "manifest_path": "data/frozen/scams_v0_1/manifest.json",
+        "manifest_sha256": "2400083e4ae4edf4b1ff40bbe3f656c2237ac836ee5347459da36784dc3574f4",
+        "path": "data/frozen/scams_v0_1/stance_tuples.jsonl",
+        "record_count": 48,
+        "role": "stance_items",
+        "sha256": "3661f576d6fbbe30db80beee9d73f43528d72a1407d9103f88e0d77e69db04e7"
+      },
+      {
+        "manifest_path": "data/frozen/scams_v0_1_controls/manifest.json",
+        "manifest_sha256": "cfded254f255794a61c89f07a923b7b29fe077c6418e7bbe9a1faff35797f8b9",
+        "path": "data/frozen/scams_v0_1_controls/stance_tuples.jsonl",
+        "record_count": 12,
+        "role": "benign_unrelated_controls",
+        "sha256": "72e8e1bab16b2c5963613408a02e645ae8c6a4ea5f0313e01853bd093f9ff1e4"
+      }
+    ]
+  }
+}

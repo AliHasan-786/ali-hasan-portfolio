@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StanceBench portfolio metadata",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "id",
+    "title",
+    "oneLine",
+    "status",
+    "evidenceStage",
+    "demoUrl",
+    "sourceCommit",
+    "codeLicense",
+    "dataLicense",
+    "release",
+    "evidence"
+  ],
+  "properties": {
+    "contractVersion": {"const": 1},
+    "id": {"const": "stance-bench"},
+    "title": {"const": "StanceBench"},
+    "oneLine": {"type": "string", "minLength": 1},
+    "status": {"const": "public-static-package"},
+    "evidenceStage": {"const": "preliminary"},
+    "demoUrl": {"const": "https://ali-hasan-ai.vercel.app/labs/stancebench/"},
+    "sourceCommit": {"pattern": "^[a-f0-9]{40}$"},
+    "codeLicense": {"const": "MIT"},
+    "dataLicense": {"const": "CC BY 4.0"},
+    "release": {
+      "type": "object",
+      "required": ["commit", "metadataCommit", "checkedAt", "publicationStatus"],
+      "properties": {
+        "commit": {"pattern": "^[a-f0-9]{40}$"},
+        "metadataCommit": {"type": ["string", "null"]},
+        "checkedAt": {"pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+        "publicationStatus": {"const": "coordinator-reviewed-public-partial-baseline"}
+      }
+    },
+    "evidence": {"type": "array", "minItems": 1}
+  }
+}

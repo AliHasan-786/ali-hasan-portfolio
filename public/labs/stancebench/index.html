@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>StanceBench: Saved Safety Decisions</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#inspector">Skip to inspector</a>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">StanceBench</p>
+        <h1>See how one safety baseline reads the same claim in six stances.</h1>
+        <p class="hub-return"><a href="/">Return to portfolio hub</a></p>
+      </div>
+      <div class="stage" aria-label="Evidence stage">
+        <span class="stage-dot" aria-hidden="true"></span>
+        <span>60 synthetic examples</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="overview" aria-labelledby="scope-heading">
+        <div>
+          <p class="section-label">What you can check</p>
+          <h2 id="scope-heading">Choose a record and see the saved decision.</h2>
+          <p id="scope-copy" class="lede"></p>
+        </div>
+        <dl class="evidence-strip" id="evidence-strip" aria-label="Evidence inventory"></dl>
+      </section>
+
+      <section id="inspector" class="workspace" aria-labelledby="inspector-heading">
+        <aside class="controls" aria-label="Evidence controls">
+          <div>
+            <p class="section-label">Try the records</p>
+            <h2 id="inspector-heading">Pick a topic and speech type.</h2>
+          </div>
+          <label for="kernel-select">Kernel</label>
+          <select id="kernel-select"></select>
+          <label for="stance-select">Stance</label>
+          <select id="stance-select"></select>
+          <button id="reset-button" type="button">Reset selection</button>
+          <p class="control-note">Use the keyboard or menus to change the record. Each result is a saved local decision, not a live model response.</p>
+        </aside>
+
+        <article class="record-panel" aria-live="polite">
+          <div class="record-header">
+            <div>
+              <p class="section-label" id="record-kind"></p>
+              <h2 id="record-title"></h2>
+            </div>
+            <span class="action-chip" id="observed-action"></span>
+          </div>
+          <blockquote id="record-text"></blockquote>
+          <div class="comparison" id="comparison"></div>
+          <div class="fact-grid" id="record-facts"></div>
+          <details class="provenance" id="provenance-details">
+            <summary>Source, policy, and cache identity</summary>
+            <dl id="provenance-list"></dl>
+          </details>
+        </article>
+      </section>
+
+      <section class="analysis-grid" aria-label="Saved decision comparison">
+        <article class="matrix-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-label">Compare the six stances</p>
+              <h2>See how the baseline handled each version.</h2>
+            </div>
+            <span class="legend"><span class="legend-key flag"></span>Flag <span class="legend-key review"></span>Review <span class="legend-key no-flag"></span>No flag</span>
+          </div>
+          <div id="stance-table-wrap" class="table-wrap" tabindex="0" role="region" aria-label="Saved decision comparison. Use left and right arrows, Home, or End to scroll the table horizontally when needed.">
+            <table>
+              <caption>Saved decision for each matched stance</caption>
+              <thead><tr><th scope="col">Stance</th><th scope="col">Expected</th><th scope="col">Observed</th><th scope="col">Compatibility</th></tr></thead>
+              <tbody id="stance-table"></tbody>
+            </table>
+          </div>
+          <p id="kernel-note" class="panel-note"></p>
+        </article>
+
+        <article class="unavailable-panel">
+          <p class="section-label">Still to run</p>
+          <h2>Hosted comparisons have not run.</h2>
+          <p>They have no saved outputs yet. They are not zero rates or completed results.</p>
+          <ul id="unavailable-list"></ul>
+        </article>
+      </section>
+
+      <section class="source-panel" aria-labelledby="source-heading">
+        <div>
+          <p class="section-label">Methods and source</p>
+          <h2 id="source-heading">Check what this page includes.</h2>
+          <p id="rights-copy"></p>
+        </div>
+        <div class="source-links">
+          <a href="public/provenance.json">Evidence source</a>
+          <a href="public/METHODS.md">Methods and limits</a>
+          <a href="src/data/benchmark-explorer.manifest.json">Derivative manifest</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>This page replays saved local decisions. It does not call a provider.</span>
+      <span id="artifact-revision"></span>
+    </footer>
+    <script src="src/data/benchmark-explorer.js"></script>
+    <script src="validate.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
