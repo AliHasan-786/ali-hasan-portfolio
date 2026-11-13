@@ -46,10 +46,11 @@ in `public/evidence/sports-coursework.json`; it is not a fresh experiment.
 
 ## Work Case Studies
 
-House IQ (`#house-iq`) and Cornell Tech SETS (`#sets`) have separate case-study
-sections. Newly authored illustrative scenarios explore evaluation decisions
-and tradeoffs. SETS program context links to Cornell's coverage. PromptPlay is
-parked and is not part of the active showcase.
+Experience has one entry per workplace: American Express, House IQ, Cornell
+Tech SETS, and Myridius. House IQ has no project breakdowns or scenarios.
+Amex lists the current affiliation without work details. SETS links to public
+Cornell coverage. PromptPlay remains parked. The `#labs` directory links all
+six released demos.
 
 ## Project Structure
 

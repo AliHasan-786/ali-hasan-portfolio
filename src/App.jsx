@@ -12,7 +12,7 @@ const trustSafetyRepoUrl = "https://github.com/AliHasan-786/crypto-scam-moderati
 const heroCopy = {
   headline: "I build AI systems and test where they fail.",
   focus:
-    "I'm a Cornell Tech M.Eng. working on AI evaluation and safety at House IQ. Here you'll find my work, projects you can try, and the results behind them, including what didn't work.",
+    "I'm at American Express and studied engineering at Cornell Tech. These are the projects I've been building, from AI safety to reinforcement learning. Open a lab to try it.",
 };
 
 const artifactLedger = [
@@ -71,118 +71,17 @@ const proofStats = [
   },
 ];
 
-const caseFiles = [
-  {
-    org: "House IQ",
-    title: "AI evaluation and human review",
-    date: "2026",
-    status: "Shipped analysis, owns follow-on",
-    tags: ["LLM-as-judge", "evals", "measurement integrity", "AI quality"],
-    summary: "I work on how to check automated quality scores against human judgment.",
-    lead:
-      "I examine automated evaluations and design the human checks needed to interpret them.",
-    body:
-      "A score is useful only if we know what it measures. I look at the rubric, the sample, where reviewers disagree, and which failures the evaluation misses.",
-    did: [
-      "Examined the relationship between automated judgments and human evidence.",
-      "Designed the calibration program end to end: stratified sampling, blind labeling, agreement statistics with confidence intervals, and failure-recall.",
-      "Built supporting statistical tooling while keeping proposed evaluation work separate from measured outcomes.",
-    ],
-  },
-  {
-    org: "House IQ",
-    title: "Safety checks for generative AI features",
-    date: "Dec 2025 - present",
-    status: "Shipped",
-    tags: ["AI safety", "red teaming", "guardrails", "LLM-as-judge"],
-    summary: "I turn safety policy into product checks and tests.",
-    lead:
-      "I work on safety policy, multimodal evaluations, adversarial tests, and application safeguards.",
-    body:
-      "I test the workflow around the model too: what happens when a check fails, an input is incomplete, or a dependency is unavailable.",
-    did: [
-      "Translated harm-policy requirements into evaluable criteria and application checks.",
-      "Developed adversarial tests and regression coverage around intended product behavior.",
-      "Worked on threat modeling and clear boundaries between tested behavior and planned evaluation.",
-    ],
-  },
-  {
-    org: "House IQ",
-    title: "Defining what a good answer looks like",
-    date: "2026",
-    status: "In progress",
-    tags: ["product judgment", "evaluation", "benchmark design", "AI quality"],
-    summary: "I design the scenarios and rubrics used to judge answer quality.",
-    lead:
-      "I design evaluation workflows around a product question: what does a good answer look like for the person relying on it?",
-    body:
-      "I keep scenario construction separate from evaluation and make the scoring rules explicit. That helps us check whether a result reflects useful behavior or just how a test was written.",
-    did: [
-      "Authored and reviewed product-grounded evaluation scenarios.",
-      "Packaged scenario-generation and independent-validation workflows into reusable tooling.",
-    ],
-  },
-  {
-    org: "House IQ",
-    title: "Processing messy documents and images",
-    date: "2026",
-    status: "Shipped",
-    tags: ["production ML", "multimodal", "performance", "reliability"],
-    summary: "I build processing workflows for documents and images that don't arrive in a clean format.",
-    lead:
-      "I built document and image processing that turns varied inputs into structured data.",
-    body:
-      "The work includes handling file formats, limiting resource use, tracking partial failures, and fitting the pipeline into the service.",
-    did: [
-      "Extended the pipeline to the formats real users bring: scanned PDFs, embedded-office images, and iPhone photos.",
-      "Adapted the implementation to production service patterns through engineering review.",
-    ],
-  },
-  {
-    org: "House IQ",
-    title: "Data for recommendations",
-    date: "2025 - 2026",
-    status: "Shipped",
-    tags: ["data modeling", "semantic search", "product infrastructure"],
-    summary: "I structured domain data and built the pipeline used to populate it.",
-    lead:
-      "I worked on the data model and processing needed for a recommendation feature.",
-    body:
-      "I worked through the taxonomy, retrieval, validation, and review steps so the product could use the data consistently.",
-    did: [],
-  },
-  {
-    org: "Cornell Tech SETS AI Red Team Clinic",
-    title: "Red-teaming high-stakes public-sector AI",
-    date: "Oct - Nov 2025",
-    status: "Inaugural cohort",
-    tags: ["red team", "public-sector AI", "adversarial testing"],
-    summary: "I was part of the inaugural SETS AI Content Red Team Clinic cohort, working on public-sector AI assessment.",
-    lead:
-      "The clinic brought students and public-sector practitioners together to examine the behavior and limits of AI tools. Cornell's public account names the inaugural cohort and describes the engagement with New York City's health department.",
-    body:
-      "I helped design adversarial tests, review behavior across contexts, and organize findings for the team. Each finding needed enough context for someone else to check it.",
-    did: [],
-    links: [
-      { label: "Cornell Tech: the clinic", href: "https://tech.cornell.edu/news/red-team-clinic-cornell-tech/" },
-      { label: "Cornell Chronicle", href: "https://news.cornell.edu/stories/2025/12/red-team-students-stress-test-nyc-health-departments-ai" },
-    ],
-  },
-  {
-    org: "Myridius",
-    title: "Enterprise AI assistants, client-facing",
-    date: "Oct 2024 - Jul 2025",
-    status: "Built and demoed",
-    tags: ["RAG", "enterprise AI", "client delivery"],
-    summary: "Built and delivered retrieval assistants for 10+ businesses, and defined what they were and weren't allowed to answer.",
-    lead:
-      "I built and demoed enterprise knowledge assistants for more than ten businesses, and the interesting part was drawing the lines: which sources they could use, when they should refuse, and where a human had to take over.",
-    body:
-      "I structured product and travel data behind a retrieval assistant in Databricks, presented working future-state demos to executives and clients, and delivered the market-analysis dashboards that turned customer evidence into decisions for leadership.",
-    did: [],
-  },
-];
-
+const caseFiles = Object.values(workStories).map((story) => ({
+  logo: `/organizations/${story.id === "sets" ? "cornell-tech.png" : story.id + ".svg"}`,
+  org: story.organization,
+  title: story.title,
+  date: story.date,
+  status: story.status,
+  tags: [],
+  summary: story.introduction,
+  lead: story.introduction,
+  links: story.sources,
+}));
 const courseProjects = [
   {
     id: "crypto-scam-lab",
@@ -400,14 +299,11 @@ function App() {
     <main>
       <Nav />
       <Hero />
-      <ProofStrip />
-      <ArtifactLedger />
+      <LiveLabs />
       <ExperienceAtlas
         activeCase={activeCase}
         setActiveCase={setActiveCase}
       />
-      <WorkPractice story={workStories.houseIQ} />
-      <WorkPractice story={workStories.sets} />
       <CourseLab
         activeProject={activeProject}
         setActiveProject={selectProject}
@@ -417,6 +313,36 @@ function App() {
       <ContactPanel />
       <LabsFooter />
     </main>
+  );
+}
+
+const liveLabs = [
+  { title: "Crypto Scam Moderation Lab", href: trustSafetyLabUrl, action: "Review a post and see how context changes the moderation decision.", scope: "Policy simulator and saved evaluations" },
+  ...Object.values(projectReleases).map((project) => ({
+    title: project.title, href: project.release.demoUrl,
+    action: project.release.invitation, scope: project.release.evidenceStage,
+  })),
+];
+
+function LiveLabs() {
+  return (
+    <section className="section-shell" id="labs">
+      <div className="section-heading">
+        <p className="eyebrow">Projects you can try</p>
+        <h2>Pick a question. Try the lab.</h2>
+        <p>Each project has its own demo, results, and methods.</p>
+      </div>
+      <div className="live-lab-grid">
+        {liveLabs.map((lab, index) => (
+          <a className="live-lab-card" key={lab.href} href={lab.href}>
+            <span className="eyebrow">0{index + 1} / Open lab</span>
+            <h3>{lab.title}</h3>
+            <p>{lab.action}</p>
+            <small>{lab.scope}</small>
+          </a>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -484,7 +410,7 @@ function Nav() {
       </a>
       <nav>
         <a href="#experience">Experience</a>
-        <a href="#lab">Cornell Lab</a>
+        <a href="#labs">Projects</a>
         <a href="#crypto-case-study">Case Study</a>
         <a href="#side">Side Projects</a>
         <a href="#contact">Contact</a>
@@ -606,7 +532,7 @@ function Hero() {
           <a href="#experience" className="primary-link">
             See my work
           </a>
-          <a href="#lab" className="secondary-link">
+          <a href="#labs" className="secondary-link">
             Projects
           </a>
         </div>
@@ -657,13 +583,8 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
         <p className="eyebrow">Experience</p>
         <h2>Where I've worked.</h2>
         <p>
-          AI evaluation and engineering at House IQ, red-teaming at Cornell Tech,
-          and enterprise assistants at Myridius.
+          My current role and previous experience.
         </p>
-        <div className="link-row">
-          <a href="#house-iq">House IQ: evaluation decisions</a>
-          <a href="#sets">SETS: red-team practice</a>
-        </div>
       </div>
 
       <div className="case-layout">
@@ -674,23 +595,25 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
               key={item.title}
               aria-label={`Open case file: ${item.title}`}
               data-case-title={item.title}
+              aria-pressed={activeCase.org === item.org}
+              aria-controls="workplace-detail"
               className={activeCase.title === item.title ? "case-card active" : "case-card"}
               onClick={() => setActiveCase(item)}
             >
               <span>{item.org}</span>
               <h3>{item.title}</h3>
-              <p>{item.summary}</p>
             </button>
           ))}
         </div>
-        <article className="case-detail">
+        <article className="case-detail" id="workplace-detail">
           <div className="case-detail-header">
             <div>
               <span className="pill">{activeCase.status}</span>
-              <span className="pill ghost">{activeCase.date}</span>
+              {activeCase.date && <span className="pill ghost">{activeCase.date}</span>}
             </div>
             <strong>{activeCase.org}</strong>
           </div>
+          <img className="workplace-logo" src={activeCase.logo} alt={activeCase.org} width="180" height="64" />
           <h3>{activeCase.title}</h3>
           <div className="tag-row">
             {activeCase.tags.map((tag) => (
@@ -722,57 +645,6 @@ function ExperienceAtlas({ activeCase, setActiveCase }) {
   );
 }
 
-function WorkPractice({ story }) {
-  const [activeId, setActiveId] = useState(story.scenarios[0].id);
-  const active = story.scenarios.find((scenario) => scenario.id === activeId);
-  return (
-    <section className="section-shell practice-section" id={story.id}>
-      <div className="section-heading">
-        <p className="eyebrow">{story.organization}</p>
-        <h2>{story.title}</h2>
-        <p>{story.introduction}</p>
-      </div>
-      <div className="practice-layout">
-        <aside className="practice-context">
-          <p className="practice-label">{story.label}</p>
-          <h3>My contribution</h3>
-          <p>{story.role}</p>
-          <div className="link-row">
-            {story.sources.map((source) => (
-              <a key={source.href} href={source.href} target="_blank" rel="noreferrer">{source.label}</a>
-            ))}
-          </div>
-        </aside>
-        <div className="practice-explorer">
-          <p className="practice-label">{story.exampleLabel}</p>
-          <h3>{story.question}</h3>
-          <div className="practice-controls" aria-label={`${story.organization} examples`}>
-            {story.scenarios.map((scenario) => (
-              <button
-                key={scenario.id}
-                type="button"
-                aria-pressed={scenario.id === active.id}
-                aria-controls={`${story.id}-example`}
-                onClick={() => setActiveId(scenario.id)}
-              >
-                {scenario.title}
-              </button>
-            ))}
-          </div>
-          <article id={`${story.id}-example`} className="practice-example">
-            <h4>{active.title}</h4>
-            <p>{active.situation}</p>
-            <dl>
-              <dt>Evidence to inspect</dt><dd>{active.evidence}</dd>
-              <dt>Decision principle</dt><dd>{active.decision}</dd>
-              <dt>The tradeoff</dt><dd>{active.tradeoff}</dd>
-            </dl>
-          </article>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function CourseLab({
   activeProject,
@@ -784,8 +656,7 @@ function CourseLab({
         <p className="eyebrow">Projects</p>
         <h2>Selected projects.</h2>
         <p>
-          Start with a decision or a piece of evidence, then open the full project.
-          Policy examples, saved coursework and measured lab releases are kept distinct.
+          More about what I built, what the results show, and what still needs work.
         </p>
       </div>
 
@@ -1046,8 +917,7 @@ function ContactPanel() {
         <p className="eyebrow">Contact</p>
         <h2>Get in touch.</h2>
         <p>
-          The case studies above are designed to be inspected, challenged, and extended.
-          Use the links below for direct contact or to keep exploring the code.
+          Email me, find me on LinkedIn, or take a look at the code.
         </p>
       </div>
       <div className="contact-links">

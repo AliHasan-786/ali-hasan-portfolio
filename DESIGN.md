@@ -66,7 +66,7 @@ them replays rather than live model runs. Unrun cells stay absent, not zero.
 | Housing | Dispatch/queue instrument | Compare frozen policy/capacity/access/seed runs; distinguish service from a queue reduced by deferral |
 | Brunch Index | Cartographic data essay | Inspect metro/year/coverage transfer cells and loading stability, retaining adverse results |
 | Crypto/StanceBench | Policy/review console | Follow source evidence through action, review burden and appeal; compare only compatible action contracts |
-| House IQ/SETS | General practice stories | Inspect newly authored illustrative decisions, not reconstructed client systems |
+| Workplaces | One entry per organization | General role descriptions; no House IQ project detail or illustrative scenarios; Amex affiliation only |
 
 These are acceptance targets, not claims that all interactions already exist.
 No same-format requirement, forced global theme, or fixed number of tabs.

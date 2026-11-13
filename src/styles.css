@@ -1804,3 +1804,14 @@ h3 {
   opacity: 0.6;
   margin: 0;
 }
+/* Keep released projects directly reachable before the longer project notes. */
+.live-lab-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.live-lab-card { display: flex; flex-direction: column; padding: 1.5rem; border: 1px solid currentColor; color: inherit; text-decoration: none; min-width: 0; }
+.live-lab-card h3 { font-size: 1.45rem; line-height: 1.2; }
+.live-lab-card p { line-height: 1.6; }
+.live-lab-card small { margin-top: auto; padding-top: 1rem; line-height: 1.5; }
+.live-lab-card:hover { background: #fff8ee; }
+.live-lab-card:focus-visible { outline: 3px solid #a52d17; outline-offset: 4px; }
+@media (max-width: 850px) { .live-lab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px) { .live-lab-grid { grid-template-columns: 1fr; } }
+.workplace-logo { display: block; width: 180px; max-width: 100%; height: 64px; object-fit: contain; object-position: left center; margin: 1.5rem 0; }

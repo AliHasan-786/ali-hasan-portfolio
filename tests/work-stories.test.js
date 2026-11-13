@@ -3,20 +3,16 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { workStories } from "../src/workStories.js";
 
-test("professional stories have separate anchors and clearly labeled illustrations", () => {
+test("workplaces stay general and have one entry each", () => {
   const ids = Object.values(workStories).map((story) => story.id);
   assert.equal(new Set(ids).size, ids.length);
   for (const story of Object.values(workStories)) {
-    assert.ok(story.role);
-    assert.equal(story.exampleLabel, "Illustrative scenario");
-    assert.ok(!Object.hasOwn(story, "boundary"));
-    assert.ok(story.scenarios.length >= 3);
-    assert.equal(new Set(story.scenarios.map((scenario) => scenario.id)).size, story.scenarios.length);
-    for (const scenario of story.scenarios) {
-      assert.ok(scenario.situation);
-      assert.ok(scenario.evidence && scenario.decision && scenario.tradeoff);
-    }
+    assert.ok(story.introduction);
+    assert.ok(!Object.hasOwn(story, "scenarios"));
   }
+  assert.equal(ids.length, 4);
+  assert.equal(workStories.amex.introduction, "I'm currently at American Express.");
+  assert.equal(workStories.houseIQ.sources.length, 0);
 });
 
 test("SETS program sources are public Cornell records", () => {
